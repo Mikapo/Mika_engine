@@ -1,0 +1,18 @@
+#pragma once
+
+#include "Objects/Actor.h"
+
+class Player : public Actor
+{
+public:
+	void initialize() override;
+
+private:
+	void setup_input();
+	void move_forward(float input);
+	void move_right(float input);
+	void rotate(float input);
+
+	float movement_speed = 2.0f;
+};
+

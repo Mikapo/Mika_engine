@@ -1,0 +1,13 @@
+#include "UI_window.h"
+
+void UI_window::draw()
+{
+	ImGui::Begin(get_name().data(), &m_open, m_flags);
+	draw_children();
+	ImGui::End();
+}
+
+void UI_window::add_flag(ImGuiWindowFlags flag)
+{
+	m_flags |= flag;
+}
