@@ -1,8 +1,5 @@
 #include "Application.h"
 #include "Debug/Debug_logger.h"
-#include <iostream>
-
-
 
 void Application::start()
 {
@@ -15,8 +12,6 @@ void Application::start()
         m_has_started = false;
     }
 }
-
-void Application::stop() { m_has_started = false; }
 
 void Application::get_window_dimensions(int32_t& out_width, int32_t& out_height) const
 { 
@@ -72,6 +67,20 @@ void Application::on_key_event(int32_t key, int32_t scancode, int32_t action, in
         m_on_key_event_callback->call(key, scancode, action, mods);
 }
 
+void Application::set_window_dimensions(int32_t width, int32_t height) 
+{
+    m_width = width;
+    m_height = height;
+
+    if (m_window)
+        glfwSetWindowSize(m_window, width, height);
+}
+
+void Application::set_window_title(std::string_view name) 
+{
+    m_name = name;
+}
+
 void Application::setup_callbacks() const
 {
     auto on_key = [](GLFWwindow* window, int32_t key, int32_t scancode, int32_t action, int32_t mods)
@@ -95,7 +104,7 @@ void Application::setup_callbacks() const
 
 void Application::render_loop()
 {
-    while (!glfwWindowShouldClose(m_window) && m_has_started)
+    while (!glfwWindowShouldClose(m_window))
     {
         glViewport(0, 0, m_width, m_height);
         glfwPollEvents();

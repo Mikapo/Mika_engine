@@ -24,7 +24,7 @@
     <ProjectGuid>{9ec86150-9b8b-436a-8f8a-b57edcba3bbc}</ProjectGuid>
     <RootNamespace>TestAplication</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Test_aplication</ProjectName>
+    <ProjectName>Test_scene</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -119,7 +119,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Mika_engine\Libraries\GLFW\include;$(SolutionDir)Mika_engine\Vendor;$(SolutionDir)Mika_engine\Libraries\GLEW\include;$(SolutionDir)Mika_engine\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -137,7 +137,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Mika_engine\Libraries\GLFW\include;$(SolutionDir)Mika_engine\Vendor;$(SolutionDir)Mika_engine\Libraries\GLEW\include;$(SolutionDir)Mika_engine\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -150,10 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\UI\SettingsUI.cpp" />
+    <ClCompile Include="Source\UI\Settings_ui.cpp" />
     <ClCompile Include="Source\Actors\Light.cpp" />
     <ClCompile Include="Source\Actors\Player.cpp" />
-    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Actors\Sofa.cpp" />
     <ClCompile Include="Source\Actors\Ground.cpp" />
     <ClCompile Include="Source\Actors\Table.cpp" />
@@ -161,7 +161,7 @@
     <ClCompile Include="Source\Test_world.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\UI\SettingsUI.h" />
+    <ClInclude Include="Source\UI\Settings_ui.h" />
     <ClInclude Include="Source\Actors\Light.h" />
     <ClInclude Include="Source\Actors\Player.h" />
     <ClInclude Include="Source\Actors\Sofa.h" />

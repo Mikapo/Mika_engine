@@ -16,25 +16,26 @@ struct UI_wrapper
 
 class UI_parent : public UI_item
 {
-public:
-	template<typename T>
-	T* create_children(std::string_view name, int32_t position)
-	{
-		T* object = Object::construct_object<T>(get_engine());
-		UI_item* basic_item = object;
-		m_children.insert({ basic_item, position});
-		basic_item->set_name(name.data());
-		basic_item->initialize();
-		return object;
-	}
+    GENERATED_BODY(UI_parent)
 
+public:
+    UI_item* create_children(Class_obj* class_obj, std::string_view name, int32_t position);
 	void update(float deltatime) override;
 	void get_owned_objects(std::vector<Object*>& out_array) override;
+
+	template<typename T>
+	T* create_children_cast(Class_obj* class_obj, std::string_view name, int32_t position)
+	{
+        return dynamic_cast<T*>(create_children(class_obj, name, position));
+	}
 
 protected:
 	void draw_children();
 
 private:
+    void on_chidren_destroyed(Object* children);
+
 	std::set<UI_wrapper> m_children;
+    std::unordered_map<UI_item*, int32_t> m_positions;
 };
 

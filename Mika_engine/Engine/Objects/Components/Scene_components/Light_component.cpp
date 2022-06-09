@@ -1,9 +1,6 @@
 #include "Light_component.h"
 
 #include "Objects/World.h"
-#include "Utility/Frame_data.h"
-#include <glm/ext/matrix_clip_space.hpp>
-#include <glm/ext/matrix_transform.hpp>
 
 void Light_component::initialize()
 {

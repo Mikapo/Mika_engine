@@ -10,6 +10,17 @@ void UI::update(float deltatime)
 	update_owned_objects(m_windows, deltatime);
 }
 
+UI_window* UI::create_window(std::string_view name, Class_obj* class_obj) 
+{ 
+	UI_window* window_obj = class_obj->construct_cast<UI_window>(get_engine());
+    m_windows.insert(window_obj);
+    window_obj->set_name(name.data());
+    window_obj->m_on_being_destroyed.add_object(this, &UI::on_window_destructed);
+    window_obj->initialize();
+    return window_obj;
+}
+
+
 void UI::draw()
 {
 	for (UI_window* window : m_windows)
@@ -34,4 +45,9 @@ void UI::remove_from_viewport(World* world)
 {
 	if (is_valid(world))
 		world->add_UI_to_viewport(this);
+}
+
+void UI::on_window_destructed(Object* window) 
+{ 
+	remove_object_from_set(m_windows, window); 
 }

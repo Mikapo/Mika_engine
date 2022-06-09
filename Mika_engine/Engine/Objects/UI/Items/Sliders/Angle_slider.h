@@ -4,6 +4,8 @@
 
 class Angle_slider : public Slider
 {
+    GENERATED_BODY(Angle_slider)
+
 public:
 	Angle_slider();
 

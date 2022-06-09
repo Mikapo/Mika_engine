@@ -4,7 +4,7 @@ void Slider::update(float deltatime)
 {
 	if (m_current_value != m_last_checked_value)
 	{
-		m_on_slider_change.call(m_current_value);
+		m_on_slider_change.broadcast(m_current_value);
 		m_last_checked_value = m_current_value;
 	}
 }

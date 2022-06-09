@@ -5,6 +5,8 @@
 
 class Checkbox : public UI_item
 {
+    GENERATED_BODY(Checkbox)
+
 public:
 	void draw() override;
 	void update(float deltatime) override;

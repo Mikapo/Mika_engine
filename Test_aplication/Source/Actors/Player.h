@@ -4,6 +4,8 @@
 
 class Player : public Actor
 {
+    GENERATED_BODY(Player)
+
 public:
 	void initialize() override;
 

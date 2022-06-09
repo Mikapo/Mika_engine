@@ -8,7 +8,7 @@ void Light::initialize()
 {
 	Actor::initialize();
 
-	m_light_component = create_component<Light_component>();
+	m_light_component = create_component_cast<Light_component>(Light_component::static_class());
 	set_location( { 0.0f, 5.0f, 7.0f } );
 }
 

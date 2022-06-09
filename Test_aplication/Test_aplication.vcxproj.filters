@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Test_world.cpp" />
     <ClCompile Include="Source\Actors\Sofa.cpp" />
     <ClCompile Include="Source\Actors\Player.cpp" />
@@ -9,7 +9,7 @@
     <ClCompile Include="Source\Actors\Table.cpp" />
     <ClCompile Include="Source\Actors\Light.cpp" />
     <ClCompile Include="Source\Actors\Wooden_table.cpp" />
-    <ClCompile Include="Source\UI\SettingsUI.cpp" />
+    <ClCompile Include="Source\UI\Settings_ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Test_world.h" />
@@ -19,6 +19,6 @@
     <ClInclude Include="Source\Actors\Table.h" />
     <ClInclude Include="Source\Actors\Light.h" />
     <ClInclude Include="Source\Actors\Wooden_table.h" />
-    <ClInclude Include="Source\UI\SettingsUI.h" />
+    <ClInclude Include="Source\UI\Settings_ui.h" />
   </ItemGroup>
 </Project>

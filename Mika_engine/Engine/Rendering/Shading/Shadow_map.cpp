@@ -27,7 +27,7 @@ void Shadow_map::init(int32_t shadow_width, int32_t shadow_height)
 	m_shadow_width = shadow_width;
 	m_shadow_height = shadow_height;
 
-	m_shader = std::make_unique<Shader>("shaders/Shadow_map.frag", "shaders/Shadow_map.vert");
+	m_shader = std::make_unique<Shader>("Engine/shaders/Shadow_map.frag", "Engine/shaders/Shadow_map.vert");
 	m_depth_map = create_depth_map_texture(shadow_width, shadow_height);
 	m_frame_buffer = create_frame_buffer(m_depth_map);
 	m_has_been_initialized = true;

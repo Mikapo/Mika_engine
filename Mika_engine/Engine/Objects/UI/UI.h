@@ -4,21 +4,14 @@
 #include <unordered_set>
 #include "Items/Parents/UI_window.h"
 
+class World;
 class UI_window;
 class UI : public Object
 {
+    GENERATED_BODY(UI)
+
 public:
-	template<typename T = UI_window>
-	T* add_window(std::string_view name)
-	{
-		T* window_obj = Object::construct_object<T>(get_engine());
-		UI_window* window = window_obj;
-		m_windows.insert(window);
-		window->set_name(name.data());
-		window->initialize();
-		return window_obj;
-	}
-	
+    UI_window* create_window(std::string_view name, Class_obj* class_obj = UI_window::static_class());
 	void draw();
 	void update(float deltatime) override;
 	void get_owned_objects(std::vector<Object*>& out_array) override;
@@ -27,6 +20,8 @@ public:
 	virtual void on_added_to_viewport(World* world) {};
 
 private:
+    void on_window_destructed(Object* window);
+
 	std::unordered_set<UI_window*> m_windows;
 };
 

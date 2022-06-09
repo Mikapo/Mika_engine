@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdexcept>
 #include <vector>
 
 #include "GL/glew.h"
@@ -48,7 +49,7 @@ public:
     template <typename T>
     void push(uint32_t count)
     {
-        static_assert(false);
+        throw std::runtime_error("should never get here");
     }
     template <>
     void push<float>(uint32_t count)

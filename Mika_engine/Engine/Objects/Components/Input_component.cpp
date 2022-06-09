@@ -1,33 +1,22 @@
 #include "Input_component.h"
-
-#include <iostream>
+#include "Core/Mika_engine.h"
 
 void Input_component::initialize()
 {
 	Actor_component::initialize();
 
-	get_engine()->subscribe_for_key_events(this);
+	get_engine()->m_on_key_event.add_object(this, &Input_component::on_key_event);
 }
 
 void Input_component::update(float deltatime)
 {
 	Actor_component::update(deltatime);
 
-	std::vector<std::string> remove;
-
 	for (auto& value : m_axis_mappings)
 	{
 		auto* mapping = value.second.get();
-		const bool success = mapping->call(mapping->get_current_value());
-
-		if (!success)
-			remove.push_back(value.first);
+		mapping->broadcast(mapping->get_current_value());
 	}
-
-	for (auto& mapping_string : remove)
-		m_axis_mappings.erase(mapping_string);
-
-	remove.clear();
 }
 
 void Input_component::remove_axis_mapping(const std::string& name)
@@ -35,20 +24,35 @@ void Input_component::remove_axis_mapping(const std::string& name)
 	m_axis_mappings.erase(name);
 }
 
-void Input_component::on_key_event(int32_t key, int32_t scancode, int32_t action, int32_t mods)
+void Input_component::on_key_event(Input input)
 {
-	for (auto& value : m_axis_mappings)
-	{
-		auto* mapping = value.second.get();
+    handle_axis_mapping(input.action, input.key);
+    handle_action_mapping(input.action, input.key);
+}
 
-		if (action == GLFW_RELEASE && key == mapping->get_current_key())
-			mapping->set_current_value(0.0f);
+void Input_component::handle_axis_mapping(int32_t action, int32_t key)
+{
+    for (auto& value : m_axis_mappings)
+    {
+        auto* mapping = value.second.get();
 
-		else if (action == GLFW_PRESS && mapping->get_keys().contains(key))
-		{
-			mapping->set_current_value(mapping->get_keys().at(key));
-			mapping->set_current_key(key);
-		}
-	}
+        if (action == GLFW_RELEASE && key == mapping->get_current_key())
+            mapping->set_current_value(0.0f);
+
+        else if (action == GLFW_PRESS && mapping->get_keys().contains(key))
+        {
+            mapping->set_current_value(mapping->get_keys().at(key));
+            mapping->set_current_key(key);
+        }
+    }
+}
+
+void Input_component::handle_action_mapping(int32_t action, int32_t key) 
+{
+    auto& action_mappings = m_action_mappings[key];
+
+	for (size_t i = 0; i < action_mappings.size(); ++i)
+        if (action_mappings[i]->get_action() == action)
+            action_mappings[i]->broadcast();
 }
 

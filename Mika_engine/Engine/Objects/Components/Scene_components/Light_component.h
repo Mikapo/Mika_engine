@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Scene_component.h"
-#include "Utility/Frame_data.h"
+#include "Datatypes/Frame_data.h"
 
 class Light_component : public Scene_component
 {
+    GENERATED_BODY(Light_component)
 
 public:
 	void initialize() override;

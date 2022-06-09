@@ -4,6 +4,8 @@
 
 class Float_slider : public Slider
 {
+    GENERATED_BODY(Float_slider)
+
 public:
 	Float_slider();
 

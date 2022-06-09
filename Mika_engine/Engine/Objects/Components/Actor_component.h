@@ -1,12 +1,14 @@
 #pragma once
 
 #include "../Object.h"
-#include "Utility/Transform.h"
+#include "Datatypes/Transform.h"
 
 class Actor;
 class World;
 class Actor_component : public Object
 {
+    GENERATED_BODY(Actor_component)
+
 public:
 	void set_owner(Actor* owner);
 	Actor* get_owner() const;

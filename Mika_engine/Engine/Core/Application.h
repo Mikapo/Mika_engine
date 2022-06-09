@@ -42,10 +42,7 @@ struct GLFWwindow;
 class Application
 {
 public:
-
-    Application(const std::string& window_name, int32_t width, int32_t height) : m_name(window_name), m_width(width), m_height(height) {}
     void start();
-    void stop();
 
     template<typename T>
     void set_on_window_open_callback(T* obj, void(T::* f)(GLFWwindow* window))
@@ -88,15 +85,17 @@ public:
     void(APIENTRY* DEBUGPROC)(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
     void on_window_resize(GLFWwindow* window, int32_t new_width, int32_t new_height);
     void on_key_event(int32_t key, int32_t scancode, int32_t action, int32_t mods);
-    void setup_callbacks() const;
+    void set_window_dimensions(int32_t width, int32_t height);
+    void set_window_title(std::string_view name);
 
 private:
+    void setup_callbacks() const;
     void init();
     void cleanup();
     void render_loop();
 
-    std::string m_name;
-    int32_t m_width, m_height;
+    std::string m_name = "Window";
+    int32_t m_width = 1000, m_height = 1000;
     GLFWwindow* m_window = nullptr;
     bool m_has_started = false;
     glm::vec4 m_background_color = { 0.0f, 0.0f, 0.0f, 0.0f };

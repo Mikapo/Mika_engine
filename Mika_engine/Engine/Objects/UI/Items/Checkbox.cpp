@@ -9,7 +9,7 @@ void Checkbox::update(float deltatime)
 {
 	if (m_is_checked != m_was_checked_in_last_check)
 	{
-		m_on_checked_change.call(m_is_checked);
+		m_on_checked_change.broadcast(m_is_checked);
 		m_was_checked_in_last_check = m_is_checked;
 	}
 }

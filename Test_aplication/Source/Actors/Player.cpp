@@ -2,13 +2,13 @@
 #include "Objects/Components/Scene_components/Camera_component.h"
 #include "Objects/Components/Input_component.h"
 #include "Utility/Delegate.h"
-#include <iostream>
+#include "Core/Mika_engine.h"
 
 void Player::initialize()
 {
 	Actor::initialize();
 
-	auto* camera = create_component<Camera_component>();
+	auto* camera = create_component_cast<Camera_component>(Camera_component::static_class());
 	set_active_camera(camera);
 	setup_input();
 
@@ -17,7 +17,7 @@ void Player::initialize()
 
 void Player::setup_input()
 {
-	auto* input = create_component<Input_component>();
+    auto* input = create_component_cast<Input_component>(Input_component::static_class());
 
 	auto* forward_mapping = input->add_axis_mapping<Player>("move_forward", this, &Player::move_forward);
 	forward_mapping->add_key(GLFW_KEY_W, 1.0f);

@@ -17,7 +17,6 @@
 mono_crash.*
 
 # Build results
-[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -74,7 +73,6 @@ StyleCopReport.xml
 *_h.h
 *.ilk
 *.meta
-*.obj
 *.iobj
 *.pch
 *.pdb
@@ -396,3 +394,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+Mika_engine/Engine/Core/Garbage_collector.h

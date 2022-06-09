@@ -1,7 +1,4 @@
 #pragma once
-
-#include <string>
-
 namespace Uniform_names
 {
 	static const char* model = "u_model";
@@ -20,7 +17,7 @@ namespace Uniform_names
 	static const char* specular = "u_specular";
 	static const char* specular_enabled = "u_specular_enabled";
 	static const char* shininess = "u_shininess";
-	static const char* uses_texture = "u_uses_texture";
+	static const char* has_texture = "u_has_texture";
 	static const char* texture = "u_texture";
 	static const char* texture_enabled = "u_texture_enabled";
 	static const char* shadow_map = "u_shadow_map";

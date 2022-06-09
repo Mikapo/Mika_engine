@@ -6,6 +6,8 @@
 
 class Slider : public UI_item
 {
+    GENERATED_BODY(Slider)
+
 public:
 	void update(float deltatime) override;
 	void set_max(float max);

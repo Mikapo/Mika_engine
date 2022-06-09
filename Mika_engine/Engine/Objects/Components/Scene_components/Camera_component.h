@@ -2,10 +2,12 @@
 
 #include "Scene_component.h"
 
-#include "Utility/Frame_data.h"
+#include "Datatypes/Frame_data.h"
 
 class Camera_component : public Scene_component
 {
+    GENERATED_BODY(Camera_component)
+
 public:
 	float get_min_clip() const;
 	float get_max_clip() const;

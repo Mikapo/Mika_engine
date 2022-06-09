@@ -6,24 +6,22 @@
 #include "Actors/Ground.h"
 #include "Actors/Light.h"
 #include "Actors/Wooden_table.h"
-#include "UI/SettingsUI.h"
-
-#include <iostream>
+#include "UI/Settings_ui.h"
 
 void Test_world::initialize()
 {
 	World::initialize();
 
-	spawn_actor<Ground>();
-	spawn_actor<Sofa>();
-	spawn_actor<Table>();
-	spawn_actor<Wooden_table>();
-	spawn_actor<Light>();
+	spawn_actor(Ground::static_class());
+    spawn_actor(Sofa::static_class());
+    spawn_actor(Table::static_class());
+    spawn_actor(Wooden_table::static_class());
+    spawn_actor(Light::static_class());
 
-	auto* player = spawn_actor<Player>();
+	auto* player = spawn_actor(Player::static_class());
 	set_player_actor(player);
 
-	auto* ui = create_ui<SettingsUI>();
+	auto* ui = create_ui(Settings_ui::static_class());
 	ui->add_to_viewport(this);
 }
 

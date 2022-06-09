@@ -10,12 +10,12 @@
 #define ASSIMP_LOAD_FLAGS (aiProcess_Triangulate | aiProcess_GenSmoothNormals |  aiProcess_JoinIdenticalVertices )
 #define ARRAY_SIZE_IN_ELEMENTS(a) (sizeof(a)/sizeof(a[0]))
 
-std::shared_ptr<Buffers> Model_loader::load(std::string_view file_path, int32_t mesh_index)
+std::unique_ptr<Buffers> Model_loader::load(std::string_view file_path, int32_t mesh_index)
 {
 	return load_buffer(file_path, mesh_index);
 }
 
-std::shared_ptr<Buffers> Model_loader::load_buffer(std::string_view file_path, int32_t mesh_index)
+std::unique_ptr<Buffers> Model_loader::load_buffer(std::string_view file_path, int32_t mesh_index)
 {
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(file_path.data(), ASSIMP_LOAD_FLAGS);
@@ -26,7 +26,7 @@ std::shared_ptr<Buffers> Model_loader::load_buffer(std::string_view file_path, i
 	return load_mesh_from_scene(file_path, scene, mesh_index);
 }
 
-std::shared_ptr<Buffers> Model_loader::load_mesh_from_scene(std::string_view path, const aiScene* scene, int32_t index)
+std::unique_ptr<Buffers> Model_loader::load_mesh_from_scene(std::string_view path, const aiScene* scene, int32_t index)
 {
 	auto mesh = scene->mMeshes[index];
 
@@ -41,8 +41,7 @@ std::shared_ptr<Buffers> Model_loader::load_mesh_from_scene(std::string_view pat
 	layout.push<float>(3);
 	layout.push<float>(2);
 
-	std::shared_ptr buffer = std::make_shared<Buffers>(std::move(vertices), std::move(indices), layout);
-	return buffer;
+    return std::make_unique<Buffers>(std::move(vertices), std::move(indices), layout);
 }
 
 void Model_loader::get_indices(const aiMesh* mesh, std::vector<uint32_t>& out_vector)
