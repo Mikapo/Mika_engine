@@ -17,6 +17,7 @@ namespace Uniform_names
 	static const char* specular = "u_specular";
 	static const char* specular_enabled = "u_specular_enabled";
 	static const char* shininess = "u_shininess";
+    static const char* default_color = "u_default_color";
 	static const char* has_texture = "u_has_texture";
 	static const char* texture = "u_texture";
 	static const char* texture_enabled = "u_texture_enabled";

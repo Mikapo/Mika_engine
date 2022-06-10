@@ -17,6 +17,7 @@ public:
 	void initialize() override;
     void set_mesh(std::shared_ptr<Mesh> mesh);
     void set_material(const Material& material);
+    Material get_material() const;
 
 	std::optional<Mesh_data> get_mesh_data();
 	

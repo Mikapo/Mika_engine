@@ -22,39 +22,12 @@ void Oriented_bounding_box::update(Transform transform)
 
     m_model = transform.calculate_model();
 
-    m_max = glm::vec3(-std::numeric_limits<float>::infinity());
-    m_min = glm::vec3(std::numeric_limits<float>::infinity());
+    m_extend = glm::vec3(-std::numeric_limits<float>::infinity());
 
     for (size_t i = 0; i < m_box_vertices.size(); ++i)
     {
-        glm::vec4 vert = m_model * glm::vec4(m_box_vertices[i], 1.0f);
-        m_vertices[i] = vert / vert.w;
-
-        const float max = m_max.x + m_max.y + m_max.z;
-        if (m_vertices[i].x + m_vertices[i].y + m_vertices[i].z > max)
-            m_max = m_vertices[i];
-
-         const float min = m_min.x + m_min.y + m_min.z;
-        if (m_vertices[i].x + m_vertices[i].y + m_vertices[i].z < min)
-            m_min = m_vertices[i];
-    }
-
-    const std::array<glm::vec3, 3> extends{
-        normals.m_forward * transform.m_scale.x, normals.m_right * transform.m_scale.y,
-        normals.m_up * transform.m_scale.z};
-
-    m_extend = extends[0];
-
-    for (glm::vec3 extend : extends)
-    {
-        if (extend.x > m_extend.x)
-            m_extend.x = extend.x;
-
-        if (extend.y > m_extend.y)
-            m_extend.y = extend.y;
-
-        if (extend.z > m_extend.z)
-            m_extend.z = extend.z;
+       m_vertices[i] = m_model * glm::vec4(m_box_vertices[i], 1.0f);
+       m_extend = glm::abs(glm::max(m_vertices[i], m_extend));
     }
 }
 
@@ -63,22 +36,12 @@ glm::mat4 Oriented_bounding_box::get_model() const
     return m_model; 
 }
 
-glm::vec3 Oriented_bounding_box::get_min() const 
-{ 
-    return m_min; 
-}
-
-glm::vec3 Oriented_bounding_box::get_max() const 
-{ 
-    return m_max; 
-}
-
 bool Oriented_bounding_box::is_overlapping(const Collision* other) const
 { 
     return other->is_overlapping_with_obb(this); 
 }
 
-bool Oriented_bounding_box::is_overlapping_with_line(const Line& line) const
+std::optional<Hit_result> Oriented_bounding_box::is_overlapping_with_line(const Line& line) const
 {
     return Collision_algorithms::line_and_obb(line, *this);
 }

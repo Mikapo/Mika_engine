@@ -1223,6 +1223,12 @@
     <ClInclude Include="Engine\Utility\Collisions\Line.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Datatypes\Hit_result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Datatypes\Axis_comparison_result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vendor\glm\detail\func_common.inl">

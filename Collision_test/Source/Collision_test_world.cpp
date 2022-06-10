@@ -20,11 +20,26 @@ void Collision_test_world::initialize()
 void Collision_test_world::setup_walls() 
 { 
     auto* cube_class = Cube::static_class();
-    auto* cube = spawn_actor(cube_class);
-    cube->set_location({0.0f, 0.0f, -0.5f});
-    cube->set_scale({2.0f, 2.0f, 0.25f});
+    Cube* floor = spawn_actor_cast<Cube>(cube_class);
+    floor->set_location({0.0f, 0.0f, -0.5f});
+    floor->set_scale({4.0f, 4.0f, 0.1f});
+    floor->set_color({0.2f, 0.2f, 0.2f, 1.0f});
 
-	cube = spawn_actor(cube_class);
-    cube->set_location({2.0f, 0.0f, 0.75f});
-    cube->set_scale({0.1f, 2.0f, 1.5f});
+	Actor* wall = spawn_actor(cube_class);
+    wall->set_location({4.1f, 0.0f, 0.9f});
+    wall->set_scale({0.1f, 4.0f, 1.5f});
+
+    wall = spawn_actor(cube_class);
+    wall->set_location({-4.1f, 0.0f, 0.9f});
+    wall->set_scale({0.1f, 4.0f, 1.5f});
+
+    wall = spawn_actor(cube_class);
+    wall->set_location({0.0f, 4.1f, 0.9f});
+    wall->set_rotation({0.0f, 90.0f, 0.0f});
+    wall->set_scale({0.1f, 4.0f, 1.5f});
+
+    wall = spawn_actor(cube_class);
+    wall->set_location({0.0f, -4.1f, 0.9f});
+    wall->set_rotation({0.0f, 90.0f, 0.0f});
+    wall->set_scale({0.1f, 4.0f, 1.5f});
 }

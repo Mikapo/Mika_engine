@@ -24,6 +24,7 @@ uniform vec4 u_specular;
 uniform float u_shininess;
 uniform mat4 u_model; 
 
+uniform vec4 u_default_color = vec4(0.6f, 0.6f, 0.6f, 1.0f);
 uniform int u_has_texture = 0;
 uniform sampler2D u_texture;
 uniform sampler2DShadow u_shadow_map;
@@ -92,12 +93,12 @@ vec4 compute_light()
 
 void main() 
 {     
-    vec4 texture_color = vec4(0.6f, 0.6f, 0.6f, 1.0f);
+    vec4 color = u_default_color;
 
     if (u_texture_enabled != 0 && u_has_texture != 0)
-        texture_color = texture(u_texture, fs_in.text_coord);
+        color = texture(u_texture, fs_in.text_coord);
 
     vec4 lighting = compute_light();
 
-    out_frag_color = lighting * texture_color;
+    out_frag_color = lighting * color;
 }

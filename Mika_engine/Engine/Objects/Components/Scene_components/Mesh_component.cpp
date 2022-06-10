@@ -22,6 +22,11 @@ void Mesh_component::set_material(const Material& material)
 	m_material = material; 
 }
 
+Material Mesh_component::get_material() const 
+{ 
+	return m_material;
+}
+
 std::optional<Mesh_data> Mesh_component::get_mesh_data()
 {
     if (!m_mesh)

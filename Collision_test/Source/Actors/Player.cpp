@@ -4,6 +4,7 @@
 #include "Objects/World.h"
 #include "Objects/Components/Scene_components/Camera_component.h"
 #include "Objects/Components/Input_component.h"
+#include "Objects/Components/Scene_components/collision_component.h"
 #include "Utility/Delegate.h"
 #include "Core/Mika_engine.h"
 
@@ -14,6 +15,9 @@ void Player::initialize()
 	auto* camera = create_component_cast<Camera_component>(Camera_component::static_class());
 	set_active_camera(camera);
 	setup_input();
+
+	auto* collision = create_component_cast<Collision_component>(Collision_component::static_class());
+    collision->set_relative_scale({0.1f, 0.1f, 0.1f});
 }
 
 void Player::setup_input()
@@ -41,7 +45,7 @@ void Player::move_forward(float input)
 		return;
 
 	glm::vec3 offset = glm::vec3(1.0f, 0.0f, 0.0f) * input * get_engine()->get_deltatime() * m_movement_speed;
-	add_local_offset(offset);
+	add_local_offset(offset, true);
 }
 
 void Player::move_right(float input)
@@ -50,7 +54,7 @@ void Player::move_right(float input)
 		return;
 
 	glm::vec3 offset = glm::vec3(0.0f, 1.0f, 0.0f) * input * get_engine()->get_deltatime() * m_movement_speed;
-	add_local_offset(offset);
+	add_local_offset(offset, true);
 }
 
 void Player::rotate(float input)
@@ -60,17 +64,17 @@ void Player::rotate(float input)
 
 	Rotator offset = { 0.0f, 25.0f, 0.0f };
 	offset = offset * input * get_engine()->get_deltatime();
-	add_rotation_offset(offset);
+	add_rotation_offset(offset, true);
 }
 
 void Player::shoot() 
 { 
-	Bullet* bullet = get_world()->spawn_actor_cast<Bullet>(Bullet::static_class()); 
-	bullet->set_rotation(get_rotation());
-
-	const float forward_amount = 0.5f;
-    bullet->set_location(get_location() + get_forward_vector() * forward_amount);
-    bullet->m_velocity = bullet->get_forward_vector();
+	Bullet* bullet = get_world()->spawn_actor_cast<Bullet>(Bullet::static_class());
+    bullet->set_rotation(get_rotation());
+	
+	const glm::vec3 bullet_location = get_location() + get_forward_vector();
+    bullet->set_location(bullet_location);
+    bullet->m_velocity = get_forward_vector();
 }
 
 

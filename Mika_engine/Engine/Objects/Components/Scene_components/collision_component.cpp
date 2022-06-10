@@ -19,7 +19,7 @@ bool Collision_component::is_overlapping(Collision_component* other) const
     return m_collision->is_overlapping(other->m_collision.get());
 }
 
-bool Collision_component::is_overlapping_with_line(const Line& line) const
+std::optional<Hit_result> Collision_component::is_overlapping_with_line(const Line& line) const
 {
     return m_collision->is_overlapping_with_line(line);
 }

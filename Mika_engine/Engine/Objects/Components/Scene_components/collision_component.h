@@ -14,7 +14,7 @@ public:
     Collision_component();
     void initialize() override;
     bool is_overlapping(Collision_component* other) const;
-    bool is_overlapping_with_line(const Line& line) const;
+    std::optional<Hit_result> is_overlapping_with_line(const Line& line) const;
     std::optional<Collision_component*> check_for_collisions(
         std::optional<Transform> owner_transform = std::optional<Transform>());
 

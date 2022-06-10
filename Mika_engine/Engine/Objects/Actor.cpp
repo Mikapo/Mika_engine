@@ -124,7 +124,8 @@ bool Actor::check_collisions(std::optional<Transform> transform)
 
 		if (collision.has_value())
 		{
-            m_on_collision_detected.broadcast(collision_component, collision.value());
+            Collision_component* other = collision.value();
+            m_on_collision_detected.broadcast(collision_component, other);
             return true;
 		}
 	}
@@ -166,7 +167,7 @@ void Actor::add_local_offset(glm::vec3 offset, bool check_for_collision)
 }
 
 void Actor::add_world_offset(glm::vec3 offset, bool check_for_collision) 
-{ 
+{
 	Transform transform = get_transform(); 
 	
 	transform.m_location += offset;

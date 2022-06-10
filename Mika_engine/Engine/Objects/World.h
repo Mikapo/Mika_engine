@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "Actor.h"
 #include "Utility/Collisions/Collision_handler.h"
+#include "Datatypes/Hit_result.h"
 #include <unordered_set>
 
 class Shader;
@@ -25,6 +26,7 @@ public:
     void update_collisions(std::shared_ptr<Collision> collision, Collision_component* component);
     std::optional<Collision_component*> find_collisions(
         Collision* collision, const Collision_component* component) const;
+    std::optional<Hit_result> line_trace(glm::vec3 start, glm::vec3 end, const std::unordered_set<Actor*>& ignored_actors = std::unordered_set<Actor*>());
 	void send_data_to_render();
 	void set_player_actor(Actor* player);
 	void add_UI_to_viewport(UI* ui);

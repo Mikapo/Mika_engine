@@ -202,6 +202,8 @@
     <ClCompile Include="Engine\Objects\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Datatypes\Axis_comparison_result.h" />
+    <ClInclude Include="Engine\Datatypes\Hit_result.h" />
     <ClInclude Include="Engine\Datatypes\Min_max.h" />
     <ClInclude Include="Engine\Utility\Collisions\Collision_algorithms.h" />
     <ClInclude Include="Engine\Datatypes\Axis.h" />

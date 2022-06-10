@@ -2,7 +2,9 @@
 
 #include <array>
 #include <limits>
+#include <optional>
 #include "Datatypes/Min_max.h"
+#include "Datatypes/Hit_result.h"
 #include "glm/vec3.hpp"
 
 struct Line;
@@ -11,8 +13,8 @@ class Collision_algorithms
 {
 public:
     static bool obb_and_obb(const Oriented_bounding_box& a, const Oriented_bounding_box& b);
-    static bool line_and_obb(const Line& line, const Oriented_bounding_box& box);
-    static bool line_and_aabb(const Line& Line, glm::vec3 box_min, glm::vec3 box_max);
+    static std::optional<Hit_result> line_and_obb(const Line& line, const Oriented_bounding_box& box);
+    static std::optional<Hit_result> ray_and_aabb(glm::vec3 start, glm::vec3 dir, glm::vec3 box_min, glm::vec3 box_max);
 
 private:
     Collision_algorithms() = default;

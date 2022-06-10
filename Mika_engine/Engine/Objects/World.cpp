@@ -5,6 +5,7 @@
 #include "Components/Scene_components/Collision_component.h"
 #include "Objects/UI/UI.h"
 #include "Core/Mika_engine.h"
+#include "Utility/Collisions/Line.h"
 
 
 void World::update(float deltatime)
@@ -78,6 +79,12 @@ std::optional<Collision_component*> World::find_collisions(
     Collision* collision, const Collision_component* component) const
 {
     return m_collision_handler.find_collisions(collision, component);
+}
+
+std::optional<Hit_result> World::line_trace(glm::vec3 start, glm::vec3 end, const std::unordered_set<Actor*>& ignored_actors) 
+{ 
+	Line line = {.m_start = start, .m_end = end};
+    return m_collision_handler.find_overlaps_with_line(&line, ignored_actors);
 }
 
 void World::send_data_to_render()

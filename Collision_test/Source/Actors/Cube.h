@@ -2,14 +2,15 @@
 
 #include "Objects/Actor.h"
 
-class Collision_component;
+class Mesh_component;
 class Cube : public Actor
 {
     GENERATED_BODY(Cube)
 
 public:
     void initialize() override;
-    void update(float deltatime) override;
+    void set_color(glm::vec4 color);
 
-    Collision_component* m_collision = nullptr;
+private:
+    Mesh_component* m_mesh_component = nullptr;
 };
