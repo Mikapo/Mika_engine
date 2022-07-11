@@ -8,10 +8,10 @@ class UI_window : public UI_parent
 
 public:
 	void draw() override;
-	void add_flag(ImGuiWindowFlags flag);
+    void add_flag(ImGuiWindowFlags flag) noexcept;
 
 private:
 	bool m_open = true;
-	ImGuiWindowFlags m_flags;
+    ImGuiWindowFlags m_flags = ImGuiWindowFlags_::ImGuiWindowFlags_None;
 };
 

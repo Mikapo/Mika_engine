@@ -21,25 +21,19 @@ class Mika_engine
 {
 public:
 	void start();
-	void register_object(Object* obj);
-	void unregister_object(Object* obj);
-	size_t get_amount_of_registered_objects();
-	bool is_object_valid(Object* obj) const;
-	void mark_object_for_destruction(Object* obj);
-	void send_mesh_to_render(Mesh_data& mesh);
-	void send_light_to_render(Light_data& light);
-	void send_camera_to_render(Camera_data& camera);
-    void send_collision_to_render(Transform box_transform);
-	float get_deltatime() const;
-    Asset_manager& get_asset_manager();
-	void get_window_dimensions(int32_t& width, int32_t& height) const;
-	float get_screen_aspect_ratio() const;
-	void set_render_settings(Render_settings settings);
-	Render_settings get_render_settings() const;
+    void register_object(std::unique_ptr<Object> obj);
+    size_t get_amount_of_registered_objects() noexcept;
+	bool is_object_valid(const Object* obj) const;
+	float get_deltatime() const noexcept;
+    Asset_manager& get_asset_manager() noexcept;
+	void get_window_dimensions(int32_t& width, int32_t& height) const noexcept;
+	float get_screen_aspect_ratio() const noexcept;
+    void set_render_settings(Render_settings settings) noexcept;
+    Render_settings get_render_settings() const noexcept;
     void set_default_world(Class_obj* world_class);
     void set_world(Class_obj* world_class);
     void set_window_title(std::string_view name);
-    void set_window_dimensions(int32_t width, int32_t height);
+    void set_window_dimensions(int32_t width, int32_t height) noexcept;
 
 	Delegate<Input> m_on_key_event;
 
@@ -47,9 +41,9 @@ private:
 	void render_thread();
     void update_thread();
 	void cleanup();
-	void on_window_resize(int32_t width, int32_t height);
+    void on_window_resize(int32_t width, int32_t height) noexcept;
 	void on_window_open(GLFWwindow* window);
-	void update_deltatime();
+    void update_deltatime() noexcept;
 	void on_key_event(int32_t key, int32_t scancode, int32_t action, int32_t mods);
 	void handle_inputs();
 	void setup_callbacks();

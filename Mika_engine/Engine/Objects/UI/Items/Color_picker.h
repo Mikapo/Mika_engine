@@ -10,16 +10,16 @@ class Color_picker : public UI_item
     GENERATED_BODY(Color_picker)
 
 public:
-	void draw() override;
+    void draw() override;
 	void update(float deltatime) override;
-	void add_flag(ImGuiColorEditFlags flag);
+    void add_flag(ImGuiColorEditFlags flag) noexcept;
 
 	Delegate<glm::vec4> m_on_color_change;
 
 private:
-	ImGuiColorEditFlags m_flags;
+    ImGuiColorEditFlags m_flags = ImGuiColorEditFlags_::ImGuiColorEditFlags_None;
 
-	std::array<float, 4> m_current_color; 
-	std::array<float, 4> m_previously_checked_color;
+	std::array<float, 4> m_current_color = {0.0f, 0.0f, 0.0f, 0.0f}; 
+	std::array<float, 4> m_previously_checked_color = {0.0f, 0.0f, 0.0f, 0.0f};
 };
 

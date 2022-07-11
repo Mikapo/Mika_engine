@@ -1,37 +1,62 @@
 #include "Collision_algorithms.h"
 
-#include "Oriented_bounding_box.h"
+#include "Colliders/Oriented_bounding_box.h"
+#include "Colliders/Sphere.h"
 #include "Line.h"
 
-bool Collision_algorithms::obb_and_obb(const Oriented_bounding_box& a, const Oriented_bounding_box& b)
+std::optional<Collision_result> Collision_algorithms::obb_and_obb(
+    const Oriented_bounding_box& a, const Oriented_bounding_box& b)
 {
     const auto& a_normals = a.get_normals();
     const auto& b_normals = b.get_normals();
 
-    const std::array<glm::vec3, 15> axises
-    {
-        a_normals[0],
-        a_normals[1],
-        a_normals[2],
-        b_normals[0],
-        b_normals[1],
-        b_normals[2],
-        glm::cross(a_normals[0], b_normals[0]),
-        glm::cross(a_normals[0], b_normals[1]),
-        glm::cross(a_normals[0], b_normals[2]),
-        glm::cross(a_normals[1], b_normals[0]),
-        glm::cross(a_normals[1], b_normals[1]),
-        glm::cross(a_normals[1], b_normals[2]),
-        glm::cross(a_normals[2], b_normals[0]),
-        glm::cross(a_normals[2], b_normals[1]),
-        glm::cross(a_normals[2], b_normals[2]),
+    const std::array<glm::vec3, 15> axises{
+        a_normals.at(0),
+        a_normals.at(1),
+        a_normals.at(2),
+        b_normals.at(0),
+        b_normals.at(1),
+        b_normals.at(2),
+        glm::cross(a_normals.at(0), b_normals.at(0)),
+        glm::cross(a_normals.at(0), b_normals.at(1)),
+        glm::cross(a_normals.at(0), b_normals.at(2)),
+        glm::cross(a_normals.at(1), b_normals.at(0)),
+        glm::cross(a_normals.at(1), b_normals.at(1)),
+        glm::cross(a_normals.at(1), b_normals.at(2)),
+        glm::cross(a_normals.at(2), b_normals.at(0)),
+        glm::cross(a_normals.at(2), b_normals.at(1)),
+        glm::cross(a_normals.at(2), b_normals.at(2)),
     };
 
     return sat_algorithm(a.get_vertices(), b.get_vertices(), axises);
 }
 
+std::optional<Collision_result> Collision_algorithms::obb_and_sphere(
+    const Oriented_bounding_box& obb, const Sphere& sphere)
+{
+    const glm::mat4 inverse = glm::inverse(glm::mat4(1));
+    const glm::vec3 local_origin = inverse * glm::vec4(sphere.get_origin(), 1.0f);
+    const glm::vec3 closest = glm::max(glm::vec3(-1), glm::min(local_origin, 1.0f));
+
+    return std::optional<Collision_result>();
+}
+
+std::optional<Collision_result> Collision_algorithms::sphere_and_sphere(const Sphere& a, const Sphere& b)
+{
+    const float distance = glm::length(a.get_origin() - b.get_origin());
+    const float radius_sum = a.get_radius() + b.get_radius();
+
+    if (distance < radius_sum)
+    {
+        Collision_result result;
+        return result;
+    }
+    else
+        return std::optional<Collision_result>();
+}
+
 std::optional<Hit_result> Collision_algorithms::line_and_obb(const Line& line, const Oriented_bounding_box& box)
-{ 
+{
     const glm::mat4 model = box.get_model();
     const glm::mat4 inverse_model = glm::inverse(model);
     const glm::vec4 local_start = inverse_model * glm::vec4(line.m_start, 1.0f);
@@ -42,27 +67,38 @@ std::optional<Hit_result> Collision_algorithms::line_and_obb(const Line& line, c
 
     if (hit_result.has_value())
     {
-        const glm::mat4 transpose = glm::transpose(inverse_model);
-        glm::vec3& normal = hit_result.value().m_normal; 
-        normal = transpose * glm::vec4(normal, 1.0f);
-        normal = glm::normalize(normal);
-
-        glm::vec3& hit_point = hit_result.value().m_hit_point;
-        hit_point = model * glm::vec4(hit_point, 1.0f);
+        hit_result = apply_model_to_hit_result(hit_result.value(), model);
 
         float& lenght = hit_result.value().m_lenght;
-        lenght = glm::length(hit_point - line.m_start);
+        lenght = glm::length(hit_result.value().m_hit_point - line.m_start);
 
         if (lenght > line.get_lenght())
             return std::optional<Hit_result>();
     }
-    
+
     return hit_result;
+}
+
+std::optional<Hit_result> Collision_algorithms::line_and_sphere(const Line& line, const Sphere& sphere)
+{
+    const glm::vec3 dir = glm::normalize(line.m_end - line.m_start);
+    std::optional<Hit_result> hit_result = ray_and_sphere(line.m_start, dir, sphere);
+
+    if (hit_result.has_value())
+    {
+        float& lenght = hit_result.value().m_lenght;
+        lenght = glm::length(hit_result.value().m_hit_point - line.m_start);
+
+        if (lenght > line.get_lenght())
+            return std::optional<Hit_result>();
+    }
+
+    return std::optional<Hit_result>();
 }
 
 std::optional<Hit_result> Collision_algorithms::ray_and_aabb(
     glm::vec3 start, glm::vec3 dir, glm::vec3 box_min, glm::vec3 box_max)
-{ 
+{
     const glm::vec3 tmin = (box_min - start) / dir;
     const glm::vec3 tmax = (box_max - start) / dir;
     const glm::vec3 sc = glm::min(tmin, tmax);
@@ -72,13 +108,41 @@ std::optional<Hit_result> Collision_algorithms::ray_and_aabb(
 
     if (!(first_intersection <= second_intersection && second_intersection > 0.0f))
         return std::optional<Hit_result>();
-    
-    const glm::vec3 normal = glm::normalize(-glm::sign(dir) * glm::step({sc.y, sc.z, sc.x}, sc) * 
-                             glm::step({sc.z, sc.x, sc.y}, sc));
-    const glm::vec3 hit_point = start + dir * first_intersection;
-    const float lenght = first_intersection;
 
-    return Hit_result(normal, hit_point, lenght);
+    const glm::vec3 normal =
+        glm::normalize(-glm::sign(dir) * glm::step({sc.y, sc.z, sc.x}, sc) * glm::step({sc.z, sc.x, sc.y}, sc));
+    const glm::vec3 hit_point = start + dir * first_intersection;
+
+    return Hit_result(normal, hit_point);
+}
+
+std::optional<Hit_result> Collision_algorithms::ray_and_sphere(glm::vec3 start, glm::vec3 dir, const Sphere& sphere)
+{
+    const glm::vec3 sphere_origin = sphere.get_origin();
+    const float origin_projection_to_ray = glm::dot(sphere_origin - start, dir);
+    const glm::vec3 closest_point_in_ray = start + dir * origin_projection_to_ray;
+    const float distance_to_ray = glm::length(closest_point_in_ray - sphere_origin);
+    const float radius = sphere.get_radius();
+    const float distance_to_intersection = glm::sqrt(glm::pow(radius, 2.0f) + glm::pow(distance_to_ray, 2.0f));
+    const float first_intersection = origin_projection_to_ray - distance_to_intersection;
+    const float second_intersection = origin_projection_to_ray + distance_to_intersection;
+
+    if (!(first_intersection <= second_intersection && second_intersection > 0.0f))
+        return std::optional<Hit_result>();
+
+    const glm::vec3 hit_point = start + dir * first_intersection;
+    const glm::vec3 normal = glm::normalize(hit_point - sphere_origin);
+
+    return Hit_result(normal, hit_point);
+}
+
+Hit_result Collision_algorithms::apply_model_to_hit_result(Hit_result hit_result, glm::mat4 model)
+{
+    const glm::mat4 transpose = glm::transpose(glm::inverse(model));
+    hit_result.m_normal = transpose * glm::vec4(hit_result.m_normal, 1.0f);
+    hit_result.m_normal = glm::normalize(hit_result.m_normal);
+    hit_result.m_hit_point = model * glm::vec4(hit_result.m_hit_point, 1.0f);
+    return hit_result;
 }
 
 float Collision_algorithms::project_point_to_axis(glm::vec3 point, glm::vec3 axis)

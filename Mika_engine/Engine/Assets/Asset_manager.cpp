@@ -18,7 +18,7 @@ std::shared_ptr<Texture> Asset_manager::get_texture(const std::string& path)
     return m_textures[path];
 }
 
-void Asset_manager::cleanup() 
+void Asset_manager::cleanup() noexcept
 {
     m_meshes.clear(); 
     m_textures.clear();

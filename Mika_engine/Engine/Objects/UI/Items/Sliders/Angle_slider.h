@@ -7,7 +7,7 @@ class Angle_slider : public Slider
     GENERATED_BODY(Angle_slider)
 
 public:
-	Angle_slider();
+	Angle_slider() noexcept;
 
 	void draw() override;
 };

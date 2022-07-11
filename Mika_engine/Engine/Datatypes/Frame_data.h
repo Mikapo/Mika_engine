@@ -18,9 +18,9 @@ class Camera_data
 {
 public:
 	Transform m_camera_transform;
-	float m_min_clip;
-	float m_max_clip;
-	float m_fov;
+	float m_min_clip = 0.0f;
+	float m_max_clip = 0.0f;
+	float m_fov = 0.0f;
 };
 
 class Mesh_data

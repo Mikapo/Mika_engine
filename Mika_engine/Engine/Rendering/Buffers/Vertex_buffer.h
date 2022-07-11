@@ -8,10 +8,14 @@
 class Vertex_buffer : public Renderer_item
 {
 public:
-    Vertex_buffer(const void* data, GLsizeiptr size);
+    Vertex_buffer(const void* data, GLsizeiptr size) noexcept;
     ~Vertex_buffer();
+    Vertex_buffer(const Vertex_buffer&) = delete;
+    Vertex_buffer(Vertex_buffer&&) = default;
+    
+    void operator=(const Vertex_buffer&) = delete;
+    void operator=(Vertex_buffer&&) = delete;
 
-    void bind() const;
-    static void unbind();
-
+    void bind() const noexcept;
+    static void unbind() noexcept;
 };

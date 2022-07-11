@@ -19,7 +19,7 @@ Texture::~Texture()
     }
 }
 
-void Texture::bind(Texture_slot slot)
+void Texture::bind(Texture_slot slot) noexcept
 {
     if (!m_has_been_initialized)
     {
@@ -27,16 +27,24 @@ void Texture::bind(Texture_slot slot)
         release_local_buffer();
     }
 
-    glActiveTexture(GL_TEXTURE0 + (int32_t)slot);
+    m_is_binded = true;
+    m_current_slot = GL_TEXTURE0 + static_cast<int32_t>(slot);
+    glActiveTexture(m_current_slot);
     glBindTexture(GL_TEXTURE_2D, m_id);
 }
 
-void Texture::unbind() 
+void Texture::unbind() noexcept
 { 
+    if (!m_is_binded)
+        return; 
+
+    glActiveTexture(m_current_slot);
     glBindTexture(GL_TEXTURE_2D, 0); 
+    m_current_slot = -1;
+    m_is_binded = false;
 }
 
-void Texture::initialize()
+void Texture::initialize() noexcept
 {
     if (m_local_buffer)
     {
@@ -53,7 +61,7 @@ void Texture::initialize()
     }
 }
 
-void Texture::release_local_buffer()
+void Texture::release_local_buffer() noexcept
 {
     if (m_local_buffer)
     {

@@ -1,59 +1,62 @@
 #pragma once
 
 #include "Debug/Debug_logger.h"
+#include "Utility/Class_obj.h"
+#include "Utility/Delegate.h"
+#include "gsl/gsl"
+#include "utility/GENERATED_BODY.h"
+#include <chrono>
+#include <typeinfo>
+#include <unordered_set>
 #include <utility>
 #include <vector>
-#include <unordered_set>
-#include "Utility/Delegate.h"
-#include <chrono>
-#include "utility/GENERATED_BODY.h"
-#include "Utility/Class_obj.h"
-#include <typeinfo>
 
 class Asset_manager;
 class Mika_engine;
 class Object
 {
-    GENERATED_BODY(Object)
+    FIRST_GENERATED_BODY(Object)
 
 public:
-	virtual ~Object() = default;
-	template<typename T, typename... argtypes>
-	static T* construct_object(Mika_engine* engine, argtypes... args)
-	{
-		T* obj = new T(std::forward<argtypes>(args)...);
-        obj->set_engine(engine);
-        obj->register_object();
-		Debug_logger::get().log_object_created(obj->get_class_name(), obj->get_amount_of_registered_objects());
-		return obj;
-	}
+    Object() = default;
+    Object(const Object&) = delete;
+    Object(Object&&) = delete;
+    virtual ~Object() = default;
 
-	void destruct();
-	void finalize_destruction();
-	virtual void get_owned_objects(std::vector<Object*>& out_array) {}
-	void set_garbage_collect_mark(bool mark);
-	bool is_marked_by_garbage_collector() const;
-	bool is_marked_for_destruction() const;
-	virtual void initialize() {}
-	Mika_engine* get_engine();
-    Asset_manager& get_asset_manager();
-	const Mika_engine* get_engine() const;
+    Object& operator=(const Object&) = delete;
+    Object&& operator=(Object&&) = delete;
+
+    void destruct();
+    virtual void get_owned_objects(std::vector<Object*>& out_array) noexcept
+    {
+    }
+    void set_garbage_collect_mark(bool mark) noexcept;
+    bool is_marked_by_garbage_collector() const noexcept;
+    bool is_marked_for_destruction() const noexcept;
+    virtual void initialize()
+    {
+    }
+    Mika_engine* get_engine() noexcept;
+    void set_engine(Mika_engine* engine) noexcept;
+    Asset_manager& get_asset_manager() noexcept;
+    const Mika_engine* get_engine() const noexcept;
     virtual void update(float deltatime);
-	std::string get_class_name();
-    size_t get_amount_of_registered_objects();
-    static bool static_is_valid(Mika_engine* engine, Object* obj);
-    void set_lifetime(float lifetime);
+    std::string get_class_name();
+    size_t get_amount_of_registered_objects() noexcept;
+    static bool static_is_valid(const Mika_engine* engine, const Object* obj);
+    void set_lifetime(float lifetime) noexcept;
+    static void register_object(Mika_engine* engine, std::unique_ptr<Object> obj);
 
-	Delegate<Object*> m_on_being_destroyed;
+    Delegate<Object*> m_on_being_destroyed;
 
 protected:
-	template<typename object_type>
+    template <typename object_type>
     void update_owned_objects(std::unordered_set<object_type*>& object_container, float deltatime)
     {
         std::vector<object_type*> destroy;
 
         for (object_type* item : object_container)
-            if (is_valid(item))
+            if (item && is_valid(item))
                 item->update(deltatime);
             else
                 destroy.push_back(item);
@@ -62,30 +65,23 @@ protected:
             object_container.erase(item);
     }
 
-	template<typename object_type>
-	void remove_object_from_set(std::unordered_set<object_type*>& set, Object* obj)
-	{
+    template <typename object_type>
+    void remove_object_from_set(std::unordered_set<object_type*>& set, Object* obj)
+    {
         if (object_type* casted_obj = dynamic_cast<object_type*>(obj))
-        {
-			set.erase(casted_obj);
-        }
+            set.erase(casted_obj);
         else
             throw std::runtime_error("object is wrong type");
-	}
+    }
 
-	bool is_valid(Object* obj);
+    bool is_valid(const Object* obj) const;
 
 private:
-	void set_engine(Mika_engine* engine);
-    void register_object();
-    void unregister_object();
+    Mika_engine* m_engine = nullptr;
+    bool m_garbage_collector_mark = false;
+    bool m_marked_for_destruction = false;
 
-	Mika_engine* m_engine = nullptr;
-	bool m_garbage_collector_mark = false;
-	bool m_marked_for_destruction = false;
-
-	bool m_lifetime_has_been_set = false;
+    bool m_lifetime_has_been_set = false;
     std::chrono::steady_clock::time_point m_time_since_lifetime_has_been_set;
     float m_lifetime = 0.0f;
 };
-

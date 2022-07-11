@@ -11,7 +11,7 @@ Shadow_map::~Shadow_map()
 	}
 }
 
-void Shadow_map::cleanup()
+void Shadow_map::cleanup() noexcept
 {
 	glDeleteTextures(1, &m_depth_map);
 	glDeleteFramebuffers(1, &m_frame_buffer);
@@ -33,7 +33,7 @@ void Shadow_map::init(int32_t shadow_width, int32_t shadow_height)
 	m_has_been_initialized = true;
 }
 
-uint32_t Shadow_map::create_depth_map_texture(int32_t shadow_width, int32_t shadow_height)
+uint32_t Shadow_map::create_depth_map_texture(int32_t shadow_width, int32_t shadow_height) noexcept
 {
 	uint32_t depth_map = 0;
 	glGenTextures(1, &depth_map);
@@ -48,7 +48,7 @@ uint32_t Shadow_map::create_depth_map_texture(int32_t shadow_width, int32_t shad
 	return depth_map;
 }
 
-uint32_t Shadow_map::create_frame_buffer(uint32_t depth_map)
+uint32_t Shadow_map::create_frame_buffer(uint32_t depth_map) noexcept
 {
 	uint32_t frame_buffer = 0;
 	glGenFramebuffers(1, &frame_buffer);
@@ -60,28 +60,28 @@ uint32_t Shadow_map::create_frame_buffer(uint32_t depth_map)
 	return frame_buffer;
 }
 
-void Shadow_map::bind_frame_buffer() const
+void Shadow_map::bind_frame_buffer() const noexcept 
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, m_frame_buffer);
 }
 
-void Shadow_map::unbind_frame_buffer()
+void Shadow_map::unbind_frame_buffer() noexcept
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Shadow_map::bind_texture(Texture_slot slot) const
+void Shadow_map::bind_texture(Texture_slot slot) const noexcept
 {
-	glActiveTexture(GL_TEXTURE0 + (int32_t)slot);
+	glActiveTexture(GL_TEXTURE0 + static_cast<int32_t>(slot));
 	glBindTexture(GL_TEXTURE_2D, m_depth_map);
 }
 
-void Shadow_map::unbind_texture()
+void Shadow_map::unbind_texture() noexcept
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Shadow_map::get_shadow_resolution(int32_t& out_width, int32_t& out_height) const
+void Shadow_map::get_shadow_resolution(int32_t& out_width, int32_t& out_height) const noexcept
 {
 	out_width = m_shadow_width;
 	out_height = m_shadow_height;

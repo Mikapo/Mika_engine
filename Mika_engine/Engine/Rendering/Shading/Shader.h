@@ -11,13 +11,18 @@ public:
 
 	Shader(std::string_view frag_path, std::string_view fert_path);
     ~Shader();
+    Shader(const Shader&) = delete;
+    Shader(Shader&&) = delete;
 
-	void bind() const;
-    void unbind() const;
+    void operator=(const Shader&) = delete;
+    void operator=(Shader&&) = delete;
+
+	void bind() const noexcept;
+    void unbind() const noexcept;
     void set_uniform4f(std::string_view name, float v1, float v2, float v3, float v4);
-    void set_uniform4fv(std::string_view name, size_t count, float* v);
+    void set_uniform4fv(std::string_view name, size_t count, const float* v);
     void set_uniform3f(std::string_view name, float v1, float v2, float v3);
-    void set_uniform3fv(std::string_view name, size_t count, float* v);
+    void set_uniform3fv(std::string_view name, size_t count, const float* v);
     void set_uniform2f(std::string_view name, float v1, float v2);;
     void set_uniform1f(std::string_view name, float v1);
     void set_uniform1i(std::string_view name, int32_t v1);

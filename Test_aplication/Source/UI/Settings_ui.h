@@ -13,7 +13,7 @@ public:
 	void initialize() override;
 
 private:
-	void on_added_to_viewport(World* world) override;
+	void on_added_to_viewport(World* world);
 	void setup_camera_settings(UI_window* window);
     void setup_light_settings(UI_window* window);
     void setup_render_settings(UI_window* window);

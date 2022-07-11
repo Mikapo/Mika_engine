@@ -7,7 +7,7 @@
 class Debug_logger
 {
 public:
-    static Debug_logger& get();
+    static Debug_logger& get() noexcept;
     void log_OpenGL(
         uint32_t source, uint32_t type, uint32_t id, uint32_t severity, int32_t lenght, const char* msg, const void* data);
     void log_object_destroyed(std::string_view name, size_t obj_amount);

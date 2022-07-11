@@ -1,6 +1,6 @@
 #include "Angle_slider.h"
 
-Angle_slider::Angle_slider()
+Angle_slider::Angle_slider() noexcept
 {
 	m_format = "%.0f deg";
 }

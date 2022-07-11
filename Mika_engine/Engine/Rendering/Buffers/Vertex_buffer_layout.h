@@ -8,16 +8,16 @@
 
 struct Vertex_buffer_elements
 {
-    Vertex_buffer_elements(uint32_t type, int32_t count, unsigned char normalized)
+    Vertex_buffer_elements(uint32_t type, int32_t count, unsigned char normalized) noexcept
         : m_type(type), m_count(count), m_normalized(normalized)
     {
     }
 
-    uint32_t get_type() const { return m_type; }
-    uint32_t get_count() const { return m_count; }
-    unsigned char get_normalized() const { return m_normalized; }
+    uint32_t get_type() const noexcept { return m_type; }
+    uint32_t get_count() const noexcept { return m_count; }
+    unsigned char get_normalized() const noexcept { return m_normalized; }
 
-    static int32_t get_size_of_type(uint32_t type)
+    static int32_t get_size_of_type(uint32_t type) noexcept
     {
         switch (type)
         {
@@ -44,8 +44,6 @@ private:
 class Vertex_buffer_layout
 {
 public:
-    Vertex_buffer_layout() : m_stride(0) {}
-
     template <typename T>
     void push(uint32_t count)
     {
@@ -70,10 +68,10 @@ public:
         m_stride += count * Vertex_buffer_elements::get_size_of_type(GL_UNSIGNED_BYTE);
     }
 
-    inline const std::vector<Vertex_buffer_elements>& get_elements() const { return m_elements; }
-    inline uint32_t get_stride() const { return m_stride; }
+    inline const std::vector<Vertex_buffer_elements>& get_elements() const noexcept { return m_elements; }
+    inline uint32_t get_stride() const noexcept { return m_stride; }
 
 private:
     std::vector<Vertex_buffer_elements> m_elements;
-    int32_t m_stride;
+    int32_t m_stride = 0;
 };

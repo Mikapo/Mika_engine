@@ -7,7 +7,7 @@ void UI_window::draw()
 	ImGui::End();
 }
 
-void UI_window::add_flag(ImGuiWindowFlags flag)
+void UI_window::add_flag(ImGuiWindowFlags flag) noexcept
 {
 	m_flags |= flag;
 }

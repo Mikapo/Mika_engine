@@ -10,13 +10,13 @@ class Scene_component : public Actor_component
 public:
 	void initialize() override;
 	void set_relative_transform(Transform transform);
-	Transform get_relative_transform() const;
+    Transform get_relative_transform() const noexcept;
     void set_relative_location(glm::vec3 new_location);
     void set_relative_rotation(Rotator new_rotation);
     void set_relative_scale(glm::vec3 new_scale);
-	Transform get_world_transform() const;
-	glm::vec3 get_relative_forward_vector();
-	glm::vec3 get_relative_up_vector();
+    Transform get_world_transform() const noexcept;
+    glm::vec3 get_relative_forward_vector() const noexcept;
+    glm::vec3 get_relative_up_vector() const noexcept;
 
 protected:
     Transform calculate_component_world_transform(Transform owner_transform);

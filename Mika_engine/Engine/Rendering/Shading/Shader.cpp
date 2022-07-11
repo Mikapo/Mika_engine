@@ -6,6 +6,7 @@
 
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
+#include "gsl/gsl"
 
 Shader::Shader(std::string_view frag_path, std::string_view fert_path)
     : m_frag_path(frag_path), m_fert_path(fert_path), m_shader_id(0)
@@ -19,13 +20,13 @@ Shader::Shader(std::string_view frag_path, std::string_view fert_path)
 
 Shader::~Shader() { glDeleteProgram(m_shader_id); }
 
-void Shader::bind() const { glUseProgram(m_shader_id); }
+void Shader::bind() const noexcept { glUseProgram(m_shader_id); }
 
-void Shader::unbind() const { glUseProgram(0); }
+void Shader::unbind() const noexcept { glUseProgram(0); }
 
 void Shader::set_uniform4f(std::string_view name, float v1, float v2, float v3, float v4)
 {
-    int32_t location = get_uniform_location(name);
+    const int32_t location = get_uniform_location(name);
     if (location == -1)
         return;
 
@@ -34,23 +35,23 @@ void Shader::set_uniform4f(std::string_view name, float v1, float v2, float v3, 
     unbind();
 }
 
-void Shader::set_uniform4fv(std::string_view name, size_t count, float* v)
+void Shader::set_uniform4fv(std::string_view name, size_t count, const float* v)
 {
     if (count == 0)
         return;
 
-    int32_t location = get_uniform_location(name);
+    const int32_t location = get_uniform_location(name);
     if (location == -1)
         return;
 
     bind();
-    glUniform4fv(location, (GLsizei)count, v);
+    glUniform4fv(location, gsl::narrow<GLsizei>(count), v);
     unbind();
 }
 
 void Shader::set_uniform3f(std::string_view name, float v1, float v2, float v3)
 {
-    int32_t location = get_uniform_location(name);
+    const int32_t location = get_uniform_location(name);
     if (location == -1)
         return;
 
@@ -59,23 +60,23 @@ void Shader::set_uniform3f(std::string_view name, float v1, float v2, float v3)
     unbind();
 }
 
-void Shader::set_uniform3fv(std::string_view name, size_t count, float* v)
+void Shader::set_uniform3fv(std::string_view name, size_t count, const float* v) 
 {
     if (count == 0)
         return;
 
-    int32_t location = get_uniform_location(name);
+    const int32_t location = get_uniform_location(name);
     if (location == -1)
         return;
 
     bind();
-    glUniform3fv(location, (GLsizei)count, v);
+    glUniform3fv(location, gsl::narrow<GLsizei>(count), v);
     unbind();
 }
 
 void Shader::set_uniform2f(std::string_view name, float v1, float v2)
 {
-    int32_t location = get_uniform_location(name);
+    const int32_t location = get_uniform_location(name);
     if (location == -1)
         return;
 
@@ -86,7 +87,7 @@ void Shader::set_uniform2f(std::string_view name, float v1, float v2)
 
 void Shader::set_uniform1f(std::string_view name, float v1)
 {
-    int32_t location = get_uniform_location(name);
+    const int32_t location = get_uniform_location(name);
     if (location == -1)
         return;
 
@@ -97,7 +98,7 @@ void Shader::set_uniform1f(std::string_view name, float v1)
 
 void Shader::set_uniform1i(std::string_view name, int32_t v1)
 {
-    int32_t location = get_uniform_location(name);
+    const int32_t location = get_uniform_location(name);
     if (location == -1)
         return;
 
@@ -108,7 +109,7 @@ void Shader::set_uniform1i(std::string_view name, int32_t v1)
 
 void Shader::set_uniform_mat4f(std::string_view name, const glm::mat4& matrix)
 {
-    int32_t location = get_uniform_location(name);
+    const int32_t location = get_uniform_location(name);
     if (location == -1)
         return;
 
@@ -129,7 +130,7 @@ int32_t Shader::get_uniform_location(std::string_view name)
 
 uint32_t Shader::compile_shader(uint32_t type, std::string_view source)
 {
-    uint32_t id = glCreateShader(type);
+    const uint32_t id = glCreateShader(type);
     const char* src = source.data();
     glShaderSource(id, 1, &src, nullptr);
     glCompileShader(id);
@@ -140,12 +141,12 @@ uint32_t Shader::compile_shader(uint32_t type, std::string_view source)
     {
         int32_t lenght;
         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &lenght);
-        char* message = static_cast<char*>(alloca(sizeof(char) * lenght));
+        char* message = new char[lenght];
         glGetShaderInfoLog(id, lenght, &lenght, message);
-        std::cout << "failed to compile shader!" << std::endl;
         std::cout << message;
         glDeleteShader(id);
-        throw 1;
+        delete message;
+        throw std::runtime_error("failed to compile shader");
     }
 
     return id;
@@ -153,9 +154,9 @@ uint32_t Shader::compile_shader(uint32_t type, std::string_view source)
 
 uint32_t Shader::create_shader(std::string_view vertex_shader, std::string_view fragment_shader)
 {
-    uint32_t program = glCreateProgram();
-    uint32_t vs = compile_shader(GL_VERTEX_SHADER, vertex_shader);
-    uint32_t fs = compile_shader(GL_FRAGMENT_SHADER, fragment_shader);
+    const uint32_t program = glCreateProgram();
+    const uint32_t vs = compile_shader(GL_VERTEX_SHADER, vertex_shader);
+    const uint32_t fs = compile_shader(GL_FRAGMENT_SHADER, fragment_shader);
 
     glAttachShader(program, vs);
     glAttachShader(program, fs);

@@ -13,7 +13,7 @@ void Application::start()
     }
 }
 
-void Application::get_window_dimensions(int32_t& out_width, int32_t& out_height) const
+void Application::get_window_dimensions(int32_t& out_width, int32_t& out_height) const noexcept
 { 
     out_width = m_width;
     out_height = m_height;
@@ -42,7 +42,9 @@ void Application::init()
     glfwSwapInterval(1);
     glfwSetWindowUserPointer(get_window(), this);
     setup_callbacks();
-    on_window_open_callback->call(m_window);
+
+    if (on_window_open_callback)
+        on_window_open_callback->call(m_window);
 }
 
 void APIENTRY GLDebugMessageCallback(GLenum source, GLenum type, GLuint id,
@@ -67,7 +69,7 @@ void Application::on_key_event(int32_t key, int32_t scancode, int32_t action, in
         m_on_key_event_callback->call(key, scancode, action, mods);
 }
 
-void Application::set_window_dimensions(int32_t width, int32_t height) 
+void Application::set_window_dimensions(int32_t width, int32_t height) noexcept
 {
     m_width = width;
     m_height = height;
@@ -81,7 +83,7 @@ void Application::set_window_title(std::string_view name)
     m_name = name;
 }
 
-void Application::setup_callbacks() const
+void Application::setup_callbacks() const noexcept
 {
     auto on_key = [](GLFWwindow* window, int32_t key, int32_t scancode, int32_t action, int32_t mods)
     {

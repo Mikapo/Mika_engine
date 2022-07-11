@@ -3,9 +3,9 @@
 #include <assimp/Importer.hpp>   
 #include <assimp/postprocess.h> 
 #include <assimp/scene.h>      
-#include <iostream>
 #include <vector>
 #include <exception>
+#include "gsl/span"
 
 #define ASSIMP_LOAD_FLAGS (aiProcess_Triangulate | aiProcess_GenSmoothNormals |  aiProcess_JoinIdenticalVertices )
 #define ARRAY_SIZE_IN_ELEMENTS(a) (sizeof(a)/sizeof(a[0]))
@@ -28,7 +28,11 @@ std::unique_ptr<Buffers> Model_loader::load_buffer(std::string_view file_path, i
 
 std::unique_ptr<Buffers> Model_loader::load_mesh_from_scene(std::string_view path, const aiScene* scene, int32_t index)
 {
-	auto mesh = scene->mMeshes[index];
+    if (!scene)
+        throw std::invalid_argument("scene was null");
+
+	const gsl::span meshes = {scene->mMeshes, scene->mNumMeshes};
+    aiMesh* mesh = gsl::at(meshes, 0);
 
 	std::vector<float> vertices;
 	get_vertices(mesh, vertices);
@@ -46,45 +50,60 @@ std::unique_ptr<Buffers> Model_loader::load_mesh_from_scene(std::string_view pat
 
 void Model_loader::get_indices(const aiMesh* mesh, std::vector<uint32_t>& out_vector)
 {
-	int32_t face_amount = mesh->mNumFaces;
-	out_vector.reserve(face_amount * 10);
+    if (!mesh)
+        throw std::invalid_argument("mesh was null");
 
-	for (int32_t a = 0; a < face_amount; a++)
+    const gsl::span faces = {mesh->mFaces, mesh->mNumFaces};
+    out_vector.reserve(faces.size() * 10);
+
+	for (const aiFace& face : faces)
 	{
-		auto face = mesh->mFaces[a];
-		for (uint32_t b = 0; b < face.mNumIndices; b++)
-		{
-			out_vector.push_back(face.mIndices[b]);
-		}
+        const gsl::span indices = {face.mIndices, face.mNumIndices};
+
+		for (const uint32_t indice : indices)
+			out_vector.push_back(indice);
 	}
 }
 
 void Model_loader::get_vertices(aiMesh* mesh, std::vector<float>& out_vector)
 {
-	auto vertices = mesh->mVertices;
-	auto normals = mesh->mNormals;
-	auto texture_cordinates = mesh->mTextureCoords;
-	bool has_texture_cordinates = mesh->HasTextureCoords(0);
-	int32_t number_of_vertices = mesh->mNumVertices;
+    if (!mesh)
+        throw std::invalid_argument("mesh is null");
 
-	out_vector.reserve(number_of_vertices * 8);
+    if (!mesh->HasNormals())
+        throw std::invalid_argument("mesh is missing normals");
 
-	for (int32_t i = 0; i < number_of_vertices; i++)
+
+    const gsl::span vertices = {mesh->mVertices, mesh->mNumVertices};
+    const gsl::span normals = {mesh->mNormals, mesh->mNumVertices};
+
+	gsl::span<aiVector3D, std::dynamic_extent> texture_coordinates;
+	
+	if (mesh->HasTextureCoords(0))
+		texture_coordinates = {mesh->mTextureCoords[0], vertices.size()};
+
+	out_vector.reserve(vertices.size() * 8);
+
+	for (int32_t i = 0; i < vertices.size(); i++)
 	{
-		out_vector.push_back(vertices[i].x);
-		out_vector.push_back(vertices[i].y);
-		out_vector.push_back(vertices[i].z);
+		out_vector.push_back(gsl::at(vertices, i).x);
+        out_vector.push_back(gsl::at(vertices, i).y);
+        out_vector.push_back(gsl::at(vertices, i).z);
 
-		out_vector.push_back(normals[i].x);
-		out_vector.push_back(normals[i].y);
-		out_vector.push_back(normals[i].z);
+		out_vector.push_back(gsl::at(normals, i).x);
+        out_vector.push_back(gsl::at(normals, i).y);
+        out_vector.push_back(gsl::at(normals, i).z);
 
-		aiVector3D texture_coordinate = { 0.0f, 0.0f, 0.0f };
-		if (has_texture_cordinates)
-			texture_coordinate = texture_cordinates[0][i];
-
-		out_vector.push_back(texture_coordinate.x);
-		out_vector.push_back(texture_coordinate.y);
+		if (texture_coordinates.size() < i)
+		{
+            out_vector.push_back(gsl::at(texture_coordinates, i).x);
+            out_vector.push_back(gsl::at(texture_coordinates, i).y);
+		}
+		else
+        {
+            out_vector.push_back(0.0f);
+            out_vector.push_back(0.0f);
+		}
 	}
 }
 

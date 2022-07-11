@@ -20,12 +20,12 @@ void Scene_component::set_relative_transform(Transform transform)
 	update_world_transform();
 }
 
-Transform Scene_component::get_relative_transform() const
+Transform Scene_component::get_relative_transform() const noexcept 
 {
 	return m_relative_transform;
 }
 
-Transform Scene_component::get_world_transform() const
+Transform Scene_component::get_world_transform() const noexcept
 {
 	return m_world_transform;
 }
@@ -51,12 +51,12 @@ void Scene_component::set_relative_scale(glm::vec3 new_scale)
     set_relative_transform(transform);
 }
 
-glm::vec3 Scene_component::get_relative_forward_vector()
+glm::vec3 Scene_component::get_relative_forward_vector() const noexcept
 {
 	return m_local_directional_vectors.m_forward;
 }
 
-glm::vec3 Scene_component::get_relative_up_vector()
+glm::vec3 Scene_component::get_relative_up_vector() const noexcept
 {
 	return m_local_directional_vectors.m_up;
 }
@@ -80,7 +80,7 @@ Transform Scene_component::calculate_component_world_transform(Transform owner_t
 
     glm::decompose(component_world_model, scale, rotation_quat, translation, skew, perspective);
 
-    glm::vec3 rotation = glm::degrees(glm::eulerAngles(rotation_quat));
+    const glm::vec3 rotation = glm::degrees(glm::eulerAngles(rotation_quat));
 
 	Transform world_transform;
     world_transform.m_location = translation;

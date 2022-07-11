@@ -1,48 +1,65 @@
 #include "Collision_component.h"
 #include "Objects/World.h"
-#include "Utility/Collisions/Oriented_bounding_box.h"
+#include "Utility/Collisions/Colliders/Oriented_bounding_box.h"
+#include "Utility/Collisions/Colliders/Sphere.h"
 
-
-Collision_component::Collision_component() 
-{ 
-    m_collision = std::make_shared<Oriented_bounding_box>(); 
-}
-
-void Collision_component::initialize() 
-{ 
-	get_world()->register_collision_component(m_collision, this); 
-	Scene_component::initialize();
-}
-
-bool Collision_component::is_overlapping(Collision_component* other) const
+Collision_component::Collision_component() noexcept
 {
-    return m_collision->is_overlapping(other->m_collision.get());
+    m_collider = std::make_shared<Oriented_bounding_box>();
+}
+
+void Collision_component::set_collider_type(Collider_type type)
+{
+    if (type == m_current_collider_type)
+        return;
+
+    m_current_collider_type = type;
+
+    switch (type)
+    {
+    case Collider_type::obb:
+        m_collider = std::make_shared<Oriented_bounding_box>();
+        break;
+    case Collider_type::sphere:
+        m_collider = std::make_shared<Sphere>();
+        break;
+    default:
+        throw std::invalid_argument("invalid enum");
+    }
+}
+
+void Collision_component::initialize()
+{
+    get_world()->register_collision_component(m_collider, this);
+    Scene_component::initialize();
+}
+
+bool Collision_component::is_overlapping(const Collision_component* other) const
+{
+    return m_collider->is_overlapping(other->m_collider.get()).has_value();
 }
 
 std::optional<Hit_result> Collision_component::is_overlapping_with_line(const Line& line) const
 {
-    return m_collision->is_overlapping_with_line(line);
+    return m_collider->is_overlapping_with_line(line);
 }
 
-std::optional<Collision_component*> Collision_component::check_for_collisions(std::optional<Transform> owner_transform)
+bool Collision_component::check_for_collisions()
 {
-    std::optional<Collision_component*> collision;
-
-    if (owner_transform.has_value())
-    {
-        Oriented_bounding_box box = calculate_component_world_transform(owner_transform.value());
-        collision = get_world()->find_collisions(&box, this);
-    }
-    else
-        collision = get_world()->find_collisions(m_collision.get(), this);
-
-	return collision;
+    const auto collision = get_world()->find_collisions(m_collider.get(), this);
+    m_previous_collision = collision.value_or(Collision_result());
+    return collision.has_value();
 }
 
-void Collision_component::update_world_transform() 
-{ 
-	Scene_component::update_world_transform(); 
-	
-	m_collision->update(get_world_transform());
-    get_world()->update_collisions(m_collision, this);
+Collision_result Collision_component::get_previous_collision() const noexcept
+{
+    return m_previous_collision;
+}
+
+void Collision_component::update_world_transform()
+{
+    Scene_component::update_world_transform();
+
+    m_collider->update(get_world_transform());
+    get_world()->update_collisions(m_collider, this);
 }

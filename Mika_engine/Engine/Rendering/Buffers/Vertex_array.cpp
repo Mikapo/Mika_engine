@@ -3,7 +3,7 @@
 
 #include "Vertex_buffer.h"
 
-Vertex_array::Vertex_array()
+Vertex_array::Vertex_array() noexcept
 {
     glGenVertexArrays(1, &m_id);
 }
@@ -22,7 +22,7 @@ void Vertex_array::add_buffer(const Vertex_buffer& vb, const Vertex_buffer_layou
     uint32_t offset = 0;
     for (GLuint i = 0; i < elements.size(); i++)
     {
-        const auto& element = elements[i];
+        const auto& element = elements.at(i);
         glEnableVertexAttribArray(i);
 
         glVertexAttribPointer(
@@ -36,13 +36,13 @@ void Vertex_array::add_buffer(const Vertex_buffer& vb, const Vertex_buffer_layou
     }
 }
 
-void Vertex_array::bind() const 
+void Vertex_array::bind() const noexcept
 { 
     if (is_valid())
         glBindVertexArray(m_id);
 }
 
-void Vertex_array::unbind() 
+void Vertex_array::unbind() noexcept 
 { 
     glBindVertexArray(0); 
 }

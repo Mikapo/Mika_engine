@@ -14,10 +14,11 @@ public:
     UI_window* create_window(std::string_view name, Class_obj* class_obj = UI_window::static_class());
 	void draw();
 	void update(float deltatime) override;
-	void get_owned_objects(std::vector<Object*>& out_array) override;
+	void get_owned_objects(std::vector<Object*>& out_array) noexcept override;
 	void add_to_viewport(World* world);
 	void remove_from_viewport(World* world);
-	virtual void on_added_to_viewport(World* world) {};
+	
+	Delegate<World*> on_added_to_viewport;
 
 private:
     void on_window_destructed(Object* window);

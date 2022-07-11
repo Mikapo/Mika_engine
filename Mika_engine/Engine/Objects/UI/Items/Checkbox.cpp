@@ -14,7 +14,7 @@ void Checkbox::update(float deltatime)
 	}
 }
 
-void Checkbox::set_checked(bool checked)
+void Checkbox::set_checked(bool checked) noexcept
 {
 	m_is_checked = checked;
 }

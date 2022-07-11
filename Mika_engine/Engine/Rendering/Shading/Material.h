@@ -21,10 +21,10 @@ public:
 	float m_shininess = 200.0f;
 
 	void add_texture(std::shared_ptr<Texture> texture, Texture_slot slot);
-    void remove_texture(Texture_slot slot);
+    void remove_texture(Texture_slot slot) noexcept;
 	void update_shader(Shader* shader) const;
-	void bind_textures();
-	void unbind_texture();
+	void bind_textures() noexcept;
+    void unbind_texture() noexcept;
 	
 private:
 	std::unordered_map<Texture_slot, std::shared_ptr<Texture>> m_textures;

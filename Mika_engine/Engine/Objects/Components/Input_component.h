@@ -24,11 +24,11 @@ public:
 		m_keys[key] = value;
 	}
 
-	float get_current_value() const { return m_current_value; }
-	void set_current_value(float value) { m_current_value = value; }
-	int32_t get_current_key() const { return m_current_key; }
-	void set_current_key(int32_t new_key) { m_current_key = new_key; }
-	const std::unordered_map<int32_t, float>& get_keys() const { return m_keys; }
+	float get_current_value() const noexcept{ return m_current_value; }
+    void set_current_value(float value) noexcept { m_current_value = value; }
+    int32_t get_current_key() const noexcept { return m_current_key; }
+    void set_current_key(int32_t new_key) noexcept { m_current_key = new_key; }
+    const std::unordered_map<int32_t, float>& get_keys() const noexcept { return m_keys; }
 
 private:
 
@@ -55,7 +55,7 @@ public:
 		m_delegate.broadcast();
 	}
 
-	int32_t get_action()
+	int32_t get_action() noexcept
 	{ 
 		return m_action;
 	}
@@ -88,7 +88,7 @@ public:
         m_action_mappings[key].emplace_back(new Action_mapping(name, key, action, obj, f));
 	}
 
-	void remove_axis_mapping(const std::string& name);
+	void remove_axis_mapping(const std::string& name) noexcept;
 
 private:
     void on_key_event(Input input);

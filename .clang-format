@@ -4,7 +4,6 @@ AccessModifierOffset: -4
 AlignAfterOpenBracket: AlwaysBreak
 AlignEscapedNewlines: Right
 AllowAllConstructorInitializersOnNextLine: true
-AllowShortFunctionsOnASingleLine: All
 AlwaysBreakTemplateDeclarations: Yes
 BasedOnStyle: Microsoft
 CompactNamespaces: false

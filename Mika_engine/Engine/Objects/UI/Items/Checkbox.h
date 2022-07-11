@@ -10,7 +10,7 @@ class Checkbox : public UI_item
 public:
 	void draw() override;
 	void update(float deltatime) override;
-	void set_checked(bool checked);
+	void set_checked(bool checked) noexcept;
 
 	Delegate<bool> m_on_checked_change;
 

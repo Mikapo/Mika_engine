@@ -26,7 +26,7 @@ public:
 		m_va->bind();
 		m_ib->bind();
 	}
-	void unbind()
+	void unbind() noexcept
 	{
 		if (!m_has_been_initialized)
 			return;
@@ -35,7 +35,7 @@ public:
 		m_ib->unbind();
 	}
 
-	size_t get_indices_count()
+	size_t get_indices_count() noexcept
 	{
 		return m_indices_amount;
 	}

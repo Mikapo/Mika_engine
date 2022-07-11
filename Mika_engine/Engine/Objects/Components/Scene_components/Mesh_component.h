@@ -14,12 +14,12 @@ class Mesh_component : public Scene_component
     GENERATED_BODY(Mesh_component)
 
 public:
-	void initialize() override;
-    void set_mesh(std::shared_ptr<Mesh> mesh);
-    void set_material(const Material& material);
-    Material get_material() const;
+    void initialize() override;
+    void set_mesh(std::shared_ptr<Mesh> mesh) noexcept;
+    void set_material(const Material& material) noexcept;
+    Material get_material() const noexcept;
 
-	std::optional<Mesh_data> get_mesh_data();
+	std::optional<Mesh_data> get_mesh_data() const noexcept;
 	
 private:
 	std::shared_ptr<Mesh> m_mesh = nullptr;

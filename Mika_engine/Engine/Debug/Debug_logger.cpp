@@ -2,7 +2,7 @@
 #include <format>
 #include <GL/glew.h>
 
-Debug_logger& Debug_logger::get()
+Debug_logger& Debug_logger::get() noexcept
 {
     static Debug_logger logger;
     return logger;
@@ -38,6 +38,8 @@ void Debug_logger::log_OpenGL(
     case GL_DEBUG_SOURCE_OTHER:
         source_string = "Source: Other";
         break;
+    default:
+        source_string = "Source: Unknown";
     }
     std::cout << std::endl;
 
@@ -70,21 +72,27 @@ void Debug_logger::log_OpenGL(
     case GL_DEBUG_TYPE_OTHER:
         type_string = "Type: Other";
         break;
+    default:
+        type_string = "Type: Unknown";
+        break;
     }
 
     switch (severity)
     {
     case GL_DEBUG_SEVERITY_HIGH:
-        severity_string = "Severity: high";
+        severity_string = "Severity: High";
         break;
     case GL_DEBUG_SEVERITY_MEDIUM:
-        severity_string = "Severity: medium";
+        severity_string = "Severity: Medium";
         break;
     case GL_DEBUG_SEVERITY_LOW:
-        severity_string = "Severity: low";
+        severity_string = "Severity: Low";
         break;
     case GL_DEBUG_SEVERITY_NOTIFICATION:
-        severity_string = "Severity: notification";
+        severity_string = "Severity: Notification";
+        break;
+    default:
+        severity_string = "Severity: Unknown";
         break;
     }
    

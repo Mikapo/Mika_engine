@@ -3,6 +3,7 @@
 #include <memory>
 #include <unordered_map>
 #include <functional>
+#include <stdexcept>
 
 class Object;
 class Mika_engine;
@@ -18,13 +19,13 @@ template<typename T, typename... argtypes>
 class Delegate_function : public Delegate_function_interface<argtypes...>
 {
 public:
-    Delegate_function(T* obj, void (T::*f)(argtypes...))
+    Delegate_function(T* obj, void (T::*f)(argtypes...)) noexcept
 		: m_obj(obj), m_f(f)
 	{
 		m_engine = obj->get_engine();
 	}
 
-	bool call(argtypes... args)
+	bool call(argtypes... args) override
 	{
 		if (T::static_is_valid(m_engine, m_obj))
         {
@@ -51,22 +52,34 @@ public:
 	template<typename T>
 	void add_object(T* obj, void(T::* f)(argtypes...))
 	{
+        if (!obj)
+            throw std::invalid_argument("obj was null");
+
 		delegate_function_ptr delegate_function = std::make_unique<Delegate_function<T, argtypes...>>(obj, f);
 		m_obj_functions.emplace(obj, std::move(delegate_function));
 	}
 
 	void add_function(void* obj, const std::function<void(argtypes...)> f)
 	{ 
+		if (!obj)
+            throw std::invalid_argument("obj was null");
+
 		m_functions.emplace(obj, f);
 	}
 
 	void remove_object(Object* obj) 
 	{ 
+		if (!obj)
+            throw std::invalid_argument("obj was null");
+
 		m_obj_functions.erase(obj);
 	}
 
 	void remove_function(void* obj)
 	{ 
+		if (!obj)
+            throw std::invalid_argument("obj was null");
+
 		m_functions.erase(obj);
 	}
 

@@ -1,6 +1,6 @@
 #include "Float_slider.h"
 
-Float_slider::Float_slider()
+Float_slider::Float_slider() noexcept
 {
 	m_format = "%.0f";
 }

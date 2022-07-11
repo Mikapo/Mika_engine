@@ -11,7 +11,7 @@ class UI_item : public Object
 public:
     virtual void draw() {}
 	void set_name(const std::string& name);
-	std::string_view get_name() const;
+	std::string_view get_name() const noexcept;
 
 private:
 	std::string m_name = "default name";

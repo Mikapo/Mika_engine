@@ -13,7 +13,7 @@ public:
     glm::vec3 m_velocity;
 
 private:
-    void on_collision(Collision_component* this_component, Collision_component* other_component);
+    void on_collision(Collision_result collision);
 
     Collision_component* m_collision = nullptr;
 };

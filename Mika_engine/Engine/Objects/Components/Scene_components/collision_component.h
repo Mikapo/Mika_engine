@@ -1,25 +1,35 @@
 #pragma once
 
-#include "Scene_component.h"
-#include "Utility/Collisions/Collision.h"
 #include "Datatypes/Min_max.h"
-#include <optional>
+#include "Scene_component.h"
+#include "Utility/Collisions/Colliders/Collider.h"
+#include <cstdint>
 #include <memory>
+#include <optional>
+
+enum class Collider_type : uint8_t
+{
+    obb,
+    sphere
+};
 
 class Collision_component : public Scene_component
 {
     GENERATED_BODY(Collision_component)
 
 public:
-    Collision_component();
+    Collision_component() noexcept;
+    void set_collider_type(Collider_type type);
     void initialize() override;
-    bool is_overlapping(Collision_component* other) const;
+    bool is_overlapping(const Collision_component* other) const;
     std::optional<Hit_result> is_overlapping_with_line(const Line& line) const;
-    std::optional<Collision_component*> check_for_collisions(
-        std::optional<Transform> owner_transform = std::optional<Transform>());
+    bool check_for_collisions();
+    Collision_result get_previous_collision() const noexcept;
 
 private:
     void update_world_transform() override;
 
-    std::shared_ptr<Collision> m_collision;
+    Collider_type m_current_collider_type = Collider_type::obb;
+    std::shared_ptr<Collider> m_collider = nullptr;
+    Collision_result m_previous_collision;
 };

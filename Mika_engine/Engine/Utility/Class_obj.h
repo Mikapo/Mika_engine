@@ -3,12 +3,15 @@
 #include <unordered_map>
 #include <string_view>
 #include <memory>
+#include "Debug/Debug_logger.h"
 
 class Mika_engine;
 class Object;
 class Class_obj
 {
 public:
+    virtual ~Class_obj() = default;
+
     template<typename T>
     T* construct_cast(Mika_engine* engine)
     {
@@ -23,15 +26,23 @@ template<typename T>
 class Class_obj_template : public Class_obj
 {
 public:
-    Class_obj_template(std::string_view name) 
+    Class_obj_template(std::string_view name) noexcept
         : m_name(name) {}
+
 
     Object* construct(Mika_engine* engine) override 
     { 
-        return T::template construct_object<T>(engine);
+        std::unique_ptr<T> unique_ptr_obj = std::make_unique<T>();
+        unique_ptr_obj->set_engine(engine);
+        Debug_logger::get().log_object_created(
+            unique_ptr_obj->get_class_name(), unique_ptr_obj->get_amount_of_registered_objects());
+
+        T* obj = unique_ptr_obj.get();
+        T::template register_object(engine, std::move(unique_ptr_obj));
+        return obj;
     }
 
-    std::string_view get_name() override 
+    std::string_view get_name() noexcept override  
     { 
         return m_name;
     }
@@ -54,7 +65,7 @@ public:
         return m_classes[class_name].get();
     }
 
-    static void cleanup()
+    static void cleanup() noexcept
     { 
         m_classes.clear();
     }

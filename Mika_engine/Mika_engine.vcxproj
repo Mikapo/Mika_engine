@@ -80,10 +80,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -148,9 +150,9 @@
   <ItemGroup>
     <ClCompile Include="Engine\Utility\Collisions\Collision_algorithms.cpp" />
     <ClCompile Include="Engine\Utility\Class_obj.cpp" />
-    <ClCompile Include="Engine\Utility\Collisions\Collision.cpp" />
+    <ClCompile Include="Engine\Utility\Collisions\Colliders\Collider.cpp" />
     <ClCompile Include="Engine\Utility\Collisions\Collision_handler.cpp" />
-    <ClCompile Include="Engine\Objects\Components\Scene_components\collision_component.cpp" />
+    <ClCompile Include="Engine\Objects\Components\Scene_components\Collision_component.cpp" />
     <ClCompile Include="Engine\Assets\Asset_manager.cpp" />
     <ClCompile Include="Engine\Datatypes\Transform.cpp" />
     <ClCompile Include="Engine\Debug\Debug_logger.cpp" />
@@ -188,8 +190,10 @@
     <ClCompile Include="Engine\Objects\UI\Items\Parents\UI_window.cpp" />
     <ClCompile Include="Engine\Objects\UI\Items\Parents\UI_parent.cpp" />
     <ClCompile Include="Engine\Objects\UI\Items\Sliders\Slider.cpp" />
-    <ClCompile Include="Engine\Utility\Collisions\Oriented_bounding_box.cpp" />
+    <ClCompile Include="Engine\Utility\Collisions\Colliders\Oriented_bounding_box.cpp" />
     <ClCompile Include="Engine\Utility\Collisions\Line.cpp" />
+    <ClCompile Include="Engine\Utility\Collisions\Colliders\Sphere.cpp" />
+    <ClCompile Include="Engine\Objects\World.cpp" />
     <ClCompile Include="Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Vendor\ImGui\imgui.cpp" />
     <ClCompile Include="Vendor\ImGui\imgui_demo.cpp" />
@@ -199,19 +203,19 @@
     <ClCompile Include="Vendor\ImGui\imgui_tables.cpp" />
     <ClCompile Include="Vendor\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Vendor\stb_image\stb_image.cpp" />
-    <ClCompile Include="Engine\Objects\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Datatypes\Axis_comparison_result.h" />
+    <ClInclude Include="Engine\Datatypes\Collision_result.h" />
     <ClInclude Include="Engine\Datatypes\Hit_result.h" />
     <ClInclude Include="Engine\Datatypes\Min_max.h" />
     <ClInclude Include="Engine\Utility\Collisions\Collision_algorithms.h" />
     <ClInclude Include="Engine\Datatypes\Axis.h" />
     <ClInclude Include="Engine\Datatypes\Input.h" />
     <ClInclude Include="Engine\Utility\Class_obj.h" />
-    <ClInclude Include="Engine\Utility\Collisions\Collision.h" />
+    <ClInclude Include="Engine\Utility\Collisions\Colliders\Collider.h" />
     <ClInclude Include="Engine\Utility\Collisions\Collision_handler.h" />
-    <ClInclude Include="Engine\Objects\Components\Scene_components\collision_component.h" />
+    <ClInclude Include="Engine\Objects\Components\Scene_components\Collision_component.h" />
     <ClInclude Include="Engine\Assets\Asset_manager.h" />
     <ClInclude Include="Engine\Debug\Debug_logger.h" />
     <ClInclude Include="Engine\Objects\UI\Items\Color_picker.h" />
@@ -255,8 +259,10 @@
     <ClInclude Include="Engine\Objects\UI\Items\Parents\UI_window.h" />
     <ClInclude Include="Engine\Objects\UI\Items\Parents\UI_parent.h" />
     <ClInclude Include="Engine\Objects\UI\Items\Sliders\Slider.h" />
-    <ClInclude Include="Engine\Utility\Collisions\Oriented_bounding_box.h" />
+    <ClInclude Include="Engine\Utility\Collisions\Colliders\Oriented_bounding_box.h" />
     <ClInclude Include="Engine\Utility\Collisions\Line.h" />
+    <ClInclude Include="Engine\Utility\Collisions\Colliders\Sphere.h" />
+    <ClInclude Include="Engine\Objects\World.h" />
     <ClInclude Include="Vendor\glm\common.hpp" />
     <ClInclude Include="Vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="Vendor\glm\detail\compute_vector_relational.hpp" />
@@ -549,7 +555,6 @@
     <ClInclude Include="Vendor\ImGui\imstb_textedit.h" />
     <ClInclude Include="Vendor\ImGui\imstb_truetype.h" />
     <ClInclude Include="Vendor\stb_image\stb_Image.h" />
-    <ClInclude Include="Engine\Objects\World.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vendor\glm\detail\func_common.inl" />

@@ -12,22 +12,22 @@ void Mesh_component::initialize()
 	get_world()->register_mesh_component(this);
 }
 
-void Mesh_component::set_mesh(std::shared_ptr<Mesh> mesh) 
+void Mesh_component::set_mesh(std::shared_ptr<Mesh> mesh) noexcept 
 { 
 	m_mesh = mesh; 
 }
 
-void Mesh_component::set_material(const Material& material) 
+void Mesh_component::set_material(const Material& material) noexcept 
 { 
 	m_material = material; 
 }
 
-Material Mesh_component::get_material() const 
+Material Mesh_component::get_material() const noexcept
 { 
 	return m_material;
 }
 
-std::optional<Mesh_data> Mesh_component::get_mesh_data()
+std::optional<Mesh_data> Mesh_component::get_mesh_data() const noexcept
 {
     if (!m_mesh)
 		return std::optional<Mesh_data>();

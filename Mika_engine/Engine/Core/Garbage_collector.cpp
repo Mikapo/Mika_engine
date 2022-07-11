@@ -1,25 +1,19 @@
 #include "Garbage_collector.h"
 #include "Objects/Object.h"
 
-
-bool Garbage_collector::is_object_valid(Object* obj) const
+bool Garbage_collector::is_object_valid(const Object* obj) const
 {
-    return m_registered_objects.contains(obj);
+    return m_registered_objects.contains(const_cast<Object*>(obj));
 }
 
-void Garbage_collector::register_object(Object* obj)
+void Garbage_collector::register_object(std::unique_ptr<Object> obj)
 {
-    m_registered_objects.insert(obj);
+    m_registered_objects.emplace(obj.get(), std::move(obj));
 }
 
-const std::unordered_set<Object*>& Garbage_collector::get_registered_objects() const
+const std::unordered_map<Object*, std::unique_ptr<Object>>& Garbage_collector::get_registered_objects() const noexcept
 {
     return m_registered_objects;
-}
-
-void Garbage_collector::unregister_object(Object* obj)
-{
-    m_registered_objects.erase(obj);
 }
 
 void Garbage_collector::set_root_object(Object* obj)
@@ -28,16 +22,10 @@ void Garbage_collector::set_root_object(Object* obj)
         m_root = obj;
 }
 
-void Garbage_collector::mark_object_for_destruction(Object* obj)
-{
-    if (is_object_valid(obj))
-        m_objects_to_destroy.push_back(obj);
-}
-
 void Garbage_collector::update()
 {
-    garbage_collect();
     finalize_destruction_on_objects();
+    garbage_collect();
 }
 
 void Garbage_collector::cleanup()
@@ -45,11 +33,15 @@ void Garbage_collector::cleanup()
     if (m_registered_objects.size() == 0)
         return;
 
-    for (Object* obj : m_registered_objects)
+    for (auto& obj_pair : m_registered_objects)
+    {
+        Object* obj = obj_pair.first;
+
         if (!obj)
             m_registered_objects.erase(obj);
         else
             obj->destruct();
+    }
 
     finalize_destruction_on_objects();
 }
@@ -62,15 +54,15 @@ void Garbage_collector::garbage_collect()
 
 void Garbage_collector::check_object(Object* obj)
 {
-    if (!is_object_valid(obj) || obj->is_marked_by_garbage_collector())
+    if (!obj || !is_object_valid(obj) || obj->is_marked_by_garbage_collector())
         return;
 
     obj->set_garbage_collect_mark(true);
     std::vector<Object*> owned_objects;
     obj->get_owned_objects(owned_objects);
 
-    for (Object* owned_object : owned_objects)
-        check_object(owned_object); 
+    for (Object* obj : owned_objects)
+        check_object(obj);
 }
 
 void Garbage_collector::destruct_unchecked_objects()
@@ -78,20 +70,24 @@ void Garbage_collector::destruct_unchecked_objects()
     if (m_registered_objects.size() == 0)
         return;
 
-    for (Object* obj : m_registered_objects)
+    for (auto& obj_pair : m_registered_objects)
+    {
+        Object* obj = obj_pair.first;
+
         if (!obj)
             m_registered_objects.erase(obj);
         else if (!obj->is_marked_by_garbage_collector())
             obj->destruct();
         else
             obj->set_garbage_collect_mark(false);
+    }
 }
 
 void Garbage_collector::finalize_destruction_on_objects()
 {
-    for (Object* obj : m_objects_to_destroy)
-        if(is_object_valid(obj))
-            obj->finalize_destruction();
+    for (auto obj : m_objects_to_destroy)
+        if (is_object_valid(obj))
+            m_registered_objects.erase(obj);
 
     m_objects_to_destroy.clear();
 }

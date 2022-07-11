@@ -10,10 +10,10 @@ class Slider : public UI_item
 
 public:
 	void update(float deltatime) override;
-	void set_max(float max);
-	void set_min(float min);
+    void set_max(float max) noexcept;
+    void set_min(float min) noexcept;
 	void set_format(std::string_view format);
-	void set_value(float value);
+    void set_value(float value) noexcept;
 
 	Delegate<float> m_on_slider_change;
 

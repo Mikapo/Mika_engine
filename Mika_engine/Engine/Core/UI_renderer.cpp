@@ -1,16 +1,16 @@
 #include "UI_renderer.h"
 
 #include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_opengl3.h"
 #include "ImGui/imgui_impl_glfw.h"
+#include "ImGui/imgui_impl_opengl3.h"
 #include "Objects/UI/UI.h"
-
 
 void UI_renderer::initialize(GLFWwindow* window, Mika_engine* engine)
 {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    const ImGuiIO& io = ImGui::GetIO();
+    (void)io;
     ImGui::StyleColorsDark();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init();
@@ -36,7 +36,8 @@ void UI_renderer::render_ui(std::unordered_set<UI*>& viewport)
     ImGui::NewFrame();
 
     for (UI* ui : viewport)
-        ui->draw();
+        if (ui)
+            ui->draw();
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
