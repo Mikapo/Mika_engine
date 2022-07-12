@@ -1,6 +1,7 @@
 #include "Mika_engine.h"
 
 #include "Datatypes/Frame_data.h"
+#include "Debug/Debug_logger.h"
 #include "Objects/Object.h"
 #include "Objects/World.h"
 #include "Scene_renderer.h"
@@ -10,6 +11,8 @@
 
 void Mika_engine::start()
 {
+    LOG(notification, engine, "Mika engine starting");
+
     setup_callbacks();
     m_update_thread = std::thread([this] { update_thread(); });
     m_has_started = true;
@@ -187,6 +190,8 @@ void Mika_engine::render_thread()
 
 void Mika_engine::cleanup()
 {
+    LOG(notification, engine, "Staring cleanup");
+
     m_has_started = false;
     m_update_thread_stop_flag = true;
     m_update_thread.join();
@@ -194,4 +199,10 @@ void Mika_engine::cleanup()
     m_scene_renderer.cleanup();
     m_ui_renderer.cleanup();
     m_asset_manager.cleanup();
+
+    LOG(notification, engine, "Exiting mika engine");
+
+#ifdef _DEBUG
+    Debug_logger::get().write_to_log_file();
+#endif
 }

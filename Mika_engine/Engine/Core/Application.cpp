@@ -1,4 +1,4 @@
-#include "Application.h"
+﻿#include "Application.h"
 #include "Debug/Debug_logger.h"
 
 void Application::start()
@@ -14,7 +14,7 @@ void Application::start()
 }
 
 void Application::get_window_dimensions(int32_t& out_width, int32_t& out_height) const noexcept
-{ 
+{
     out_width = m_width;
     out_height = m_height;
 }
@@ -25,6 +25,7 @@ void Application::init()
 
     /* Create a windowed mode window and its OpenGL context */
     glfwWindowHint(GLFW_SAMPLES, 4);
+    glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
     m_window = glfwCreateWindow(m_width, m_height, m_name.c_str(), NULL, NULL);
 
     if (!m_window)
@@ -43,15 +44,64 @@ void Application::init()
     glfwSetWindowUserPointer(get_window(), this);
     setup_callbacks();
 
+    LOG(notification, application, "Created window with name {}", m_name);
+
     if (on_window_open_callback)
         on_window_open_callback->call(m_window);
 }
 
-void APIENTRY GLDebugMessageCallback(GLenum source, GLenum type, GLuint id,
-    GLenum severity, GLsizei length,
-    const GLchar* msg, const void* data)
+void GLAPIENTRY opengl_debug(
+    GLenum source​, GLenum type​, GLuint id​, GLenum severity​, GLsizei length​, const GLchar* message​,
+    const void* userParam​)
 {
-    Debug_logger::get().log_OpenGL(source, type, id, severity, length, msg, data);
+
+    std::string_view source_string;
+    Log_severity log_severity;
+
+    switch (source​)
+    {
+    case GL_DEBUG_SOURCE_API:
+        source_string = "Source: API";
+        break;
+    case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
+        source_string = "Source: Window System";
+        break;
+    case GL_DEBUG_SOURCE_SHADER_COMPILER:
+        source_string = "Source: Shader Compiler";
+        break;
+    case GL_DEBUG_SOURCE_THIRD_PARTY:
+        source_string = "Source: Third Party";
+        break;
+    case GL_DEBUG_SOURCE_APPLICATION:
+        source_string = "Source: Application";
+        break;
+    case GL_DEBUG_SOURCE_OTHER:
+        source_string = "Source: Other";
+        break;
+    default:
+        source_string = "Source: Unknown";
+    }
+
+    switch (severity​)
+    {
+    case GL_DEBUG_SEVERITY_HIGH:
+        log_severity = Log_severity::error;
+        break;
+    case GL_DEBUG_SEVERITY_MEDIUM:
+        log_severity = Log_severity::warning;
+        break;
+    case GL_DEBUG_SEVERITY_LOW:
+        log_severity = Log_severity::warning;
+        break;
+    case GL_DEBUG_SEVERITY_NOTIFICATION:
+        log_severity = Log_severity::notification;
+        break;
+    default:
+        log_severity = Log_severity::notification;
+        break;
+    }
+
+    Debug_logger::get().log(log_severity, Log_type::opengl, std::format("{}: {}", source_string, message​));
 }
 
 void Application::on_window_resize(GLFWwindow* window, int32_t new_width, int32_t new_height)
@@ -78,30 +128,29 @@ void Application::set_window_dimensions(int32_t width, int32_t height) noexcept
         glfwSetWindowSize(m_window, width, height);
 }
 
-void Application::set_window_title(std::string_view name) 
+void Application::set_window_title(std::string_view name)
 {
     m_name = name;
 }
 
 void Application::setup_callbacks() const noexcept
 {
-    auto on_key = [](GLFWwindow* window, int32_t key, int32_t scancode, int32_t action, int32_t mods)
-    {
+    auto on_key = [](GLFWwindow* window, int32_t key, int32_t scancode, int32_t action, int32_t mods) {
         if (action == GLFW_PRESS || action == GLFW_RELEASE)
             static_cast<Application*>(glfwGetWindowUserPointer(window))->on_key_event(key, scancode, action, mods);
     };
     glfwSetKeyCallback(get_window(), on_key);
 
-
-    auto on_resize = [](GLFWwindow* window, int32_t new_width, int32_t new_height)
-    {
+    auto on_resize = [](GLFWwindow* window, int32_t new_width, int32_t new_height) {
         static_cast<Application*>(glfwGetWindowUserPointer(window))->on_window_resize(window, new_width, new_height);
     };
     glfwSetWindowSizeCallback(get_window(), on_resize);
 
+#ifdef _DEBUG
     glEnable(GL_DEBUG_OUTPUT);
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-    glDebugMessageCallback(GLDebugMessageCallback, NULL);
+    glDebugMessageCallback(opengl_debug, NULL);
+#endif
 }
 
 void Application::render_loop()
@@ -128,5 +177,8 @@ void Application::cleanup()
 
     glfwDestroyWindow(m_window);
     glfwTerminate();
+
+    LOG(notification, application, "destroyed window with name {}", m_name);
+
     m_window = nullptr;
 }

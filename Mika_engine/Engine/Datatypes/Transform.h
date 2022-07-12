@@ -54,4 +54,5 @@ struct Transform
     glm::mat4 calculate_model() const;
     glm::mat4 calculate_translate_matrix() const;
     glm::mat4 calculate_scale_matrix() const;
+    glm::mat4 calculate_rotation_matrix() const;
 };

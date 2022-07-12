@@ -16,6 +16,8 @@ void Oriented_bounding_box::update(Transform transform)
 {
     Collider::update(transform);
 
+    m_transform = transform;
+
     const Directional_vectors normals = transform.m_rotation.calculate_directional_vectors_from_rotation();
     m_normals = {normals.m_forward, normals.m_right, normals.m_up};
 
@@ -61,4 +63,9 @@ const std::array<glm::vec3, 8>& Oriented_bounding_box::get_vertices() const noex
 const std::array<glm::vec3, 3>& Oriented_bounding_box::get_normals() const noexcept
 {
     return m_normals;
+}
+
+Transform Oriented_bounding_box::get_transform() const noexcept
+{
+    return m_transform;
 }

@@ -152,7 +152,7 @@ void World::add_UI_to_viewport(UI* ui)
     {
         m_viewport.insert(ui);
         ui->m_on_being_destroyed.add_object(this, &World::on_ui_destroyed);
-        ui->on_added_to_viewport.broadcast(this);
+        ui->m_on_added_to_viewport.broadcast(this);
     }
 }
 

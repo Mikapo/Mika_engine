@@ -3,6 +3,7 @@
 #include "Colliders/Oriented_bounding_box.h"
 #include "Colliders/Sphere.h"
 #include "Line.h"
+#include <iostream>
 
 std::optional<Collision_result> Collision_algorithms::obb_and_obb(
     const Oriented_bounding_box& a, const Oriented_bounding_box& b)
@@ -34,9 +35,22 @@ std::optional<Collision_result> Collision_algorithms::obb_and_obb(
 std::optional<Collision_result> Collision_algorithms::obb_and_sphere(
     const Oriented_bounding_box& obb, const Sphere& sphere)
 {
-    const glm::mat4 inverse = glm::inverse(glm::mat4(1));
-    const glm::vec3 local_origin = inverse * glm::vec4(sphere.get_origin(), 1.0f);
-    const glm::vec3 closest = glm::max(glm::vec3(-1), glm::min(local_origin, 1.0f));
+    const Transform obb_trasnform = obb.get_transform();
+    const glm::mat4 model = obb_trasnform.calculate_translate_matrix() * obb_trasnform.calculate_rotation_matrix();
+    const glm::mat4 inverse = glm::inverse(model);
+    const glm::vec3 sphere_local_origin = inverse * glm::vec4(sphere.get_origin(), 1.0f);
+
+    const glm::vec3 obb_local_max = obb_trasnform.m_location + obb_trasnform.m_scale;
+    const glm::vec3 obb_local_min = obb_trasnform.m_location - obb_trasnform.m_scale;
+    const glm::vec3 closest = glm::max(obb_local_min, glm::min(sphere_local_origin, obb_local_max));
+
+    const glm::vec3 offset = closest - sphere.get_origin();
+
+    if (glm::length(offset) <= sphere.get_radius())
+    {
+        Collision_result result;
+        return result;
+    }
 
     return std::optional<Collision_result>();
 }
@@ -46,7 +60,7 @@ std::optional<Collision_result> Collision_algorithms::sphere_and_sphere(const Sp
     const float distance = glm::length(a.get_origin() - b.get_origin());
     const float radius_sum = a.get_radius() + b.get_radius();
 
-    if (distance < radius_sum)
+    if (distance <= radius_sum)
     {
         Collision_result result;
         return result;

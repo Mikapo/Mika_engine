@@ -16,9 +16,11 @@ public:
     std::optional<Collision_result> is_overlapping_with_sphere(const Sphere& collider) const override;
     const std::array<glm::vec3, 8>& get_vertices() const noexcept;
     const std::array<glm::vec3, 3>& get_normals() const noexcept;
+    Transform get_transform() const noexcept;
 
 private:
     std::array<glm::vec3, 3> m_normals = {};
     std::array<glm::vec3, 8> m_vertices = {};
     const static std::array<glm::vec3, 8> m_box_vertices;
+    Transform m_transform;
 };

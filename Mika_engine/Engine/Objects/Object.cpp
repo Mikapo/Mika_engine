@@ -6,7 +6,7 @@ void Object::destruct()
 {
     m_marked_for_destruction = true;
     m_on_being_destroyed.broadcast(this);
-    Debug_logger::get().log_object_destroyed(get_class_name(), m_engine->get_amount_of_registered_objects());
+    LOG(notification, objects, "Object with name {} destroyed", get_class_name());
 }
 
 void Object::set_garbage_collect_mark(bool mark) noexcept

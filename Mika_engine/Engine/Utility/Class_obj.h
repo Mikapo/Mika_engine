@@ -1,9 +1,9 @@
 #pragma once
 
-#include <unordered_map>
-#include <string_view>
-#include <memory>
 #include "Debug/Debug_logger.h"
+#include <memory>
+#include <string_view>
+#include <unordered_map>
 
 class Mika_engine;
 class Object;
@@ -12,38 +12,38 @@ class Class_obj
 public:
     virtual ~Class_obj() = default;
 
-    template<typename T>
+    template <typename T>
     T* construct_cast(Mika_engine* engine)
     {
         return dynamic_cast<T*>(construct(engine));
     }
 
-    virtual Object* construct(Mika_engine* engine) = 0; 
+    virtual Object* construct(Mika_engine* engine) = 0;
     virtual std::string_view get_name() = 0;
 };
 
-template<typename T>
+template <typename T>
 class Class_obj_template : public Class_obj
 {
 public:
-    Class_obj_template(std::string_view name) noexcept
-        : m_name(name) {}
+    Class_obj_template(std::string_view name) noexcept : m_name(name)
+    {
+    }
 
-
-    Object* construct(Mika_engine* engine) override 
-    { 
+    Object* construct(Mika_engine* engine) override
+    {
         std::unique_ptr<T> unique_ptr_obj = std::make_unique<T>();
         unique_ptr_obj->set_engine(engine);
-        Debug_logger::get().log_object_created(
-            unique_ptr_obj->get_class_name(), unique_ptr_obj->get_amount_of_registered_objects());
+
+        LOG(notification, objects, "Object created with name {}", get_name());
 
         T* obj = unique_ptr_obj.get();
         T::template register_object(engine, std::move(unique_ptr_obj));
         return obj;
     }
 
-    std::string_view get_name() noexcept override  
-    { 
+    std::string_view get_name() noexcept override
+    {
         return m_name;
     }
 
@@ -66,7 +66,7 @@ public:
     }
 
     static void cleanup() noexcept
-    { 
+    {
         m_classes.clear();
     }
 

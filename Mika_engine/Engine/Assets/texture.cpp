@@ -1,17 +1,23 @@
 #include "Texture.h"
 
+#include "Debug/Debug_logger.h"
 #include "stb_image/stb_Image.h"
 #include <string>
-
 
 Texture::Texture(std::string_view path) : m_filepath(path)
 {
     stbi_set_flip_vertically_on_load(1);
+
+    LOG(notification, render, "Loading texture: {}", path);
+
     m_local_buffer = stbi_load(path.data(), &m_width, &m_height, &m_bpp, 4);
+
+    if (!m_local_buffer)
+        LOG(error, render, "failed to load texture: {}", path);
 }
 
-Texture::~Texture() 
-{ 
+Texture::~Texture()
+{
     if (is_valid())
     {
         glDeleteTextures(1, &m_id);
@@ -34,12 +40,12 @@ void Texture::bind(Texture_slot slot) noexcept
 }
 
 void Texture::unbind() noexcept
-{ 
+{
     if (!m_is_binded)
-        return; 
+        return;
 
     glActiveTexture(m_current_slot);
-    glBindTexture(GL_TEXTURE_2D, 0); 
+    glBindTexture(GL_TEXTURE_2D, 0);
     m_current_slot = -1;
     m_is_binded = false;
 }

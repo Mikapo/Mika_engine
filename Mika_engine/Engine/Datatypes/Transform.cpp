@@ -59,3 +59,8 @@ glm::mat4 Transform::calculate_scale_matrix() const
 {
     return glm::scale(glm::mat4(1), m_scale);
 }
+
+glm::mat4 Transform::calculate_rotation_matrix() const
+{
+    return m_rotation.calculate_rotation_matrix();
+}
