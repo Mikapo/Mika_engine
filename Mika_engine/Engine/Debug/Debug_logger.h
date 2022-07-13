@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Utility/Macros/Helper_macros.h"
 #include <array>
 #include <format>
 #include <iostream>
@@ -21,8 +22,11 @@ enum class Log_type : uint8_t
     render,
     opengl,
     application,
-    engine
+    engine,
+    other
 };
+
+DECLARE_ENUM(test, uint8_t, (a)(b)(c))
 
 class Debug_logger
 {

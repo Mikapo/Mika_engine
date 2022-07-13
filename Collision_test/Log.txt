@@ -1,0 +1,35 @@
+[20:25:18] notification engine: Mika engine starting
+[20:25:18] notification objects: Object created with name Collision_test_world
+[20:25:18] notification objects: Object created with name Player
+[20:25:18] notification objects: Object created with name Camera_component
+[20:25:18] notification objects: Object created with name Input_component
+[20:25:18] notification objects: Object created with name Light
+[20:25:18] notification objects: Object created with name Light_component
+[20:25:18] notification objects: Object created with name Cube
+[20:25:18] notification objects: Object created with name Mesh_component
+[20:25:18] notification render: Loading model: Engine/Engine_models/cube.obj
+[20:25:18] notification objects: Object created with name Collision_component
+[20:25:19] notification application: Created window with name Collision test
+[20:25:19] notification render: compiling shader Engine/Shaders/Lighting.frag and Engine/Shaders/Lighting.vert
+[20:25:19] notification render: compiling shader Engine/shaders/Shadow_map.frag and Engine/shaders/Shadow_map.vert
+[20:25:19] notification render: Loading 192 vertices and 36 indices to GPU memory
+[20:25:22] notification objects: Object created with name Bullet
+[20:25:22] notification objects: Object created with name Mesh_component
+[20:25:22] notification render: Loading model: Engine/Engine_models/Sphere.obj
+[20:25:23] notification objects: Object created with name Collision_component
+[20:25:23] notification render: Loading 15872 vertices and 2880 indices to GPU memory
+[20:25:33] notification engine: Staring cleanup
+[20:25:33] notification objects: Object Mesh_component destroyed
+[20:25:33] notification objects: Object Collision_component destroyed
+[20:25:33] notification objects: Object Collision_test_world destroyed
+[20:25:33] notification objects: Object Player destroyed
+[20:25:33] notification objects: Object Camera_component destroyed
+[20:25:33] notification objects: Object Input_component destroyed
+[20:25:33] notification objects: Object Light destroyed
+[20:25:33] notification objects: Object Light_component destroyed
+[20:25:33] notification objects: Object Cube destroyed
+[20:25:33] notification objects: Object Bullet destroyed
+[20:25:33] notification objects: Object Mesh_component destroyed
+[20:25:33] notification objects: Object Collision_component destroyed
+[20:25:33] notification engine: Exiting mika engine
+[20:25:33] notification engine: Writing to log file

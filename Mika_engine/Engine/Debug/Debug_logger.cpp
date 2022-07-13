@@ -18,6 +18,8 @@ std::string Debug_logger::get_time_string() const
 
     const std::string time_string = buffer;
 
+    std::string_view value = enum_to_string(test::a);
+
     return time_string.substr(11, 8);
 }
 

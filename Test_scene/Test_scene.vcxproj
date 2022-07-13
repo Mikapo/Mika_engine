@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Mika_engine\Libraries\GLFW\include;$(SolutionDir)Mika_engine\Vendor;$(SolutionDir)Mika_engine\Libraries\GLEW\include;$(SolutionDir)Mika_engine\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Libraries\boost_1_79_0;$(ProjectDir)Libraries\assimp\include;$(ProjectDir)Engine;$(ProjectDir)Shaders;$(ProjectDir)Vendor;$(ProjectDir)Libraries\GLEW\include;$(ProjectDir)Libraries\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -136,7 +136,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Mika_engine\Libraries\GLFW\include;$(SolutionDir)Mika_engine\Vendor;$(SolutionDir)Mika_engine\Libraries\GLEW\include;$(SolutionDir)Mika_engine\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Libraries\boost_1_79_0;$(ProjectDir)Libraries\assimp\include;$(ProjectDir)Engine;$(ProjectDir)Shaders;$(ProjectDir)Vendor;$(ProjectDir)Libraries\GLEW\include;$(ProjectDir)Libraries\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>

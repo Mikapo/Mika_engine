@@ -2,8 +2,8 @@
 
 #include "Colliders/Oriented_bounding_box.h"
 #include "Colliders/Sphere.h"
+#include "Debug/Debug_logger.h"
 #include "Line.h"
-#include <iostream>
 
 std::optional<Collision_result> Collision_algorithms::obb_and_obb(
     const Oriented_bounding_box& a, const Oriented_bounding_box& b)
@@ -42,9 +42,9 @@ std::optional<Collision_result> Collision_algorithms::obb_and_sphere(
 
     const glm::vec3 obb_local_max = obb_trasnform.m_location + obb_trasnform.m_scale;
     const glm::vec3 obb_local_min = obb_trasnform.m_location - obb_trasnform.m_scale;
-    const glm::vec3 closest = glm::max(obb_local_min, glm::min(sphere_local_origin, obb_local_max));
+    const glm::vec3 closest_point = glm::max(obb_local_min, glm::min(sphere_local_origin, obb_local_max));
 
-    const glm::vec3 offset = closest - sphere.get_origin();
+    const glm::vec3 offset = closest_point - sphere_local_origin;
 
     if (glm::length(offset) <= sphere.get_radius())
     {

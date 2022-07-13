@@ -80,6 +80,7 @@ public:
     {
         return m_window;
     }
+
     void get_window_dimensions(int32_t& out_width, int32_t& out_height) const noexcept;
     void on_window_resize(GLFWwindow* window, int32_t new_width, int32_t new_height);
     void on_key_event(int32_t key, int32_t scancode, int32_t action, int32_t mods);

@@ -3,8 +3,8 @@
 #include "Debug/Debug_logger.h"
 #include "Utility/Class_obj.h"
 #include "Utility/Delegate.h"
+#include "Utility/Macros/Generated_body.h"
 #include "gsl/gsl"
-#include "utility/GENERATED_BODY.h"
 #include <chrono>
 #include <typeinfo>
 #include <unordered_set>

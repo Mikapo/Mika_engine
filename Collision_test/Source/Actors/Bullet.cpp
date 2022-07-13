@@ -25,7 +25,7 @@ void Bullet::update(float deltatime)
     Actor::update(deltatime);
 
     const glm::vec3 gravity = glm::vec3(0.0f, 0.0f, -0.19f) * deltatime;
-    m_velocity += gravity;
+    // m_velocity += gravity;
 
     add_world_offset(m_velocity * deltatime, true);
 }

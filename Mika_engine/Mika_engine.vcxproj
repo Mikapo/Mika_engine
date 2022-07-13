@@ -121,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Libraries\assimp\include;$(ProjectDir)Engine;$(ProjectDir)Shaders;$(ProjectDir)Vendor;$(ProjectDir)Libraries\GLEW\include;$(ProjectDir)Libraries\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Libraries\boost_1_79_0;$(ProjectDir)Libraries\assimp\include;$(ProjectDir)Engine;$(ProjectDir)Shaders;$(ProjectDir)Vendor;$(ProjectDir)Libraries\GLEW\include;$(ProjectDir)Libraries\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -137,7 +137,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Vendor;$(ProjectDir)Libraries\GLEW\include;$(ProjectDir)Libraries\GLFW\include;$(ProjectDir)Engine;$(ProjectDir)Libraries\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Libraries\boost_1_79_0;$(ProjectDir)Libraries\assimp\include;$(ProjectDir)Engine;$(ProjectDir)Shaders;$(ProjectDir)Vendor;$(ProjectDir)Libraries\GLEW\include;$(ProjectDir)Libraries\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -245,7 +245,8 @@
     <ClInclude Include="Engine\Utility\Delegate.h" />
     <ClInclude Include="Engine\Datatypes\Frame_data.h" />
     <ClInclude Include="Engine\Datatypes\Transform.h" />
-    <ClInclude Include="Engine\Utility\GENERATED_BODY.h" />
+    <ClInclude Include="Engine\Utility\Macros\Generated_body.h" />
+    <ClInclude Include="Engine\Utility\Macros\Helper_macros.h" />
     <ClInclude Include="Engine\Utility\Uniform_names.h" />
     <ClInclude Include="Engine\Objects\Components\Scene_components\Mesh_component.h" />
     <ClInclude Include="Engine\Assets\Mesh.h" />

@@ -98,7 +98,7 @@ void Model_loader::get_vertices(aiMesh* mesh, std::vector<float>& out_vector)
         out_vector.push_back(gsl::at(normals, i).y);
         out_vector.push_back(gsl::at(normals, i).z);
 
-        if (texture_coordinates.size() < i)
+        if (i < texture_coordinates.size())
         {
             out_vector.push_back(gsl::at(texture_coordinates, i).x);
             out_vector.push_back(gsl::at(texture_coordinates, i).y);

@@ -332,7 +332,7 @@
     <ClInclude Include="Engine\Datatypes\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Utility\GENERATED_BODY.h">
+    <ClInclude Include="Engine\Utility\Macros\Generated_body.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Utility\Class_obj.h">
@@ -1236,6 +1236,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Datatypes\Collision_result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utility\Macros\Helper_macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
