@@ -26,7 +26,20 @@ public:
     Object& operator=(const Object&) = delete;
     Object&& operator=(Object&&) = delete;
 
-    void destruct();
+    template <typename T>
+    static T* construct_object(Mika_engine* engine)
+    {
+        std::unique_ptr<T> unique_ptr_obj = std::make_unique<T>();
+        unique_ptr_obj->set_engine(engine);
+
+        LOG(notification, objects, "Created object with name {}", unique_ptr_obj->get_class_name());
+
+        T* obj = unique_ptr_obj.get();
+        register_object(engine, std::move(unique_ptr_obj));
+        return obj;
+    }
+
+    virtual void destruct() noexcept;
     virtual void get_owned_objects(std::vector<Object*>& out_array) noexcept
     {
     }
@@ -41,28 +54,28 @@ public:
     Asset_manager& get_asset_manager() noexcept;
     const Mika_engine* get_engine() const noexcept;
     virtual void update(float deltatime);
-    std::string get_class_name();
+    std::string_view get_class_name();
     size_t get_amount_of_registered_objects() noexcept;
     static bool static_is_valid(const Mika_engine* engine, const Object* obj);
     void set_lifetime(float lifetime) noexcept;
     static void register_object(Mika_engine* engine, std::unique_ptr<Object> obj);
 
-    Delegate<Object*> m_on_being_destroyed;
-
 protected:
     template <typename object_type>
     void update_owned_objects(std::unordered_set<object_type*>& object_container, float deltatime)
     {
-        std::vector<object_type*> destroy;
+        auto it = object_container.begin();
 
-        for (object_type* item : object_container)
-            if (item && is_valid(item))
-                item->update(deltatime);
+        while (it != object_container.end())
+        {
+            if (is_valid(*it))
+            {
+                (*it)->update(deltatime);
+                ++it;
+            }
             else
-                destroy.push_back(item);
-
-        for (object_type* item : destroy)
-            object_container.erase(item);
+                it = object_container.erase(it);
+        }
     }
 
     template <typename object_type>

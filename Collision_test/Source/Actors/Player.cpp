@@ -16,8 +16,8 @@ void Player::initialize()
     set_active_camera(camera);
     setup_input();
 
-    /* auto* collision = create_component_cast<Collision_component>(Collision_component::static_class());
-    collision->set_relative_scale({0.1f, 0.1f, 0.1f});*/
+    auto* collision = create_component_cast<Collision_component>(Collision_component::static_class());
+    collision->set_relative_scale({0.1f, 0.1f, 0.1f});
 }
 
 void Player::setup_input()
@@ -25,18 +25,18 @@ void Player::setup_input()
     auto* input = create_component_cast<Input_component>(Input_component::static_class());
 
     auto* forward_mapping = input->add_axis_mapping<Player>("move_forward", this, &Player::move_forward);
-    forward_mapping->add_key(GLFW_KEY_W, 1.0f);
-    forward_mapping->add_key(GLFW_KEY_S, -1.0f);
+    forward_mapping->add_key(Input_key::W, 1.0f);
+    forward_mapping->add_key(Input_key::S, -1.0f);
 
     auto* right_mapping = input->add_axis_mapping<Player>("move_right", this, &Player::move_right);
-    right_mapping->add_key(GLFW_KEY_A, -1.0f);
-    right_mapping->add_key(GLFW_KEY_D, 1.0f);
+    right_mapping->add_key(Input_key::A, -1.0f);
+    right_mapping->add_key(Input_key::D, 1.0f);
 
     auto* rotate_mapping = input->add_axis_mapping<Player>("rotate", this, &Player::rotate);
-    rotate_mapping->add_key(GLFW_KEY_Q, -1.0f);
-    rotate_mapping->add_key(GLFW_KEY_E, 1.0f);
+    rotate_mapping->add_key(Input_key::Q, -1.0f);
+    rotate_mapping->add_key(Input_key::E, 1.0f);
 
-    input->add_action_mapping("shoot", GLFW_KEY_F, GLFW_PRESS, this, &Player::shoot);
+    input->add_action_mapping("shoot", Input_key::F, Input_action::press, this, &Player::shoot);
 }
 
 void Player::move_forward(float input)

@@ -1,54 +1,76 @@
-[14:07:59] notification engine: Mika engine starting
-[14:07:59] notification objects: Object created with name Test_world
-[14:07:59] notification objects: Object created with name Ground
-[14:07:59] notification objects: Object created with name Mesh_component
-[14:07:59] notification render: Loading model: Models/cube.obj
-[14:07:59] notification render: Loading texture: Textures/wooden_floor.png
-[14:08:00] notification objects: Object created with name Sofa
-[14:08:00] notification objects: Object created with name Mesh_component
-[14:08:00] notification render: Loading model: Models/sofa.obj
-[14:08:02] notification application: Created window with name Scene
-[14:08:02] notification render: compiling shader Engine/Shaders/Lighting.frag and Engine/Shaders/Lighting.vert
-[14:08:02] notification render: compiling shader Engine/shaders/Shadow_map.frag and Engine/shaders/Shadow_map.vert
-[14:08:02] notification render: Loading model: Engine/Engine_models/cube.obj
-[14:08:03] notification render: Loading texture: Textures/sofa.jpg
-[14:08:06] notification objects: Object created with name Table
-[14:08:06] notification objects: Object created with name Mesh_component
-[14:08:06] notification render: Loading model: Models/round_wooden_table.obj
-[14:08:09] notification render: Loading texture: Textures/round_wooden_table.jpg
-[14:08:12] notification objects: Object created with name Wooden_table
-[14:08:12] notification objects: Object created with name Mesh_component
-[14:08:12] notification render: Loading model: Models/WoodenTable.obj
-[14:08:13] notification objects: Object created with name Mesh_component
-[14:08:13] notification render: Loading model: Models/potted_plant.obj
-[14:08:49] notification render: Loading texture: Textures/potted_plant.jpg
-[14:08:54] notification objects: Object created with name Light
-[14:08:54] notification objects: Object created with name Light_component
-[14:08:54] notification objects: Object created with name Player
-[14:08:54] notification objects: Object created with name Camera_component
-[14:08:54] notification objects: Object created with name Input_component
-[14:08:54] notification objects: Object created with name Settings_ui
-[14:08:54] notification render: Loading 192 vertices and 36 indices to GPU memory
-[14:08:54] notification render: Loading 41024 vertices and 23784 indices to GPU memory
-[14:08:55] notification render: Loading 36056 vertices and 20982 indices to GPU memory
-[14:08:55] notification render: Loading 9088 vertices and 2856 indices to GPU memory
-[14:08:55] notification render: Loading 477040 vertices and 335536 indices to GPU memory
-[14:09:03] notification engine: Staring cleanup
-[14:09:03] notification objects: Object with name Mesh_component destroyed
-[14:09:03] notification objects: Object with name Mesh_component destroyed
-[14:09:03] notification objects: Object with name Test_world destroyed
-[14:09:03] notification objects: Object with name Sofa destroyed
-[14:09:03] notification objects: Object with name Ground destroyed
-[14:09:03] notification objects: Object with name Mesh_component destroyed
-[14:09:03] notification objects: Object with name Wooden_table destroyed
-[14:09:03] notification objects: Object with name Table destroyed
-[14:09:03] notification objects: Object with name Mesh_component destroyed
-[14:09:03] notification objects: Object with name Mesh_component destroyed
-[14:09:03] notification objects: Object with name Light destroyed
-[14:09:03] notification objects: Object with name Light_component destroyed
-[14:09:03] notification objects: Object with name Player destroyed
-[14:09:03] notification objects: Object with name Settings_ui destroyed
-[14:09:03] notification objects: Object with name Camera_component destroyed
-[14:09:03] notification objects: Object with name Input_component destroyed
-[14:09:03] notification engine: Exiting mika engine
-[14:09:03] notification engine: Writing to log file
+[16:40:24] notification engine: Mika engine starting 
+[16:40:24] notification objects: Created object with name Test_world 
+[16:40:24] notification objects: Created object with name Ground 
+[16:40:24] notification objects: Created object with name Mesh_component 
+[16:40:24] notification render: Loading model: Models/cube.obj 
+[16:40:27] notification render: Loading texture: Textures/wooden_floor.png 
+[16:40:31] notification objects: Created object with name Sofa 
+[16:40:31] notification objects: Created object with name Mesh_component 
+[16:40:31] notification render: Loading model: Models/sofa.obj 
+[16:40:33] notification application: Created window with name Scene 
+[16:40:34] notification render: Loading model: Engine/Engine_models/cube.obj 
+[16:40:35] notification render: Loading texture: Textures/sofa.jpg 
+[16:40:41] notification objects: Created object with name Table 
+[16:40:41] notification objects: Created object with name Mesh_component 
+[16:40:41] notification render: Loading model: Models/round_wooden_table.obj 
+[16:40:46] notification render: Loading texture: Textures/round_wooden_table.jpg 
+[16:40:50] notification objects: Created object with name Wooden_table 
+[16:40:50] notification objects: Created object with name Mesh_component 
+[16:40:50] notification render: Loading model: Models/WoodenTable.obj 
+[16:40:50] notification objects: Created object with name Mesh_component 
+[16:40:50] notification render: Loading model: Models/potted_plant.obj 
+[16:42:14] notification render: Loading texture: Textures/potted_plant.jpg 
+[16:42:19] notification objects: Created object with name Light 
+[16:42:19] notification objects: Created object with name Light_component 
+[16:42:19] notification objects: Created object with name Player 
+[16:42:19] notification objects: Created object with name Camera_component 
+[16:42:19] notification objects: Created object with name Input_component 
+[16:42:19] notification objects: Created object with name Settings_ui 
+[16:42:20] notification render: Loading 192 vertices and 36 indices to GPU memory 
+[16:42:20] notification render: Loading 36056 vertices and 20982 indices to GPU memory 
+[16:42:21] notification render: Loading 477040 vertices and 335536 indices to GPU memory 
+[16:42:22] notification render: Loading 41024 vertices and 23784 indices to GPU memory 
+[16:42:22] notification render: Loading 9088 vertices and 2856 indices to GPU memory 
+[16:44:20] notification engine: Staring cleanup 
+[16:44:20] notification objects: Table is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Light is going to be destroyed 
+[16:44:20] notification objects: Light_component is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Sofa is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Test_world is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Ground is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Light_component is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Wooden_table is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Mesh_component is going to be destroyed 
+[16:44:20] notification objects: Player is going to be destroyed 
+[16:44:20] notification objects: Camera_component is going to be destroyed 
+[16:44:20] notification objects: Input_component is going to be destroyed 
+[16:44:20] notification objects: Camera_component is going to be destroyed 
+[16:44:20] notification objects: Input_component is going to be destroyed 
+[16:44:20] notification objects: Settings_ui is going to be destroyed 
+[16:44:20] notification garbage_collector: Object Table is being garbage collected 
+[16:44:20] notification garbage_collector: Object Light is being garbage collected 
+[16:44:20] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:44:20] notification garbage_collector: Object Sofa is being garbage collected 
+[16:44:20] notification garbage_collector: Object Test_world is being garbage collected 
+[16:44:20] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:44:20] notification garbage_collector: Object Ground is being garbage collected 
+[16:44:20] notification garbage_collector: Object Light_component is being garbage collected 
+[16:44:20] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:44:20] notification garbage_collector: Object Wooden_table is being garbage collected 
+[16:44:20] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:44:20] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:44:20] notification garbage_collector: Object Player is being garbage collected 
+[16:44:20] notification garbage_collector: Object Camera_component is being garbage collected 
+[16:44:20] notification garbage_collector: Object Input_component is being garbage collected 
+[16:44:20] notification garbage_collector: Object Settings_ui is being garbage collected 
+[16:44:20] notification engine: Exiting mika engine 
+[16:44:20] notification engine: Writing to log file 

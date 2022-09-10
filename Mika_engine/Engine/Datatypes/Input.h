@@ -1,9 +1,9 @@
 #pragma once
 
+#include "Core/Key.h"
+
 struct Input
 {
-    int32_t key;
-    int32_t scancode;
-    int32_t action;
-    int32_t mods;
+    Input_key key = Input_key::unkown;
+    Input_action action = Input_action::unkown;
 };

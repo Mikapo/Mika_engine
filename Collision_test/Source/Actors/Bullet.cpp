@@ -18,6 +18,7 @@ void Bullet::initialize()
     set_scale({0.05f, 0.05f, 0.05f});
 
     m_on_collision_detected.add_object(this, &Bullet::on_collision);
+    set_lifetime(10.0f);
 }
 
 void Bullet::update(float deltatime)

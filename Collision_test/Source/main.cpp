@@ -1,7 +1,7 @@
 #include "Collision_test_world.h"
 #include "Core/Mika_engine.h"
 
-int WinMain()
+int main()
 {
     Mika_engine engine;
     engine.set_window_title("Collision test");

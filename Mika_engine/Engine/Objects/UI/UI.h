@@ -21,7 +21,5 @@ public:
     Delegate<World*> m_on_added_to_viewport;
 
 private:
-    void on_window_destructed(Object* window);
-
     std::unordered_set<UI_window*> m_windows;
 };

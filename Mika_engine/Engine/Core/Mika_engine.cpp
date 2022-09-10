@@ -124,10 +124,10 @@ void Mika_engine::on_window_resize(int32_t width, int32_t height) noexcept
 }
 
 static std::mutex input_mutex;
-void Mika_engine::on_key_event(int32_t key, int32_t scancode, int32_t action, int32_t mods)
+void Mika_engine::on_key_event(Input_key key, Input_action action)
 {
     std::lock_guard<std::mutex> lock(input_mutex);
-    m_inputs.emplace_back(key, scancode, action, mods);
+    m_inputs.emplace_back(key, action);
 }
 
 void Mika_engine::handle_inputs()

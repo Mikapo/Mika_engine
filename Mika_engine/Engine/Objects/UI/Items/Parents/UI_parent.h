@@ -33,9 +33,6 @@ protected:
 	void draw_children();
 
 private:
-    void on_chidren_destroyed(Object* children);
-
 	std::set<UI_wrapper> m_children;
-    std::unordered_map<UI_item*, int32_t> m_positions;
 };
 

@@ -36,7 +36,6 @@ Actor* World::spawn_actor(Class_obj* class_obj, Transform transform)
         return nullptr;
 
     m_actors.insert(actor);
-    actor->m_on_being_destroyed.add_object(this, &World::on_actor_destroyed);
     actor->set_world(this);
     actor->set_transform(transform);
     actor->initialize();
@@ -58,13 +57,11 @@ UI* World::create_ui(Class_obj* class_obj)
 void World::register_mesh_component(Mesh_component* component)
 {
     m_mesh_components.insert(component);
-    component->m_on_being_destroyed.add_object(this, &World::on_registered_mesh_destroyed);
 }
 
 void World::register_light_component(Light_component* component)
 {
     m_lights.insert(component);
-    component->m_on_being_destroyed.add_object(this, &World::on_registered_light_destroyed);
 }
 
 void World::register_collision_component(std::shared_ptr<Collider> collision, Collision_component* component)
@@ -74,7 +71,6 @@ void World::register_collision_component(std::shared_ptr<Collider> collision, Co
 
     m_collisions.insert(component);
     m_collision_handler.update_component(component, collision);
-    component->m_on_being_destroyed.add_object(this, &World::on_registered_collision_destroyed);
 }
 
 void World::update_collisions(const std::shared_ptr<Collider> collision, Collision_component* component)
@@ -107,22 +103,39 @@ void World::get_frame_data(Frame_data& out_frame_data)
 {
     out_frame_data.m_meshes.reserve(m_mesh_components.size());
 
-    for (const Mesh_component* component : m_mesh_components)
+    auto mesh_it = m_mesh_components.begin();
+    while (mesh_it != m_mesh_components.end())
     {
-        if (!component)
+        if (!is_valid(*mesh_it))
+        {
+            mesh_it = m_mesh_components.erase(mesh_it);
             continue;
+        }
 
-        auto mesh_data = component->get_mesh_data();
+        auto mesh_data = (*mesh_it)->get_mesh_data();
 
         if (mesh_data.has_value())
             out_frame_data.m_meshes.emplace_back(mesh_data.value());
+
+        ++mesh_it;
     }
 
     out_frame_data.m_lighting.reserve(m_lights.size());
 
-    for (const Light_component* component : m_lights)
-        if (component)
-            out_frame_data.m_lighting.emplace_back(component->get_light_data());
+    auto light_it = m_lights.begin();
+    while (light_it != m_lights.end())
+    {
+        if (!is_valid(*light_it))
+        {
+            light_it = m_lights.erase(light_it);
+            continue;
+        }
+
+        out_frame_data.m_lighting.emplace_back((*light_it)->get_light_data());
+        ++light_it;
+    }
+        
+            
 
     out_frame_data.m_camera = get_camera_data();
 }
@@ -151,7 +164,6 @@ void World::add_UI_to_viewport(UI* ui)
     if (is_valid(ui))
     {
         m_viewport.insert(ui);
-        ui->m_on_being_destroyed.add_object(this, &World::on_ui_destroyed);
         ui->m_on_added_to_viewport.broadcast(this);
     }
 }
@@ -162,49 +174,10 @@ void World::remove_UI_from_viewport(UI* ui)
         throw std::invalid_argument("ui is null");
 
     if (is_valid(ui))
-    {
-        ui->m_on_being_destroyed.remove_object(this);
         m_viewport.erase(ui);
-    }
 }
 
 std::unordered_set<UI*>& World::get_viewport() noexcept
 {
     return m_viewport;
-}
-
-void World::on_actor_destroyed(Object* obj)
-{
-    if (Actor* actor = dynamic_cast<Actor*>(obj))
-    {
-        m_actors.erase(actor);
-
-        if (m_player == actor)
-            m_player = nullptr;
-    }
-    else
-        throw std::runtime_error("object was not actor");
-}
-
-void World::on_ui_destroyed(Object* obj)
-{
-    remove_object_from_set(m_viewport, obj);
-}
-
-void World::on_registered_light_destroyed(Object* obj)
-{
-    remove_object_from_set(m_lights, obj);
-}
-
-void World::on_registered_mesh_destroyed(Object* obj)
-{
-    remove_object_from_set(m_mesh_components, obj);
-}
-
-void World::on_registered_collision_destroyed(Object* obj)
-{
-    if (const auto* const collision = dynamic_cast<Collision_component*>(obj))
-        m_collision_handler.unregister_component(collision);
-
-    remove_object_from_set(m_collisions, obj);
 }

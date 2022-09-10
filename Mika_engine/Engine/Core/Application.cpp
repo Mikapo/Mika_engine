@@ -116,7 +116,7 @@ void Application::on_window_resize(GLFWwindow* window, int32_t new_width, int32_
 void Application::on_key_event(int32_t key, int32_t scancode, int32_t action, int32_t mods)
 {
     if (m_on_key_event_callback)
-        m_on_key_event_callback->call(key, scancode, action, mods);
+        m_on_key_event_callback->call(static_cast<Input_key>(key), static_cast<Input_action>(action));
 }
 
 void Application::set_window_dimensions(int32_t width, int32_t height) noexcept

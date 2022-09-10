@@ -1,12 +1,11 @@
 #include "Shader.h"
 
-#include "Debug/Debug_logger.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
 
+#include "Debug/Debug_logger.h"
 #include "GL/glew.h"
-#include "gsl/gsl"
 #include <GLFW/glfw3.h>
 
 Shader::Shader(std::string_view frag_path, std::string_view fert_path)
@@ -14,8 +13,6 @@ Shader::Shader(std::string_view frag_path, std::string_view fert_path)
 {
     std::string frag_source = parse_shader(frag_path);
     std::string fert_source = parse_shader(fert_path);
-
-    LOG(notification, render, "compiling shader {} and {}", frag_path, fert_path);
 
     m_shader_id = create_shader(fert_source, frag_source);
     glUseProgram(m_shader_id);
@@ -36,109 +33,58 @@ void Shader::unbind() const noexcept
     glUseProgram(0);
 }
 
-void Shader::set_uniform4f(std::string_view name, float v1, float v2, float v3, float v4)
+void Shader::call_gl_uniform(int32_t pos, float v1, float v2, float v3, float v4) const noexcept
 {
-    const int32_t location = get_uniform_location(name);
-    if (location == -1)
-        return;
-
-    bind();
-    glUniform4f(location, v1, v2, v3, v4);
-    unbind();
+    glUniform4f(pos, v1, v2, v3, v4);
 }
 
-void Shader::set_uniform4fv(std::string_view name, size_t count, const float* v)
+void Shader::call_gl_uniform(int32_t pos, int32_t count, const std::vector<std::array<float, 4>> v) const noexcept
 {
-    if (count == 0)
-        return;
-
-    const int32_t location = get_uniform_location(name);
-    if (location == -1)
-        return;
-
-    bind();
-    glUniform4fv(location, gsl::narrow<GLsizei>(count), v);
-    unbind();
+    glUniform4fv(pos, static_cast<GLsizei>(count), v.data()->data());
 }
 
-void Shader::set_uniform3f(std::string_view name, float v1, float v2, float v3)
+void Shader::call_gl_uniform(int32_t pos, float v1, float v2, float v3) const noexcept
 {
-    const int32_t location = get_uniform_location(name);
-    if (location == -1)
-        return;
-
-    bind();
-    glUniform3f(location, v1, v2, v3);
-    unbind();
+    glUniform3f(pos, v1, v2, v3);
 }
 
-void Shader::set_uniform3fv(std::string_view name, size_t count, const float* v)
+void Shader::call_gl_uniform(int32_t pos, int32_t count, const std::vector<std::array<float, 3>> v) const noexcept
 {
-    if (count == 0)
-        return;
-
-    const int32_t location = get_uniform_location(name);
-    if (location == -1)
-        return;
-
-    bind();
-    glUniform3fv(location, gsl::narrow<GLsizei>(count), v);
-    unbind();
+    glUniform3fv(pos, static_cast<GLsizei>(count), v.data()->data());
 }
 
-void Shader::set_uniform2f(std::string_view name, float v1, float v2)
+void Shader::call_gl_uniform(int32_t pos, float v1, float v2) const noexcept
 {
-    const int32_t location = get_uniform_location(name);
-    if (location == -1)
-        return;
-
-    bind();
-    glUniform2f(location, v1, v2);
-    unbind();
+    glUniform2f(pos, v1, v2);
 }
 
-void Shader::set_uniform1f(std::string_view name, float v1)
+void Shader::call_gl_uniform(int32_t pos, float v1) const noexcept
 {
-    const int32_t location = get_uniform_location(name);
-    if (location == -1)
-        return;
-
-    bind();
-    glUniform1f(location, v1);
-    unbind();
+    glUniform1f(pos, v1);
 }
 
-void Shader::set_uniform1i(std::string_view name, int32_t v1)
+void Shader::call_gl_uniform(int32_t pos, int32_t v1) const noexcept
 {
-    const int32_t location = get_uniform_location(name);
-    if (location == -1)
-        return;
-
-    bind();
-    glUniform1i(location, v1);
-    unbind();
+    glUniform1i(pos, v1);
 }
 
-void Shader::set_uniform_mat4f(std::string_view name, const glm::mat4& matrix)
+void Shader::call_gl_uniform(int32_t pos, bool v1) const noexcept
 {
-    const int32_t location = get_uniform_location(name);
-    if (location == -1)
-        return;
+    glUniform1i(pos, static_cast<GLint>(v1));
+}
 
-    bind();
-    glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
-    unbind();
+void Shader::call_gl_uniform(int32_t pos, const glm::mat4& matrix) const noexcept
+{
+    glUniformMatrix4fv(pos, 1, GL_FALSE, &matrix[0][0]);
 }
 
 int32_t Shader::get_uniform_location(std::string_view name)
 {
-    auto found_uniform = m_uniform_location_cache.find(name);
+    if (m_uniform_location_cache.contains(name))
+        return m_uniform_location_cache[name];
 
-    if (found_uniform != m_uniform_location_cache.end())
-        return found_uniform->second;
-
-    const int32_t location = glGetUniformLocation(m_shader_id, name.data());
-    m_uniform_location_cache.emplace(name, location);
+    int32_t location = glGetUniformLocation(m_shader_id, name.data());
+    m_uniform_location_cache[name] = location;
     return location;
 }
 
@@ -157,10 +103,9 @@ uint32_t Shader::compile_shader(uint32_t type, std::string_view source)
         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &lenght);
         char* message = new char[lenght];
         glGetShaderInfoLog(id, lenght, &lenght, message);
-        std::cerr << message;
+        LOG(error, render, "{}", message);
         glDeleteShader(id);
-        LOG(error, render, "ERROR: failed to compiler shader \n msg: {}", message);
-        delete[] message;
+        delete message;
     }
 
     return id;
@@ -185,14 +130,14 @@ uint32_t Shader::create_shader(std::string_view vertex_shader, std::string_view 
 
 std::string Shader::parse_shader(std::string_view filepath)
 {
-
     std::ifstream stream(filepath.data());
-    std::stringstream ss[1];
+    std::stringstream ss;
     std::string line;
 
     while (getline(stream, line))
     {
-        ss[0] << line << '\n';
+        ss << line << '\n';
     }
-    return ss[0].str();
+
+    return ss.str();
 }

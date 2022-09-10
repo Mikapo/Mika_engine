@@ -46,6 +46,7 @@ std::optional<Collision_result> Collision_algorithms::obb_and_sphere(
 
     const glm::vec3 offset = closest_point - sphere_local_origin;
 
+
     if (glm::length(offset) <= sphere.get_radius())
     {
         Collision_result result;

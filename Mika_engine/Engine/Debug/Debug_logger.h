@@ -9,24 +9,8 @@
 #include <string_view>
 #include <unordered_map>
 
-enum class Log_severity : uint8_t
-{
-    error,
-    warning,
-    notification
-};
-
-enum class Log_type : uint8_t
-{
-    objects,
-    render,
-    opengl,
-    application,
-    engine,
-    other
-};
-
-DECLARE_ENUM(test, uint8_t, (a)(b)(c))
+DECLARE_ENUM(Log_severity, uint8_t, error, warning, notification)
+DECLARE_ENUM(Log_type, uint8_t, objects, render, opengl, application, engine, garbage_collector, other)
 
 class Debug_logger
 {
@@ -40,11 +24,9 @@ private:
 
     std::string get_time_string() const;
     bool is_log_alloved(Log_severity severity, Log_type type);
-    std::string_view get_severity_string(Log_severity severity) const noexcept;
-    std::string_view get_type_string(Log_type type) const noexcept;
 
     bool m_writes_to_log_file = true;
-    std::stringstream logs;
+    std::string logs;
     std::unordered_map<Log_severity, bool> m_enabled_severities;
     std::unordered_map<Log_type, bool> m_enabled_types;
 };
@@ -52,6 +34,7 @@ private:
 #ifdef _DEBUG
 #define LOG(severity, type, msg, ...)                                                                                  \
     Debug_logger::get().log(Log_severity::severity, Log_type::type, std::format(msg, __VA_ARGS__))
+
 #else
 #define LOG(...)
 #endif

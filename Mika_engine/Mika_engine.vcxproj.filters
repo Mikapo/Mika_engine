@@ -1241,6 +1241,9 @@
     <ClInclude Include="Engine\Utility\Macros\Helper_macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Core\Key.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vendor\glm\detail\func_common.inl">

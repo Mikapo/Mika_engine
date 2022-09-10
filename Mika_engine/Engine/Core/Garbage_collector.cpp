@@ -85,9 +85,15 @@ void Garbage_collector::destruct_unchecked_objects()
 
 void Garbage_collector::finalize_destruction_on_objects()
 {
-    for (auto obj : m_objects_to_destroy)
-        if (is_object_valid(obj))
-            m_registered_objects.erase(obj);
+    static std::vector<Object*> objects_to_destroy;
 
-    m_objects_to_destroy.clear();
+    for (auto& obj : m_registered_objects)
+        if (is_object_valid(obj.first) && obj.first->is_marked_for_destruction())
+        {
+            LOG(notification, garbage_collector, "Object {} is being garbage collected", obj.first->get_class_name());
+            objects_to_destroy.emplace_back(obj.first);
+        }
+
+    for (Object* obj : objects_to_destroy)
+        m_registered_objects.erase(obj);
 }

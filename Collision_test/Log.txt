@@ -1,35 +1,159 @@
-[20:25:18] notification engine: Mika engine starting
-[20:25:18] notification objects: Object created with name Collision_test_world
-[20:25:18] notification objects: Object created with name Player
-[20:25:18] notification objects: Object created with name Camera_component
-[20:25:18] notification objects: Object created with name Input_component
-[20:25:18] notification objects: Object created with name Light
-[20:25:18] notification objects: Object created with name Light_component
-[20:25:18] notification objects: Object created with name Cube
-[20:25:18] notification objects: Object created with name Mesh_component
-[20:25:18] notification render: Loading model: Engine/Engine_models/cube.obj
-[20:25:18] notification objects: Object created with name Collision_component
-[20:25:19] notification application: Created window with name Collision test
-[20:25:19] notification render: compiling shader Engine/Shaders/Lighting.frag and Engine/Shaders/Lighting.vert
-[20:25:19] notification render: compiling shader Engine/shaders/Shadow_map.frag and Engine/shaders/Shadow_map.vert
-[20:25:19] notification render: Loading 192 vertices and 36 indices to GPU memory
-[20:25:22] notification objects: Object created with name Bullet
-[20:25:22] notification objects: Object created with name Mesh_component
-[20:25:22] notification render: Loading model: Engine/Engine_models/Sphere.obj
-[20:25:23] notification objects: Object created with name Collision_component
-[20:25:23] notification render: Loading 15872 vertices and 2880 indices to GPU memory
-[20:25:33] notification engine: Staring cleanup
-[20:25:33] notification objects: Object Mesh_component destroyed
-[20:25:33] notification objects: Object Collision_component destroyed
-[20:25:33] notification objects: Object Collision_test_world destroyed
-[20:25:33] notification objects: Object Player destroyed
-[20:25:33] notification objects: Object Camera_component destroyed
-[20:25:33] notification objects: Object Input_component destroyed
-[20:25:33] notification objects: Object Light destroyed
-[20:25:33] notification objects: Object Light_component destroyed
-[20:25:33] notification objects: Object Cube destroyed
-[20:25:33] notification objects: Object Bullet destroyed
-[20:25:33] notification objects: Object Mesh_component destroyed
-[20:25:33] notification objects: Object Collision_component destroyed
-[20:25:33] notification engine: Exiting mika engine
-[20:25:33] notification engine: Writing to log file
+[16:55:15] notification engine: Mika engine starting 
+[16:55:15] notification objects: Created object with name Collision_test_world 
+[16:55:15] notification objects: Created object with name Player 
+[16:55:15] notification objects: Created object with name Camera_component 
+[16:55:15] notification objects: Created object with name Input_component 
+[16:55:15] notification objects: Created object with name Collision_component 
+[16:55:15] notification objects: Created object with name Light 
+[16:55:15] notification objects: Created object with name Light_component 
+[16:55:15] notification objects: Created object with name Cube 
+[16:55:15] notification objects: Created object with name Mesh_component 
+[16:55:15] notification render: Loading model: Engine/Engine_models/cube.obj 
+[16:55:16] notification objects: Created object with name Collision_component 
+[16:55:17] notification application: Created window with name Collision test 
+[16:55:17] notification render: Loading 192 vertices and 36 indices to GPU memory 
+[16:55:19] notification objects: Created object with name Bullet 
+[16:55:19] notification objects: Created object with name Mesh_component 
+[16:55:19] notification render: Loading model: Engine/Engine_models/Sphere.obj 
+[16:55:19] notification objects: Created object with name Collision_component 
+[16:55:19] notification render: Loading 15872 vertices and 2880 indices to GPU memory 
+[16:55:20] notification objects: Created object with name Bullet 
+[16:55:20] notification objects: Created object with name Mesh_component 
+[16:55:20] notification objects: Created object with name Collision_component 
+[16:55:20] notification objects: Created object with name Bullet 
+[16:55:20] notification objects: Created object with name Mesh_component 
+[16:55:20] notification objects: Created object with name Collision_component 
+[16:55:20] notification objects: Created object with name Bullet 
+[16:55:20] notification objects: Created object with name Mesh_component 
+[16:55:20] notification objects: Created object with name Collision_component 
+[16:55:21] notification objects: Created object with name Bullet 
+[16:55:21] notification objects: Created object with name Mesh_component 
+[16:55:21] notification objects: Created object with name Collision_component 
+[16:55:22] notification objects: Created object with name Bullet 
+[16:55:22] notification objects: Created object with name Mesh_component 
+[16:55:22] notification objects: Created object with name Collision_component 
+[16:55:22] notification objects: Created object with name Bullet 
+[16:55:22] notification objects: Created object with name Mesh_component 
+[16:55:22] notification objects: Created object with name Collision_component 
+[16:55:23] notification objects: Created object with name Bullet 
+[16:55:23] notification objects: Created object with name Mesh_component 
+[16:55:23] notification objects: Created object with name Collision_component 
+[16:55:23] notification objects: Created object with name Bullet 
+[16:55:23] notification objects: Created object with name Mesh_component 
+[16:55:23] notification objects: Created object with name Collision_component 
+[16:55:23] notification objects: Created object with name Bullet 
+[16:55:23] notification objects: Created object with name Mesh_component 
+[16:55:23] notification objects: Created object with name Collision_component 
+[16:55:23] notification objects: Created object with name Bullet 
+[16:55:23] notification objects: Created object with name Mesh_component 
+[16:55:23] notification objects: Created object with name Collision_component 
+[16:55:27] notification objects: Collision detected 
+[16:55:29] notification objects: Collision detected 
+[16:55:29] notification objects: Collision detected 
+[16:55:29] notification objects: Bullet is going to be destroyed 
+[16:55:29] notification objects: Mesh_component is going to be destroyed 
+[16:55:29] notification objects: Collision_component is going to be destroyed 
+[16:55:29] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:29] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:29] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:29] notification objects: Collision detected 
+[16:55:30] notification objects: Collision detected 
+[16:55:30] notification objects: Bullet is going to be destroyed 
+[16:55:30] notification objects: Mesh_component is going to be destroyed 
+[16:55:30] notification objects: Collision_component is going to be destroyed 
+[16:55:30] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:30] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:30] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:30] notification objects: Bullet is going to be destroyed 
+[16:55:30] notification objects: Mesh_component is going to be destroyed 
+[16:55:30] notification objects: Collision_component is going to be destroyed 
+[16:55:30] notification objects: Bullet is going to be destroyed 
+[16:55:30] notification objects: Mesh_component is going to be destroyed 
+[16:55:30] notification objects: Collision_component is going to be destroyed 
+[16:55:30] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:30] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:30] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:30] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:30] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:30] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:31] notification objects: Collision detected 
+[16:55:31] notification objects: Collision detected 
+[16:55:31] notification objects: Collision detected 
+[16:55:31] notification objects: Bullet is going to be destroyed 
+[16:55:31] notification objects: Collision_component is going to be destroyed 
+[16:55:31] notification objects: Mesh_component is going to be destroyed 
+[16:55:31] notification objects: Collision detected 
+[16:55:31] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:31] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:32] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:32] notification objects: Collision detected 
+[16:55:32] notification objects: Collision detected 
+[16:55:32] notification objects: Collision detected 
+[16:55:32] notification objects: Collision detected 
+[16:55:32] notification objects: Collision detected 
+[16:55:32] notification objects: Collision detected 
+[16:55:32] notification objects: Bullet is going to be destroyed 
+[16:55:32] notification objects: Mesh_component is going to be destroyed 
+[16:55:32] notification objects: Collision_component is going to be destroyed 
+[16:55:32] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:32] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:32] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:32] notification objects: Bullet is going to be destroyed 
+[16:55:32] notification objects: Mesh_component is going to be destroyed 
+[16:55:32] notification objects: Collision_component is going to be destroyed 
+[16:55:32] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:32] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:32] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:33] notification objects: Bullet is going to be destroyed 
+[16:55:33] notification objects: Collision_component is going to be destroyed 
+[16:55:33] notification objects: Mesh_component is going to be destroyed 
+[16:55:33] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:33] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:33] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:33] notification objects: Bullet is going to be destroyed 
+[16:55:33] notification objects: Mesh_component is going to be destroyed 
+[16:55:33] notification objects: Collision_component is going to be destroyed 
+[16:55:33] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:33] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:33] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:33] notification objects: Bullet is going to be destroyed 
+[16:55:33] notification objects: Mesh_component is going to be destroyed 
+[16:55:33] notification objects: Collision_component is going to be destroyed 
+[16:55:33] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:33] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:33] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:33] notification objects: Bullet is going to be destroyed 
+[16:55:33] notification objects: Mesh_component is going to be destroyed 
+[16:55:33] notification objects: Collision_component is going to be destroyed 
+[16:55:33] notification garbage_collector: Object Bullet is being garbage collected 
+[16:55:33] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:33] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:45] notification engine: Staring cleanup 
+[16:55:45] notification objects: Input_component is going to be destroyed 
+[16:55:45] notification objects: Collision_test_world is going to be destroyed 
+[16:55:45] notification objects: Light is going to be destroyed 
+[16:55:45] notification objects: Light_component is going to be destroyed 
+[16:55:45] notification objects: Player is going to be destroyed 
+[16:55:45] notification objects: Camera_component is going to be destroyed 
+[16:55:45] notification objects: Input_component is going to be destroyed 
+[16:55:45] notification objects: Collision_component is going to be destroyed 
+[16:55:45] notification objects: Camera_component is going to be destroyed 
+[16:55:45] notification objects: Light_component is going to be destroyed 
+[16:55:45] notification objects: Collision_component is going to be destroyed 
+[16:55:45] notification objects: Cube is going to be destroyed 
+[16:55:45] notification objects: Mesh_component is going to be destroyed 
+[16:55:45] notification objects: Collision_component is going to be destroyed 
+[16:55:45] notification objects: Mesh_component is going to be destroyed 
+[16:55:45] notification objects: Collision_component is going to be destroyed 
+[16:55:45] notification garbage_collector: Object Input_component is being garbage collected 
+[16:55:45] notification garbage_collector: Object Collision_test_world is being garbage collected 
+[16:55:45] notification garbage_collector: Object Light is being garbage collected 
+[16:55:45] notification garbage_collector: Object Player is being garbage collected 
+[16:55:45] notification garbage_collector: Object Camera_component is being garbage collected 
+[16:55:45] notification garbage_collector: Object Light_component is being garbage collected 
+[16:55:45] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:45] notification garbage_collector: Object Cube is being garbage collected 
+[16:55:45] notification garbage_collector: Object Mesh_component is being garbage collected 
+[16:55:45] notification garbage_collector: Object Collision_component is being garbage collected 
+[16:55:46] notification engine: Exiting mika engine 
+[16:55:46] notification engine: Writing to log file 

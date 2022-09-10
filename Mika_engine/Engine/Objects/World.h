@@ -52,11 +52,6 @@ public:
     }
 
 private:
-    void on_actor_destroyed(Object* obj);
-    void on_ui_destroyed(Object* obj);
-    void on_registered_light_destroyed(Object* obj);
-    void on_registered_mesh_destroyed(Object* obj);
-    void on_registered_collision_destroyed(Object* obj);
     Camera_data get_camera_data();
 
     std::unordered_set<Actor*> m_actors;

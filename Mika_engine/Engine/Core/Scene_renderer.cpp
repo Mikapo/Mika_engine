@@ -40,9 +40,9 @@ void Scene_renderer::update_camera()
     const glm::mat4 projection =
         glm::perspective(glm::radians(camera_data.m_fov), aspect_ratio, camera_data.m_min_clip, camera_data.m_max_clip);
 
-    m_scene_shader->set_uniform_mat4f(Uniform_names::projection, projection);
-    m_scene_shader->set_uniform_mat4f(Uniform_names::view, look_at);
-    m_scene_shader->set_uniform3f(Uniform_names::eye_location, camera_location.x, camera_location.y, camera_location.z);
+    m_scene_shader->set_uniform(Uniform_names::projection, projection);
+    m_scene_shader->set_uniform(Uniform_names::view, look_at);
+    m_scene_shader->set_uniform(Uniform_names::eye_location, camera_location.x, camera_location.y, camera_location.z);
 }
 
 void Scene_renderer::update_lighting()
@@ -63,21 +63,21 @@ void Scene_renderer::update_lighting()
     const glm::mat4 light_view = glm::lookAt(light_pos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     const glm::mat4 light_space = light_projection * light_view;
 
-    m_scene_shader->set_uniform3f(Uniform_names::light_location, light_pos.x, light_pos.y, light_pos.z);
-    m_scene_shader->set_uniform4f(
+    m_scene_shader->set_uniform(Uniform_names::light_location, light_pos.x, light_pos.y, light_pos.z);
+    m_scene_shader->set_uniform(
         Uniform_names::light_color, light_data.m_color.r, light_data.m_color.g, light_data.m_color.b,
         light_data.m_color.a);
-    m_scene_shader->set_uniform_mat4f(Uniform_names::light_space, light_space);
+    m_scene_shader->set_uniform(Uniform_names::light_space, light_space);
     m_shadow_map.update_shader(light_space);
 }
 
 void Scene_renderer::update_settings()
 {
-    m_scene_shader->set_uniform1i(Uniform_names::ambient_enabled, m_render_settings.ambient_enabled);
-    m_scene_shader->set_uniform1i(Uniform_names::diffuse_enabled, m_render_settings.diffuse_enabled);
-    m_scene_shader->set_uniform1i(Uniform_names::specular_enabled, m_render_settings.specular_enabled);
-    m_scene_shader->set_uniform1i(Uniform_names::shadow_enabled, m_render_settings.shadow_enabled);
-    m_scene_shader->set_uniform1i(Uniform_names::texture_enabled, m_render_settings.texture_enabled);
+    m_scene_shader->set_uniform(Uniform_names::ambient_enabled, m_render_settings.ambient_enabled);
+    m_scene_shader->set_uniform(Uniform_names::diffuse_enabled, m_render_settings.diffuse_enabled);
+    m_scene_shader->set_uniform(Uniform_names::specular_enabled, m_render_settings.specular_enabled);
+    m_scene_shader->set_uniform(Uniform_names::shadow_enabled, m_render_settings.shadow_enabled);
+    m_scene_shader->set_uniform(Uniform_names::texture_enabled, m_render_settings.texture_enabled);
 }
 
 void Scene_renderer::render_to_shadow_Map()
@@ -138,7 +138,7 @@ void Scene_renderer::draw_mesh(const Mesh* mesh, Transform transform, Material& 
 
     const glm::mat4 model = transform.calculate_model();
 
-    shader->set_uniform_mat4f(Uniform_names::model, model);
+    shader->set_uniform(Uniform_names::model, model);
     shader->bind();
 
     const GLsizei indices_count = gsl::narrow<GLsizei>(mesh->get_indices_count());

@@ -205,6 +205,7 @@
     <ClCompile Include="Vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Core\Key.h" />
     <ClInclude Include="Engine\Datatypes\Axis_comparison_result.h" />
     <ClInclude Include="Engine\Datatypes\Collision_result.h" />
     <ClInclude Include="Engine\Datatypes\Hit_result.h" />

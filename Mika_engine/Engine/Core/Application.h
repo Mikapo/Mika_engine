@@ -4,39 +4,39 @@
 
 #include <GL/glew.h>
 
+#include "Key.h"
 #include <GLFW/glfw3.h>
 #include <GLFW/glfw3native.h>
 #include <chrono>
 #include <glm/vec4.hpp>
 #include <memory>
 #include <string>
-#include <thread>
 
-template <typename... argtypes>
+template <typename... Argtypes>
 class Application_delegate
 {
 public:
     virtual ~Application_delegate() = default;
 
-    virtual void call(argtypes... args) = 0;
+    virtual void call(Argtypes... args) = 0;
 };
 
-template <typename T, typename... argtypes>
-class Application_delegate_obj : public Application_delegate<argtypes...>
+template <typename T, typename... Argtypes>
+class Application_delegate_obj : public Application_delegate<Argtypes...>
 {
 public:
-    Application_delegate_obj(T* obj, void (T::*f)(argtypes...)) noexcept : m_obj(obj), m_f(f)
+    Application_delegate_obj(T* obj, void (T::*f)(Argtypes...)) noexcept : m_obj(obj), m_f(f)
     {
     }
 
-    void call(argtypes... args) noexcept override
+    void call(Argtypes... args) noexcept override
     {
-        (m_obj->*m_f)(std::forward<argtypes>(args)...);
+        (m_obj->*m_f)(std::forward<Argtypes>(args)...);
     };
 
 private:
     T* m_obj;
-    void (T::*m_f)(argtypes...);
+    void (T::*m_f)(Argtypes...);
 };
 
 struct GLFWwindow;
@@ -66,8 +66,7 @@ public:
     template <typename T, typename... argtypes>
     void set_on_key_event_callback(T* obj, void (T::*f)(argtypes...))
     {
-        m_on_key_event_callback =
-            std::make_unique<Application_delegate_obj<T, int32_t, int32_t, int32_t, int32_t>>(obj, f);
+        m_on_key_event_callback = std::make_unique<Application_delegate_obj<T, Input_key, Input_action>>(obj, f);
     }
 
     template <typename T, typename... argtypes>
@@ -102,5 +101,5 @@ private:
     std::unique_ptr<Application_delegate<>> m_render_callback;
     std::unique_ptr<Application_delegate<>> m_cleanup_callback;
     std::unique_ptr<Application_delegate<int32_t, int32_t>> m_window_resize_callback;
-    std::unique_ptr<Application_delegate<int32_t, int32_t, int32_t, int32_t>> m_on_key_event_callback;
+    std::unique_ptr<Application_delegate<Input_key, Input_action>> m_on_key_event_callback;
 };

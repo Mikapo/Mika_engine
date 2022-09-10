@@ -20,16 +20,16 @@ void Material::update_shader(Shader* shader) const
     if (!shader)
         throw std::invalid_argument("shader was null");
 
-    shader->set_uniform4f(Uniform_names::ambient, m_ambient.x, m_ambient.y, m_ambient.z, m_ambient.w);
-    shader->set_uniform4f(Uniform_names::diffuse, m_diffuse.x, m_diffuse.y, m_diffuse.z, m_diffuse.w);
-    shader->set_uniform4f(Uniform_names::specular, m_specular.x, m_specular.y, m_specular.z, m_specular.w);
-    shader->set_uniform1f(Uniform_names::shininess, m_shininess);
-    shader->set_uniform4f(
+    shader->set_uniform(Uniform_names::ambient, m_ambient.x, m_ambient.y, m_ambient.z, m_ambient.w);
+    shader->set_uniform(Uniform_names::diffuse, m_diffuse.x, m_diffuse.y, m_diffuse.z, m_diffuse.w);
+    shader->set_uniform(Uniform_names::specular, m_specular.x, m_specular.y, m_specular.z, m_specular.w);
+    shader->set_uniform(Uniform_names::shininess, m_shininess);
+    shader->set_uniform(
         Uniform_names::default_color, m_default_color.r, m_default_color.g, m_default_color.b, m_default_color.a);
 
-    shader->set_uniform1i(Uniform_names::texture, static_cast<int32_t>(Texture_slot::texture));
-    shader->set_uniform1i(Uniform_names::has_texture, static_cast<int32_t>(m_textures.contains(Texture_slot::texture)));
-    shader->set_uniform1i(Uniform_names::shadow_map, static_cast<int32_t>(Texture_slot::shadow_map));
+    shader->set_uniform(Uniform_names::texture, static_cast<int32_t>(Texture_slot::texture));
+    shader->set_uniform(Uniform_names::has_texture, static_cast<int32_t>(m_textures.contains(Texture_slot::texture)));
+    shader->set_uniform(Uniform_names::shadow_map, static_cast<int32_t>(Texture_slot::shadow_map));
 }
 
 void Material::bind_textures() noexcept

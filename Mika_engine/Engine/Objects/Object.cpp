@@ -2,11 +2,10 @@
 #include "Core/Mika_engine.h"
 #include <string>
 
-void Object::destruct()
+void Object::destruct() noexcept
 {
     m_marked_for_destruction = true;
-    m_on_being_destroyed.broadcast(this);
-    LOG(notification, objects, "Object {} destroyed", get_class_name());
+    LOG(notification, objects, "{} is going to be destroyed", get_class_name());
 }
 
 void Object::set_garbage_collect_mark(bool mark) noexcept
@@ -51,9 +50,9 @@ void Object::update(float deltatime)
     }
 }
 
-std::string Object::get_class_name()
+std::string_view Object::get_class_name()
 {
-    return std::string(typeid(*this).name()).substr(6);
+    return get_class()->get_name();
 }
 
 bool Object::is_valid(const Object* obj) const

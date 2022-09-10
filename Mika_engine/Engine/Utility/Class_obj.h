@@ -32,14 +32,7 @@ public:
 
     Object* construct(Mika_engine* engine) override
     {
-        std::unique_ptr<T> unique_ptr_obj = std::make_unique<T>();
-        unique_ptr_obj->set_engine(engine);
-
-        LOG(notification, objects, "Object created with name {}", get_name());
-
-        T* obj = unique_ptr_obj.get();
-        T::template register_object(engine, std::move(unique_ptr_obj));
-        return obj;
+        return T::template construct_object<T>(engine);
     }
 
     std::string_view get_name() noexcept override
@@ -59,10 +52,16 @@ public:
     {
         std::string_view class_name = T::static_get_name();
 
-        if (!m_classes.contains(class_name))
-            m_classes[class_name] = std::make_unique<Class_obj_template<T>>(class_name);
+        auto found_class = m_classes.find(class_name);
 
-        return m_classes[class_name].get();
+        if (found_class == m_classes.end())
+        {
+            std::unique_ptr new_class = std::make_unique<Class_obj_template<T>>(class_name);
+            m_classes.emplace(class_name, std::move(new_class));
+            return m_classes.at(class_name).get();
+        }
+
+        return found_class->second.get();
     }
 
     static void cleanup() noexcept

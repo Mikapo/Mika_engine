@@ -22,6 +22,7 @@ public:
     void initialize() override;
     void update(float deltatime) override;
     void get_owned_objects(std::vector<Object*>& out_array) noexcept override;
+    void destruct() noexcept override;
     World* get_world() const noexcept;
     void set_world(World* world) noexcept;
     void set_transform(Transform new_transform, bool check_for_collision = false);
