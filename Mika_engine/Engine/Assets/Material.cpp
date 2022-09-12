@@ -5,17 +5,17 @@
 #include "glm/ext/matrix_transform.hpp"
 #include <stdexcept>
 
-void Material::add_texture(std::shared_ptr<Texture> texture, Texture_slot slot)
+void Material::add_texture(std::shared_ptr<OpenGL::Texture> texture)
 {
-    m_textures.emplace(slot, texture);
+    m_textures.emplace(texture->get_slot(), texture);
 }
 
-void Material::remove_texture(Texture_slot slot) noexcept
+void Material::remove_texture(OpenGL::Texture_slot slot) noexcept
 {
     m_textures.erase(slot);
 }
 
-void Material::update_shader(Shader* shader) const
+void Material::update_shader(OpenGL::Shader* shader) const
 {
     if (!shader)
         throw std::invalid_argument("shader was null");
@@ -27,15 +27,20 @@ void Material::update_shader(Shader* shader) const
     shader->set_uniform(
         Uniform_names::default_color, m_default_color.r, m_default_color.g, m_default_color.b, m_default_color.a);
 
-    shader->set_uniform(Uniform_names::texture, static_cast<int32_t>(Texture_slot::texture));
-    shader->set_uniform(Uniform_names::has_texture, static_cast<int32_t>(m_textures.contains(Texture_slot::texture)));
-    shader->set_uniform(Uniform_names::shadow_map, static_cast<int32_t>(Texture_slot::shadow_map));
+    shader->set_sampler_uniform(Uniform_names::texture, OpenGL::Texture_slot::color);
+    shader->set_uniform(Uniform_names::has_texture, static_cast<int32_t>(m_textures.contains(OpenGL::Texture_slot::color)));
+    shader->set_sampler_uniform(Uniform_names::shadow_map, OpenGL::Texture_slot::depth_map);
 }
 
 void Material::bind_textures() noexcept
 {
     for (auto& texture : m_textures)
-        texture.second->bind(texture.first);
+    {
+        if (!texture.second->has_been_initialized())
+            texture.second->initialize();
+
+        texture.second->bind();
+    }
 }
 
 void Material::unbind_texture() noexcept

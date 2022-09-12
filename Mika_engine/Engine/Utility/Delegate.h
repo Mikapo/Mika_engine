@@ -1,104 +1,85 @@
 #pragma once
 
-#include <memory>
-#include <unordered_map>
 #include <functional>
+#include <memory>
 #include <stdexcept>
+#include <unordered_map>
 
 class Object;
 class Mika_engine;
-template<typename... argtypes>
-class Delegate_function_interface
+template <typename... Argtypes>
+class Obj_callback_interface
 {
 public:
-	virtual ~Delegate_function_interface() = default;
-	virtual bool call(argtypes... args) = 0;
+    virtual ~Obj_callback_interface() = default;
+    virtual bool invoke(Argtypes... args) = 0;
 };
 
-template<typename T, typename... argtypes>
-class Delegate_function : public Delegate_function_interface<argtypes...>
+template <typename T, typename Callback, typename... Argtypes>
+class Obj_callback : public Obj_callback_interface<Argtypes...>
 {
 public:
-    Delegate_function(T* obj, void (T::*f)(argtypes...)) noexcept
-		: m_obj(obj), m_f(f)
-	{
-		m_engine = obj->get_engine();
-	}
+    Obj_callback(T* obj, Callback callback) noexcept : m_obj(obj), m_callback(std::forward<Callback>(callback))
+    {
+        m_engine = obj->get_engine();
+    }
 
-	bool call(argtypes... args) override
-	{
-		if (T::static_is_valid(m_engine, m_obj))
+    bool invoke(Argtypes... args) override
+    {
+        if (T::static_is_valid(m_engine, m_obj))
         {
-            (m_obj->*m_f)(std::forward<argtypes>(args)...);
+            std::invoke(m_callback, m_obj, std::forward<Argtypes>(args)...);
             return true;
-		}
-		
-		return false;
-	}
+        }
+
+        return false;
+    }
 
 private:
-	T* m_obj;
-	void(T::* m_f)(argtypes...);
-	Mika_engine* m_engine;
-
+    T* m_obj;
+    Callback m_callback;
+    Mika_engine* m_engine;
 };
 
-template<typename... argtypes>
+template <typename... Argtypes>
 class Delegate
 {
 public:
-	typedef std::unique_ptr<Delegate_function_interface<argtypes...>> delegate_function_ptr;
+    typedef std::unique_ptr<Obj_callback_interface<Argtypes...>> Callback_interface_ptr;
 
-	template<typename T>
-	void add_object(T* obj, void(T::* f)(argtypes...))
-	{
+    template <typename T, typename Callback>
+    void add_object(T* obj, Callback callback)
+    {
         if (!obj)
             throw std::invalid_argument("obj was null");
 
-		delegate_function_ptr delegate_function = std::make_unique<Delegate_function<T, argtypes...>>(obj, f);
-		m_obj_functions.emplace(obj, std::move(delegate_function));
-	}
+        auto delegate_function = std::make_unique<Obj_callback<T, Callback, Argtypes...>>(obj, callback);
 
-	void add_function(void* obj, const std::function<void(argtypes...)> f)
-	{ 
-		if (!obj)
+        m_callbacks.emplace(obj, std::move(delegate_function));
+    }
+
+    void remove_object(Object* obj)
+    {
+        if (!obj)
             throw std::invalid_argument("obj was null");
 
-		m_functions.emplace(obj, f);
-	}
+        m_callbacks.erase(obj);
+    }
 
-	void remove_object(Object* obj) 
-	{ 
-		if (!obj)
-            throw std::invalid_argument("obj was null");
+    void broadcast(Argtypes... args)
+    {
+        auto it = m_callbacks.begin();
+        while (it != m_callbacks.end())
+        {
+            const bool success = it->second->invoke(std::forward<Argtypes>(args)...);
 
-		m_obj_functions.erase(obj);
-	}
+            if (success)
+                ++it;
+            else
+                it = m_callbacks.erase(it);
+        }
+    }
 
-	void remove_function(void* obj)
-	{ 
-		if (!obj)
-            throw std::invalid_argument("obj was null");
-
-		m_functions.erase(obj);
-	}
-
-	void broadcast(argtypes... args)
-	{
-        std::vector<Object*> destroy;
-
-		for (auto& function : m_obj_functions)
-			if (!function.second->call(std::forward<argtypes>(args)...))
-				destroy.push_back(function.first);
-
-		for (Object* obj : destroy)
-            m_obj_functions.erase(obj);
-
-		for (auto& function : m_functions)
-            function.second(std::forward<argtypes>(args)...);
-	}
-	
 private:
-    std::unordered_map<Object*, delegate_function_ptr> m_obj_functions;
-    std::unordered_map<void*, std::function<void(argtypes...)>> m_functions;
+    std::unordered_map<Object*, Callback_interface_ptr> m_callbacks;
 };

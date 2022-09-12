@@ -1,70 +1,35 @@
 #pragma once
 
-#include <memory>
-
-#include "Debug/Debug_logger.h"
+#include "../Layout/Vertex_buffer_layout.h"
 #include "Index_buffer.h"
 #include "Vertex_array.h"
 #include "Vertex_buffer.h"
+#include <memory>
+#include <vector>
 
-struct Buffers
+namespace OpenGL
 {
-public:
-    Buffers(std::vector<float>&& vertices, std::vector<uint32_t>&& indices, Vertex_buffer_layout layout)
-        : m_vertices(vertices), m_indices(indices), m_layout(layout)
+    class Buffers
     {
-        m_indices_amount = indices.size();
-    }
+    public:
+        Buffers(std::vector<float> vertices, std::vector<uint32_t> indices, Vertex_buffer_layout layout) noexcept;
 
-    void bind()
-    {
-        if (!m_has_been_initialized)
-            initialize();
+        // Binds vertex array and index buffer
+        void bind() const noexcept;
 
-        m_va->bind();
-        m_ib->bind();
-    }
-    void unbind() noexcept
-    {
-        if (!m_has_been_initialized)
-            return;
+        // Unbinds vertex array and index buffer
+        void unbind() const noexcept;
 
-        m_va->unbind();
-        m_ib->unbind();
-    }
+        [[nodiscard]] size_t get_indices_count() const noexcept;
+        [[nodiscard]] bool has_been_initialized() const noexcept;
 
-    size_t get_indices_count() noexcept
-    {
-        return m_indices_amount;
-    }
+        // Initializes all buffers
+        void initialize();
 
-private:
-    void initialize()
-    {
-        if (m_has_been_initialized)
-            return;
-
-        LOG(notification, render, "Loading {} vertices and {} indices to GPU memory", m_vertices.size(),
-            m_indices.size());
-
-        m_vb = std::make_unique<Vertex_buffer>(m_vertices.data(), sizeof(float) * m_vertices.size());
-        m_va = std::make_unique<Vertex_array>();
-        m_va->add_buffer(*m_vb, m_layout);
-        m_ib = std::make_unique<Index_buffer>(m_indices.data(), m_indices.size());
-
-        m_vertices.clear();
-        m_indices.clear();
-
-        m_has_been_initialized = true;
-    }
-
-    bool m_has_been_initialized = false;
-    std::vector<float> m_vertices;
-    std::vector<uint32_t> m_indices;
-    Vertex_buffer_layout m_layout;
-    size_t m_indices_amount = 0;
-
-    std::unique_ptr<Vertex_buffer> m_vb;
-    std::unique_ptr<Vertex_array> m_va;
-    std::unique_ptr<Index_buffer> m_ib;
-};
+    private:
+        Vertex_buffer m_vertex_buffer;
+        Vertex_array m_vertex_array;
+        Index_buffer m_index_buffer;
+        Vertex_buffer_layout m_layout;
+    };
+} // namespace OpenGL

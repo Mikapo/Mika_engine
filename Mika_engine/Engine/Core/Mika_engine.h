@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Application.h"
+#include "Rendering/Application/Application.h"
 #include "Assets/Asset_manager.h"
 #include "Datatypes/Input.h"
 #include "Garbage_collector.h"
@@ -42,13 +42,13 @@ private:
     void update_thread();
     void cleanup();
     void on_window_resize(int32_t width, int32_t height) noexcept;
-    void on_window_open(GLFWwindow* window);
+    void on_window_open();
     void update_deltatime() noexcept;
     void on_key_event(Input_key key, Input_action action);
     void handle_inputs();
     void setup_callbacks();
 
-    Application m_application;
+    OpenGL::Application m_application;
     Garbage_collector m_garbage_collector;
     Asset_manager m_asset_manager;
     Scene_renderer m_scene_renderer;

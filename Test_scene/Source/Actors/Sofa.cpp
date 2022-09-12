@@ -1,7 +1,7 @@
 #include "Sofa.h"
 #include <iostream>
 #include "Objects/Components/Scene_components/Mesh_component.h"
-#include "Rendering/Shading/Material.h"
+#include "Assets/Material.h"
 #include "Assets/Asset_manager.h"
 
 void Sofa::initialize()
@@ -13,8 +13,8 @@ void Sofa::initialize()
     mesh_component->set_mesh(mesh);
 
     Material material;
-    auto texture = get_asset_manager().get_texture("Textures/sofa.jpg");
-    material.add_texture(texture, Texture_slot::texture);
+    auto texture = get_asset_manager().get_texture("Textures/sofa.jpg", OpenGL::Texture_slot::color);
+    material.add_texture(texture);
     mesh_component->set_material(material);
 }
 

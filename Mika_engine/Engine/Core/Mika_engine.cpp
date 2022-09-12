@@ -21,19 +21,19 @@ void Mika_engine::start()
 
 void Mika_engine::setup_callbacks()
 {
-    m_application.set_on_window_open_callback(this, &Mika_engine::on_window_open);
-    m_application.set_render_callback(this, &Mika_engine::render_thread);
-    m_application.set_cleanup_callback(this, &Mika_engine::cleanup);
-    m_application.set_on_key_event_callback(this, &Mika_engine::on_key_event);
-    m_application.set_window_resize_callback(this, &Mika_engine::on_window_resize);
+    m_application.m_on_window_open.set_callback(this, &Mika_engine::on_window_open);
+    m_application.m_on_render.set_callback(this, &Mika_engine::render_thread);
+    m_application.m_on_cleanup.set_callback(this, &Mika_engine::cleanup);
+    m_application.m_on_input.set_callback(this, &Mika_engine::on_key_event);
+    m_application.m_on_window_rezise.set_callback(this, &Mika_engine::on_window_resize);
 }
 
-void Mika_engine::on_window_open(GLFWwindow* window)
+void Mika_engine::on_window_open()
 {
     m_application.get_window_dimensions(m_window_width, m_window_height);
     m_aspect_ratio = static_cast<float>(m_window_width) / static_cast<float>(m_window_height);
     m_scene_renderer.update_window_size(m_window_width, m_window_height);
-    m_ui_renderer.initialize(window, this);
+    m_ui_renderer.initialize(m_application.get_window(), this);
     m_scene_renderer.initialize(this);
 }
 

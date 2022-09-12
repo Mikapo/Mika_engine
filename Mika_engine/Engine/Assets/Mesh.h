@@ -8,13 +8,14 @@ class Shader;
 class Mesh
 {
 public:
-    Mesh(std::unique_ptr<Buffers> buffers) noexcept;
+    Mesh(std::unique_ptr<OpenGL::Buffers> buffers) noexcept;
 
 	void bind_buffers() const;
     void unbind_buffers() const;
     size_t get_indices_count() const noexcept;
+    [[nodiscard]] OpenGL::Buffers* get_buffers() noexcept;
 
 private:
-	std::unique_ptr<Buffers> m_buffers;
+	std::unique_ptr<OpenGL::Buffers> m_buffers;
 };
 

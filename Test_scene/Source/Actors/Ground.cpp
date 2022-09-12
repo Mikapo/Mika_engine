@@ -1,6 +1,7 @@
 #include "Ground.h"
 #include <iostream>
 #include "Objects/Components/Scene_components/Mesh_component.h"
+#include "Rendering/Texture/Texture_slots.h"
 #include "Core/Mika_engine.h"
 
 void Ground::initialize()
@@ -12,8 +13,8 @@ void Ground::initialize()
     mesh_component->set_mesh(mesh);
 
 	Material material;
-    auto texture = get_asset_manager().get_texture("Textures/wooden_floor.png");
-    material.add_texture(texture, Texture_slot::texture);
+    auto texture = get_asset_manager().get_texture("Textures/wooden_floor.png", OpenGL::Texture_slot::color);
+    material.add_texture(texture);
     mesh_component->set_material(material);
 
 	set_location({ 0.0f, 0.0f, -1.0f });

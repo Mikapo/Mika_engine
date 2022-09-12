@@ -1,6 +1,9 @@
 #pragma once
 
-#include "Core/Key.h"
+#include "Rendering/Application/Key.h"
+
+using Input_key = OpenGL::Input_key;
+using Input_action = OpenGL::Input_action;
 
 struct Input
 {

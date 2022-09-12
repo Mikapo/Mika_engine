@@ -51,6 +51,7 @@ UI* World::create_ui(Class_obj* class_obj)
     if (!ui)
         return nullptr;
 
+    ui->initialize();
     return ui;
 }
 
@@ -135,8 +136,6 @@ void World::get_frame_data(Frame_data& out_frame_data)
         ++light_it;
     }
         
-            
-
     out_frame_data.m_camera = get_camera_data();
 }
 

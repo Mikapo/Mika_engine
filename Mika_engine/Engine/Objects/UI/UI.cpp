@@ -27,7 +27,7 @@ UI_window* UI::create_window(std::string_view name, Class_obj* class_obj)
 void UI::draw()
 {
     for (UI_window* window : m_windows)
-        if (!window && is_valid(window))
+        if (window && is_valid(window))
             window->draw();
 }
 

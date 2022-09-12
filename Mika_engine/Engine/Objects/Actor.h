@@ -5,7 +5,6 @@
 #include "Datatypes/Frame_data.h"
 #include "Datatypes/Transform.h"
 #include "Object.h"
-#include "Rendering/Shading/Material.h"
 #include "Utility/Delegate.h"
 #include <unordered_set>
 

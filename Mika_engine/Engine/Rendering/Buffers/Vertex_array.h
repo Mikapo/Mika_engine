@@ -1,23 +1,27 @@
 #pragma once
 
-#include "Rendering/Renderer_item.h"
-
-#include "Vertex_buffer_layout.h"
+#include "../Renderer_item.h"
 #include <utility>
 
-class Vertex_array : public Renderer_item
+namespace OpenGL
 {
-public:
+    class Vertex_array : public Renderer_item
+    {
+    public:
+        Vertex_array() = default;
+        ~Vertex_array() override;
 
-    Vertex_array() noexcept;
-    ~Vertex_array();
-    Vertex_array(const Vertex_array&) = delete;
-    Vertex_array(Vertex_array&&) = default;
+        Vertex_array(const Vertex_array&) = delete;
+        Vertex_array(Vertex_array&&) = delete;
 
-    void operator=(const Vertex_array&) = delete;
-    void operator=(Vertex_array&&) = delete;
+        Vertex_array& operator=(const Vertex_array&) = delete;
+        Vertex_array& operator=(Vertex_array&&) = delete;
 
-    void add_buffer(const class Vertex_buffer& vb, const Vertex_buffer_layout& layout) const;
-    void bind() const noexcept;
-    void unbind() noexcept;
-};
+        void add_buffer(const class Vertex_buffer& vertex_buffer, const class Vertex_buffer_layout& layout) const;
+        void bind() const noexcept override;
+        void unbind() const noexcept override;
+
+    protected:
+        uint32_t construct_item() override;
+    };
+} // namespace OpenGL

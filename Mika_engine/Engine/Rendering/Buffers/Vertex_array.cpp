@@ -1,48 +1,59 @@
+#include "GL/glew.h"
 
+#include "../layout/Vertex_buffer_layout.h"
 #include "Vertex_array.h"
-
 #include "Vertex_buffer.h"
 
-Vertex_array::Vertex_array() noexcept
+OpenGL::Vertex_array::~Vertex_array()
 {
-    glGenVertexArrays(1, &m_id);
+    if (!has_been_initialized())
+        return;
+
+    const uint32_t array_id = get_id();
+    glDeleteVertexArrays(1, &array_id);
 }
 
-Vertex_array::~Vertex_array()
-{ 
-    if(is_valid())
-        glDeleteVertexArrays(1, &m_id);
-}
-
-void Vertex_array::add_buffer(const Vertex_buffer& vb, const Vertex_buffer_layout& layout) const
+void OpenGL::Vertex_array::add_buffer(const Vertex_buffer& vertex_buffer, const Vertex_buffer_layout& layout) const
 {
     bind();
-    vb.bind();
+    vertex_buffer.bind();
     const auto& elements = layout.get_elements();
-    uint32_t offset = 0;
+
+    // Pointer that is used to spesify offset of each element
+    char* offset_ptr = nullptr;
+
     for (GLuint i = 0; i < elements.size(); i++)
     {
         const auto& element = elements.at(i);
         glEnableVertexAttribArray(i);
 
         glVertexAttribPointer(
-            i, element.get_count(), 
-            element.get_type(), 
-            element.get_normalized(), 
-            layout.get_stride(), 
-            reinterpret_cast<const void*>(offset));
+            i,                                         // Index
+            static_cast<GLint>(element.get_count()),   // Zmount of values in element. Must be 1 - 4
+            element.get_type(),                        // Type of element
+            element.get_normalized(),                  // Normalized bettween 0 and 1
+            static_cast<GLsizei>(layout.get_stride()), // Size of vertex
+            offset_ptr);                               // Offset of element in vertex
 
-        offset += element.get_count() * Vertex_buffer_elements::get_size_of_type(element.get_type());
+        // Adds offset to pointer
+        offset_ptr += element.get_count() * Vertex_buffer_elements::get_size_of_type(element.get_type());
     }
 }
 
-void Vertex_array::bind() const noexcept
-{ 
-    if (is_valid())
-        glBindVertexArray(m_id);
+void OpenGL::Vertex_array::bind() const noexcept
+{
+    glBindVertexArray(get_id());
 }
 
-void Vertex_array::unbind() noexcept 
-{ 
-    glBindVertexArray(0); 
+void OpenGL::Vertex_array::unbind() const noexcept
+{
+    glBindVertexArray(0);
+}
+
+uint32_t OpenGL::Vertex_array::construct_item()
+{
+    uint32_t array_id = 0;
+    glGenVertexArrays(1, &array_id);
+
+    return array_id;
 }

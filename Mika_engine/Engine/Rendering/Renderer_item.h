@@ -2,25 +2,34 @@
 
 #include <cstdint>
 
-class Renderer_item
+namespace OpenGL
 {
-public:
-	virtual ~Renderer_item() = default;
+    class Renderer_item
+    {
+    public:
+        virtual ~Renderer_item() = default;
 
-	Renderer_item(const Renderer_item&) = delete;
-    Renderer_item(Renderer_item&& other) noexcept;
-	
-	void operator=(const Renderer_item&) = delete;
-    void operator=(Renderer_item&& other) noexcept;
+        void initialize();
+        [[nodiscard]] bool has_been_initialized() const noexcept;
 
-	bool is_valid() const noexcept { return m_is_valid; }
+        Renderer_item(const Renderer_item&) = delete;
+        Renderer_item(Renderer_item&& other) = delete;
 
-protected:
-	Renderer_item() = default;
+        Renderer_item& operator=(const Renderer_item&) = delete;
+        Renderer_item& operator=(Renderer_item&& other) = delete;
 
-	uint32_t m_id = 0;
+        virtual void bind() const noexcept = 0;
+        virtual void unbind() const noexcept = 0;
 
-private:
-	bool m_is_valid = true;
-};
+    protected:
+        Renderer_item() = default;
 
+        [[nodiscard]] virtual uint32_t construct_item() = 0;
+        [[nodiscard]] uint32_t get_id() const noexcept;
+
+    private:
+        uint32_t m_id = 0;
+        bool m_has_been_initialized = false;
+    };
+
+} // namespace OpenGL

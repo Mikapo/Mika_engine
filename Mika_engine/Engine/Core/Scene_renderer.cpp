@@ -5,16 +5,20 @@
 #include "gsl/gsl"
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
+#include "Rendering/Shading/Shaders.h"
+#include "Rendering/Renderer.h"
 
 void Scene_renderer::initialize(Mika_engine* engine)
 {
     if (!engine)
         throw std::invalid_argument("engine was null");
+    
+    m_scene_shader = OpenGL::Shaders::compile_shader_from_file("Engine/Shaders/Lighting.vert", "Engine/Shaders/Lighting.frag");
 
-    m_scene_shader = std::make_unique<Shader>("Engine/Shaders/Lighting.frag", "Engine/Shaders/Lighting.vert");
+    std::unique_ptr shadow_shader =
+        OpenGL::Shaders::compile_shader_from_file("Engine/Shaders/Shadow_map.vert", "Engine/Shaders/Shadow_map.frag");
 
-    constexpr int32_t shadow_width = 1500, shadows_height = 1500;
-    m_shadow_map.init(shadow_width, shadows_height);
+    m_shadow_map.init(std::move(shadow_shader));
 
     m_cube_mesh = engine->get_asset_manager().get_mesh("Engine/Engine_models/cube.obj");
 
@@ -68,7 +72,7 @@ void Scene_renderer::update_lighting()
         Uniform_names::light_color, light_data.m_color.r, light_data.m_color.g, light_data.m_color.b,
         light_data.m_color.a);
     m_scene_shader->set_uniform(Uniform_names::light_space, light_space);
-    m_shadow_map.update_shader(light_space);
+    m_shadow_map.get_shader()->set_uniform(Uniform_names::light_space, light_space);
 }
 
 void Scene_renderer::update_settings()
@@ -82,21 +86,13 @@ void Scene_renderer::update_settings()
 
 void Scene_renderer::render_to_shadow_Map()
 {
-    int32_t shadow_width = 0, shadow_height = 0;
-    m_shadow_map.get_shadow_resolution(shadow_width, shadow_height);
-    m_shadow_map.bind_frame_buffer();
-    glViewport(0, 0, shadow_width, shadow_height);
-    glCullFace(GL_FRONT);
-    glClear(GL_DEPTH_BUFFER_BIT);
+    OpenGL::Renderer::start_drawing_to_shadow_map(m_shadow_map);
     draw_meshes(m_shadow_map.get_shader());
-    glCullFace(GL_BACK);
-    m_shadow_map.unbind_frame_buffer();
-    glViewport(0, 0, gsl::narrow<GLsizei>(m_window_width), gsl::narrow<GLsizei>(m_window_height));
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    m_shadow_map.bind_texture(Texture_slot::shadow_map);
+    OpenGL::Renderer::stop_drawing_to_shadow_map(m_shadow_map, m_window_width, m_window_height);
+    m_shadow_map.bind_depth_map();
 }
 
-void Scene_renderer::draw_collisions(Shader* shader)
+void Scene_renderer::draw_collisions(OpenGL::Shader* shader)
 {
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     Material material;
@@ -109,7 +105,7 @@ void Scene_renderer::draw_collisions(Shader* shader)
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-void Scene_renderer::draw_meshes(Shader* shader)
+void Scene_renderer::draw_meshes(OpenGL::Shader* shader)
 {
     std::vector<Mesh_data>& meshes = m_frames.front().m_meshes;
 
@@ -117,7 +113,7 @@ void Scene_renderer::draw_meshes(Shader* shader)
         draw_mesh(mesh_data.m_mesh.get(), mesh_data.m_transform, mesh_data.m_material, shader);
 }
 
-void Scene_renderer::draw_mesh(const Mesh* mesh, Transform transform, Material& material, Shader* shader)
+void Scene_renderer::draw_mesh(Mesh* mesh, Transform transform, Material& material, OpenGL::Shader* shader)
 {
     if (!mesh)
         throw std::invalid_argument("mesh was null");
@@ -127,7 +123,6 @@ void Scene_renderer::draw_mesh(const Mesh* mesh, Transform transform, Material& 
 
     material.update_shader(shader);
     material.bind_textures();
-    mesh->bind_buffers();
 
     transform.m_rotation.m_roll -= 90.0f;
     transform.m_location.z *= -1.0f;
@@ -139,20 +134,15 @@ void Scene_renderer::draw_mesh(const Mesh* mesh, Transform transform, Material& 
     const glm::mat4 model = transform.calculate_model();
 
     shader->set_uniform(Uniform_names::model, model);
-    shader->bind();
-
-    const GLsizei indices_count = gsl::narrow<GLsizei>(mesh->get_indices_count());
-    glDrawElements(GL_TRIANGLES, indices_count, GL_UNSIGNED_INT, nullptr);
+    
+    OpenGL::Renderer::draw(*mesh->get_buffers(), *shader);
 
     material.unbind_texture();
-    shader->unbind();
-    mesh->unbind_buffers();
 }
 
 void Scene_renderer::cleanup() noexcept
 {
     m_scene_shader.reset();
-    m_shadow_map.cleanup();
 
     while (!m_frames.empty())
         m_frames.pop();
@@ -197,9 +187,9 @@ Render_settings Scene_renderer::get_render_settings() const noexcept
     return m_render_settings;
 }
 
-void Scene_renderer::new_frame(Frame_data&& in_frame)
+void Scene_renderer::new_frame(Frame_data in_frame)
 {
-    m_frames.emplace(in_frame);
+    m_frames.emplace(std::move(in_frame));
     m_wait_until_has_frames.notify_one();
 }
 

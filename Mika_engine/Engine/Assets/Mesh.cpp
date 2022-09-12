@@ -1,7 +1,6 @@
 #include "Mesh.h"
 
-
-Mesh::Mesh(std::unique_ptr<Buffers> buffers) noexcept
+Mesh::Mesh(std::unique_ptr<OpenGL::Buffers> buffers) noexcept
 { 
 	m_buffers = std::move(buffers); 
 }
@@ -19,4 +18,9 @@ void Mesh::unbind_buffers() const
 size_t Mesh::get_indices_count() const noexcept
 { 
 	return m_buffers->get_indices_count(); 
+}
+
+OpenGL::Buffers* Mesh::get_buffers() noexcept
+{
+    return m_buffers.get();
 }

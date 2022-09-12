@@ -3,7 +3,7 @@
 #include "glm/vec4.hpp"
 #include "glm/vec3.hpp"
 #include "Assets/Mesh.h"
-#include "Rendering/Shading/Material.h"
+#include "Assets/Material.h"
 #include "Transform.h"
 #include <memory>
 
