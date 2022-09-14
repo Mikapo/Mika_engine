@@ -1,8 +1,10 @@
 #include "Player.h"
-#include "Core/Mika_engine.h"
+#include "Core/Engine.h"
 #include "Objects/Components/Input_component.h"
 #include "Objects/Components/Scene_components/Camera_component.h"
 #include "Utility/Delegate.h"
+
+using namespace Mika_engine;
 
 void Player::initialize()
 {

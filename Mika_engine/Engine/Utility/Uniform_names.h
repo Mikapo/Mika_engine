@@ -2,7 +2,7 @@
 
 #define UNIFORM_TYPE constexpr const char*
 
-namespace Uniform_names
+namespace Mika_engine::Uniform_names
 {
     UNIFORM_TYPE model = "u_model";
     UNIFORM_TYPE view = "u_view";

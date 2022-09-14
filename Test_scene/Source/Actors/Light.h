@@ -2,8 +2,12 @@
 
 #include "Objects/Actor.h"
 
-class Light_component;
-class Light : public Actor
+namespace Mika_engine
+{
+    class Light_component;
+}
+
+class Light : public Mika_engine::Actor
 {
     GENERATED_BODY(Light)
 
@@ -12,6 +16,6 @@ public:
 	void change_light_color(glm::vec4 color);
 
 private:
-	Light_component* m_light_component;
+	Mika_engine::Light_component* m_light_component;
 };
 

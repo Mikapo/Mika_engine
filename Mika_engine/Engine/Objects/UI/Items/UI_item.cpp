@@ -1,10 +1,15 @@
 #include "UI_item.h"
 
-void UI_item::set_name(const std::string& name)
+namespace Mika_engine
 {
-	m_name = name;
+    void UI_item::set_name(const std::string& name)
+    {
+        m_name = name;
+    }
+
+    std::string_view UI_item::get_name() const noexcept
+    {
+        return m_name;
+    }
 }
 
-std::string_view UI_item::get_name() const noexcept {
-	return m_name;
-}

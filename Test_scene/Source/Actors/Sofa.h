@@ -2,12 +2,11 @@
 
 #include "Objects/Actor.h"
 
-class Sofa : public Actor
+class Sofa : public Mika_engine::Actor
 {
     GENERATED_BODY(Sofa)
 
 public:
 	void initialize() override;
-	void update(float deltatime) override;
 };
 

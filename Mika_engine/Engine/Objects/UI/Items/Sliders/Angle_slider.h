@@ -2,13 +2,15 @@
 
 #include "Slider.h"
 
-class Angle_slider : public Slider
+namespace Mika_engine
 {
-    GENERATED_BODY(Angle_slider)
+    class Angle_slider : public Slider
+    {
+        GENERATED_BODY(Angle_slider)
 
-public:
-	Angle_slider() noexcept;
+    public:
+        Angle_slider() noexcept;
 
-	void draw() override;
-};
-
+        void draw() override;
+    };
+} // namespace Mika_engine

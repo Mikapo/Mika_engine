@@ -2,11 +2,13 @@
 
 #include "UI_parent.h"
 
-class Collapsing_header : public UI_parent
+namespace Mika_engine
 {
-    GENERATED_BODY(Collapsing_header)
+    class Collapsing_header : public UI_parent
+    {
+        GENERATED_BODY(Collapsing_header)
 
-public:
-	void draw() override;
-};
-
+    public:
+        void draw() override;
+    };
+} // namespace Mika_engine

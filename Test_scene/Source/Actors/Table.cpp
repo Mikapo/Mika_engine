@@ -1,8 +1,9 @@
 #include "Table.h"
-#include <iostream>
 #include "Objects/Components/Scene_components/Mesh_component.h"
 #include "Assets/Material.h"
 #include "Assets/Asset_manager.h"
+
+using namespace Mika_engine;
 
 void Table::initialize()
 {
@@ -18,11 +19,4 @@ void Table::initialize()
     mesh_component->set_material(material);
 
 	set_location({ -2.0f, 2.0f, 0.0f });
-}
-
-void Table::update(float deltatime)
-{
-	Actor::update(deltatime);
-
-	
 }

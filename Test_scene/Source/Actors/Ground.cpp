@@ -2,7 +2,9 @@
 #include <iostream>
 #include "Objects/Components/Scene_components/Mesh_component.h"
 #include "Rendering/Texture/Texture_slots.h"
-#include "Core/Mika_engine.h"
+#include "Core/Engine.h"
+
+using namespace Mika_engine;
 
 void Ground::initialize()
 {
@@ -21,9 +23,3 @@ void Ground::initialize()
     set_scale({3.0f, 3.0f, 1.0f});
 }
 
-void Ground::update(float deltatime)
-{
-	Actor::update(deltatime);
-
-	
-}

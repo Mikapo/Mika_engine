@@ -3,21 +3,22 @@
 #include "../Object.h"
 #include "Datatypes/Transform.h"
 
-class Actor;
-class World;
-class Actor_component : public Object
+namespace Mika_engine
 {
-    GENERATED_BODY(Actor_component)
+    class Actor;
+    class World;
+    class Actor_component : public Object
+    {
+        GENERATED_BODY(Actor_component)
 
-public:
-	void set_owner(Actor* owner) noexcept;
-	Actor* get_owner() const noexcept;
-	void set_world(World* world) noexcept;
-	World* get_world() const noexcept;
+    public:
+        void set_owner(Actor* owner) noexcept;
+        Actor* get_owner() const noexcept;
+        void set_world(World* world) noexcept;
+        World* get_world() const noexcept;
 
-private:
-	World* m_owning_world = nullptr;
-	Actor* m_owning_actor = nullptr;
-
-};
-
+    private:
+        World* m_owning_world = nullptr;
+        Actor* m_owning_actor = nullptr;
+    };
+} // namespace Mika_engine

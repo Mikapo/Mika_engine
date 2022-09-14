@@ -18,16 +18,15 @@ public:                                                                         
                                                                                                                        \
     static std::string_view static_get_name() noexcept                                                                 \
     {                                                                                                                  \
-                                                                                                                       \
         return #CLASS_NAME;                                                                                            \
     }                                                                                                                  \
                                                                                                                        \
-    static Class_obj* static_class()                                                                                   \
+    static Mika_engine::Class_obj* static_class()                                                                      \
     {                                                                                                                  \
-        return Class::get<CLASS_NAME>();                                                                               \
+        return Mika_engine::Class::get<CLASS_NAME>();                                                                  \
     }                                                                                                                  \
                                                                                                                        \
-    VIRTUAL_IF_NOT(FIRST_ONE) Class_obj* get_class() OVERRIDE_IF(FIRST_ONE)                                            \
+    VIRTUAL_IF_NOT(FIRST_ONE) Mika_engine::Class_obj* get_class() OVERRIDE_IF(FIRST_ONE)                               \
     {                                                                                                                  \
         return CLASS_NAME::static_class();                                                                             \
     }                                                                                                                  \

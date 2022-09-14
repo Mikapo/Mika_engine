@@ -1,13 +1,15 @@
 #include "Settings_ui.h"
 #include "../Actors/Light.h"
 #include "../Actors/Player.h"
-#include "Core/Mika_engine.h"
+#include "Core/Engine.h"
 #include "Objects/Components/Scene_components/Camera_component.h"
 #include "Objects/UI/Items/Checkbox.h"
 #include "Objects/UI/Items/Color_picker.h"
 #include "Objects/UI/Items/Parents/Collapsing_header.h"
 #include "Objects/UI/Items/Sliders/Float_slider.h"
 #include "Objects/World.h"
+
+using namespace Mika_engine;
 
 void Settings_ui::initialize()
 {
@@ -19,7 +21,7 @@ void Settings_ui::initialize()
     m_on_added_to_viewport.add_object(this, &Settings_ui::on_added_to_viewport);
 }
 
-void Settings_ui::on_added_to_viewport(World* world)
+void Settings_ui::on_added_to_viewport(Mika_engine::World* world)
 {
     m_light = world->find_actor_of_class<Light>();
     m_light_original_position = m_light->get_transform().m_location;
@@ -28,7 +30,7 @@ void Settings_ui::on_added_to_viewport(World* world)
     m_player_camera = player->find_component_by_class<Camera_component>();
 }
 
-void Settings_ui::setup_camera_settings(UI_window* window)
+void Settings_ui::setup_camera_settings(Mika_engine::UI_window* window)
 {
     auto* camera_settings =
         window->create_children_cast<Collapsing_header>(Collapsing_header::static_class(), "Camera", 0);
@@ -52,7 +54,7 @@ void Settings_ui::setup_camera_settings(UI_window* window)
     camera_fov_slide->m_on_slider_change.add_object(this, &Settings_ui::change_camera_fov);
 }
 
-void Settings_ui::setup_light_settings(UI_window* window)
+void Settings_ui::setup_light_settings(Mika_engine::UI_window* window)
 {
     auto* light_settings =
         window->create_children_cast<Collapsing_header>(Collapsing_header::static_class(), "Light", 1);
@@ -66,7 +68,7 @@ void Settings_ui::setup_light_settings(UI_window* window)
     light_color_picker->m_on_color_change.add_object(this, &Settings_ui::change_light_color);
 }
 
-void Settings_ui::setup_render_settings(UI_window* window)
+void Settings_ui::setup_render_settings(Mika_engine::UI_window* window)
 {
     auto* render_settings =
         window->create_children_cast<Collapsing_header>(Collapsing_header::static_class(), "Render", 2);

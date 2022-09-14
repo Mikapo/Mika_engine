@@ -3,6 +3,7 @@
 #include "Objects/Components/Scene_components/Light_component.h"
 #include "Objects/Components/Scene_components/Mesh_component.h"
 
+using namespace Mika_engine;
 
 void Light::initialize()
 {

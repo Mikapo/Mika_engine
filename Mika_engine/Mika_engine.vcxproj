@@ -185,7 +185,7 @@
     <ClCompile Include="Engine\Objects\Components\Scene_components\Camera_component.cpp" />
     <ClCompile Include="Engine\Objects\Components\Actor_component.cpp" />
     <ClCompile Include="Engine\Objects\Actor.cpp" />
-    <ClCompile Include="Engine\Core\Mika_engine.cpp" />
+    <ClCompile Include="Engine\Core\Engine.cpp" />
     <ClCompile Include="Engine\Objects\Object.cpp" />
     <ClCompile Include="Engine\Core\Garbage_collector.cpp" />
     <ClCompile Include="Engine\Objects\UI\Items\UI_item.cpp" />
@@ -205,6 +205,7 @@
     <ClCompile Include="Engine\Utility\Collisions\Line.cpp" />
     <ClCompile Include="Engine\Utility\Collisions\Colliders\Sphere.cpp" />
     <ClCompile Include="Engine\Objects\World.cpp" />
+    <ClCompile Include="Engine\Core\Render_engine.cpp" />
     <ClCompile Include="Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Vendor\ImGui\imgui.cpp" />
     <ClCompile Include="Vendor\ImGui\imgui_demo.cpp" />
@@ -265,7 +266,7 @@
     <ClInclude Include="Engine\Objects\Components\Scene_components\Camera_component.h" />
     <ClInclude Include="Engine\Objects\Components\Actor_component.h" />
     <ClInclude Include="Engine\Objects\Actor.h" />
-    <ClInclude Include="Engine\Core\Mika_engine.h" />
+    <ClInclude Include="Engine\Core\Engine.h" />
     <ClInclude Include="Engine\Objects\Object.h" />
     <ClInclude Include="Engine\Core\Garbage_collector.h" />
     <ClInclude Include="Engine\Objects\UI\Items\UI_item.h" />
@@ -274,6 +275,7 @@
     <ClInclude Include="Engine\Datatypes\Transform.h" />
     <ClInclude Include="Engine\Utility\Macros\Generated_body.h" />
     <ClInclude Include="Engine\Utility\Macros\Helper_macros.h" />
+    <ClInclude Include="Engine\Utility\Thread_safe_deque.h" />
     <ClInclude Include="Engine\Utility\Uniform_names.h" />
     <ClInclude Include="Engine\Objects\Components\Scene_components\Mesh_component.h" />
     <ClInclude Include="Engine\Assets\Mesh.h" />
@@ -290,6 +292,7 @@
     <ClInclude Include="Engine\Utility\Collisions\Line.h" />
     <ClInclude Include="Engine\Utility\Collisions\Colliders\Sphere.h" />
     <ClInclude Include="Engine\Objects\World.h" />
+    <ClInclude Include="Engine\Core\Render_engine.h" />
     <ClInclude Include="Vendor\glm\common.hpp" />
     <ClInclude Include="Vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="Vendor\glm\detail\compute_vector_relational.hpp" />

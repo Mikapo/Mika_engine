@@ -2,7 +2,7 @@
 
 #include "Objects/Actor.h"
 
-class Player : public Actor
+class Player : public Mika_engine::Actor
 {
     GENERATED_BODY(Player)
 

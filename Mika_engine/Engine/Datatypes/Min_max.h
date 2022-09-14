@@ -1,7 +1,10 @@
 #pragma once
 
-  struct Min_max
+namespace Mika_engine
 {
-    float m_min;
-    float m_max;
-};
+    struct Min_max
+    {
+        float m_min;
+        float m_max;
+    };
+} // namespace Mika_engine

@@ -1,8 +1,9 @@
 #include "Wooden_table.h"
-#include <iostream>
 #include "Objects/Components/Scene_components/Mesh_component.h"
 #include "Assets/Material.h"
 #include "Assets/Asset_manager.h"
+
+using namespace Mika_engine;
 
 void Wooden_table::initialize()
 {
@@ -28,9 +29,4 @@ void Wooden_table::initialize()
 
 	set_location({ 0.0f, 1.5f, 0.0f });
 	plant_mesh_component->set_relative_location({ 0.25f, 0.0f, 0.55f });
-}
-
-void Wooden_table::update(float deltatime)
-{
-	Actor::update(deltatime);
 }

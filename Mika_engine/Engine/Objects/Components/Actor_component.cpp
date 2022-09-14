@@ -1,22 +1,24 @@
 #include "Actor_component.h"
 
-void Actor_component::set_owner(Actor* owner) noexcept
+namespace Mika_engine
 {
-	m_owning_actor = owner;
-}
+    void Actor_component::set_owner(Actor* owner) noexcept
+    {
+        m_owning_actor = owner;
+    }
 
-Actor* Actor_component::get_owner() const noexcept
-{
-	return m_owning_actor;
-}
+    Actor* Actor_component::get_owner() const noexcept
+    {
+        return m_owning_actor;
+    }
 
-void Actor_component::set_world(World* world) noexcept
-{
-	m_owning_world = world;
-}
+    void Actor_component::set_world(World* world) noexcept
+    {
+        m_owning_world = world;
+    }
 
-World* Actor_component::get_world() const noexcept
-{
-	return m_owning_world;
-}
-
+    World* Actor_component::get_world() const noexcept
+    {
+        return m_owning_world;
+    }
+} // namespace Mika_engine

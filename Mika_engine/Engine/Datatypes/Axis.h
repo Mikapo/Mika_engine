@@ -2,9 +2,12 @@
 
 #include <cstdint>
 
-enum class Axis : uint8_t
+namespace Mika_engine
 {
-	x,
-	y,
-	z
-};
+    enum class Axis : uint8_t
+    {
+        x,
+        y,
+        z
+    };
+} // namespace Mika_engine

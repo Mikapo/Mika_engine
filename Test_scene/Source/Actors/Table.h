@@ -2,12 +2,11 @@
 
 #include "Objects/Actor.h"
 
-class Table : public Actor
+class Table : public Mika_engine::Actor
 {
     GENERATED_BODY(Table)
 
 public:
 	void initialize() override;
-	void update(float deltatime) override;
 };
 

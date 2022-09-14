@@ -2,9 +2,12 @@
 
 #include <cstdint>
 
-enum class Axis_comparison_result : uint8_t
+namespace Mika_engine
 {
-    left,
-    right,
-    overlap
-};
+    enum class Axis_comparison_result : uint8_t
+    {
+        left,
+        right,
+        overlap
+    };
+} // namespace Mika_engine

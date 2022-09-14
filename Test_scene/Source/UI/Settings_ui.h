@@ -1,35 +1,38 @@
 #pragma once
 
-#include "Objects/UI/UI.h"
 #include "Objects/Components/Scene_components/Camera_component.h"
+#include "Objects/UI/UI.h"
+
+namespace Mika_engine
+{
+    class Camera_component;
+} // namespace Mika_engine
 
 class Light;
-class Camera_component;
-class Settings_ui : public UI
+class Settings_ui : public Mika_engine::UI
 {
     GENERATED_BODY(Settings_ui)
 
 public:
-	void initialize() override;
+    void initialize() override;
 
 private:
-	void on_added_to_viewport(World* world);
-	void setup_camera_settings(UI_window* window);
-    void setup_light_settings(UI_window* window);
-    void setup_render_settings(UI_window* window);
-	void change_camera_max_clip(float max_clip);
-	void change_camera_min_clip(float min_clip);
-	void change_camera_fov(float fov);
-	void change_light_angle(float angle);
-	void change_light_color(glm::vec4 color);
-	void ambient_enabled(bool checked);
-	void diffuse_enabled(bool checked);
-	void specular_enabled(bool checked);
-	void shadow_enabled(bool checked);
-	void texture_enabled(bool checked);
+    void on_added_to_viewport(Mika_engine::World* world);
+    void setup_camera_settings(Mika_engine::UI_window* window);
+    void setup_light_settings(Mika_engine::UI_window* window);
+    void setup_render_settings(Mika_engine::UI_window* window);
+    void change_camera_max_clip(float max_clip);
+    void change_camera_min_clip(float min_clip);
+    void change_camera_fov(float fov);
+    void change_light_angle(float angle);
+    void change_light_color(glm::vec4 color);
+    void ambient_enabled(bool checked);
+    void diffuse_enabled(bool checked);
+    void specular_enabled(bool checked);
+    void shadow_enabled(bool checked);
+    void texture_enabled(bool checked);
 
-	Light* m_light = nullptr;
-    Camera_component* m_player_camera = nullptr;
-	glm::vec3 m_light_original_position;
+    Light* m_light = nullptr;
+    Mika_engine::Camera_component* m_player_camera = nullptr;
+    glm::vec3 m_light_original_position;
 };
-
