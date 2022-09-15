@@ -32,13 +32,13 @@ namespace Mika_engine
         void set_world(Class_obj* world_class);
         void set_window_title(std::string_view name);
 
-        Delegate<Input> m_on_key_event;
+        Delegate<Input> m_on_input;
 
     private:
         void update_loop();
         void cleanup();
         void update_deltatime() noexcept;
-        void on_key_event(Input_key key, Input_action action);
+        void on_input(Input input);
         void handle_inputs();
         void setup_callbacks();
 

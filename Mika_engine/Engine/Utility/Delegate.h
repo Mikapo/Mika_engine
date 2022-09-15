@@ -3,6 +3,7 @@
 #include <functional>
 #include <memory>
 #include <stdexcept>
+#include <type_traits>
 #include <unordered_map>
 
 namespace Mika_engine
@@ -23,24 +24,24 @@ namespace Mika_engine
     public:
         Obj_callback(T* obj, Callback callback) noexcept : m_obj(obj), m_callback(std::forward<Callback>(callback))
         {
-            m_engine = obj->get_engine();
+            if constexpr (std::is_base_of_v<Object, T>)
+                m_engine = obj->get_engine();
         }
 
         bool invoke(Argtypes... args) override
         {
-            if (T::static_is_valid(m_engine, m_obj))
-            {
-                std::invoke(m_callback, m_obj, std::forward<Argtypes>(args)...);
-                return true;
-            }
+            if constexpr (std::is_base_of_v<Object, T>)
+                if (!T::static_is_valid(m_engine, m_obj))
+                    return false;
 
-            return false;
+            std::invoke(m_callback, m_obj, std::forward<Argtypes>(args)...);
+            return true;
         }
 
     private:
         T* m_obj;
         Callback m_callback;
-        Engine* m_engine;
+        Engine* m_engine = nullptr;
     };
 
     template <typename... Argtypes>
@@ -83,7 +84,6 @@ namespace Mika_engine
         }
 
     private:
-        std::unordered_map<Object*, Callback_interface_ptr> m_callbacks;
+        std::unordered_map<void*, Callback_interface_ptr> m_callbacks;
     };
-}
-
+} // namespace Mika_engine

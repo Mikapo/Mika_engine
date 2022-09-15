@@ -1,102 +1,102 @@
-[17:56:14] notification engine: Mika engine starting 
-[17:56:14] notification objects: Created object with name Test_world 
-[17:56:14] notification objects: Created object with name Ground 
-[17:56:14] notification objects: Created object with name Mesh_component 
-[17:56:15] notification objects: Created object with name Sofa 
-[17:56:15] notification objects: Created object with name Mesh_component 
-[17:56:18] notification objects: Created object with name Table 
-[17:56:18] notification objects: Created object with name Mesh_component 
-[17:56:21] notification objects: Created object with name Wooden_table 
-[17:56:21] notification objects: Created object with name Mesh_component 
-[17:56:21] notification objects: Created object with name Mesh_component 
-[17:56:37] notification objects: Created object with name Light 
-[17:56:37] notification objects: Created object with name Light_component 
-[17:56:37] notification objects: Created object with name Player 
-[17:56:37] notification objects: Created object with name Camera_component 
-[17:56:37] notification objects: Created object with name Input_component 
-[17:56:37] notification objects: Created object with name Settings_ui 
-[17:56:37] notification objects: Created object with name UI_window 
-[17:56:37] notification objects: Created object with name Collapsing_header 
-[17:56:37] notification objects: Created object with name Float_slider 
-[17:56:37] notification objects: Created object with name Float_slider 
-[17:56:37] notification objects: Created object with name Float_slider 
-[17:56:37] notification objects: Created object with name Collapsing_header 
-[17:56:37] notification objects: Created object with name Float_slider 
-[17:56:37] notification objects: Created object with name Color_picker 
-[17:56:37] notification objects: Created object with name Collapsing_header 
-[17:56:37] notification objects: Created object with name Checkbox 
-[17:56:37] notification objects: Created object with name Checkbox 
-[17:56:37] notification objects: Created object with name Checkbox 
-[17:56:37] notification objects: Created object with name Checkbox 
-[17:56:37] notification objects: Created object with name Checkbox 
-[17:56:55] notification engine: Staring cleanup 
-[17:56:55] notification objects: Input_component is going to be destroyed 
-[17:56:55] notification objects: Ground is going to be destroyed 
-[17:56:55] notification objects: Mesh_component is going to be destroyed 
-[17:56:55] notification objects: Checkbox is going to be destroyed 
-[17:56:55] notification objects: Settings_ui is going to be destroyed 
-[17:56:55] notification objects: Test_world is going to be destroyed 
-[17:56:55] notification objects: Mesh_component is going to be destroyed 
-[17:56:55] notification objects: Wooden_table is going to be destroyed 
-[17:56:55] notification objects: Mesh_component is going to be destroyed 
-[17:56:55] notification objects: Mesh_component is going to be destroyed 
-[17:56:55] notification objects: Mesh_component is going to be destroyed 
-[17:56:55] notification objects: Sofa is going to be destroyed 
-[17:56:55] notification objects: Mesh_component is going to be destroyed 
-[17:56:55] notification objects: Checkbox is going to be destroyed 
-[17:56:55] notification objects: Float_slider is going to be destroyed 
-[17:56:55] notification objects: Mesh_component is going to be destroyed 
-[17:56:56] notification objects: Camera_component is going to be destroyed 
-[17:56:56] notification objects: Table is going to be destroyed 
-[17:56:56] notification objects: Mesh_component is going to be destroyed 
-[17:56:56] notification objects: Collapsing_header is going to be destroyed 
-[17:56:56] notification objects: Mesh_component is going to be destroyed 
-[17:56:56] notification objects: Mesh_component is going to be destroyed 
-[17:56:56] notification objects: Light is going to be destroyed 
-[17:56:56] notification objects: Light_component is going to be destroyed 
-[17:56:56] notification objects: Light_component is going to be destroyed 
-[17:56:56] notification objects: Player is going to be destroyed 
-[17:56:56] notification objects: Camera_component is going to be destroyed 
-[17:56:56] notification objects: Input_component is going to be destroyed 
-[17:56:56] notification objects: UI_window is going to be destroyed 
-[17:56:56] notification objects: Collapsing_header is going to be destroyed 
-[17:56:56] notification objects: Float_slider is going to be destroyed 
-[17:56:56] notification objects: Float_slider is going to be destroyed 
-[17:56:56] notification objects: Collapsing_header is going to be destroyed 
-[17:56:56] notification objects: Float_slider is going to be destroyed 
-[17:56:56] notification objects: Color_picker is going to be destroyed 
-[17:56:56] notification objects: Checkbox is going to be destroyed 
-[17:56:56] notification objects: Checkbox is going to be destroyed 
-[17:56:56] notification objects: Checkbox is going to be destroyed 
-[17:56:56] notification garbage_collector: Object Input_component is being garbage collected 
-[17:56:56] notification garbage_collector: Object Ground is being garbage collected 
-[17:56:56] notification garbage_collector: Object Checkbox is being garbage collected 
-[17:56:56] notification garbage_collector: Object Settings_ui is being garbage collected 
-[17:56:56] notification garbage_collector: Object Test_world is being garbage collected 
-[17:56:56] notification garbage_collector: Object Mesh_component is being garbage collected 
-[17:56:56] notification garbage_collector: Object Wooden_table is being garbage collected 
-[17:56:56] notification garbage_collector: Object Mesh_component is being garbage collected 
-[17:56:56] notification garbage_collector: Object Sofa is being garbage collected 
-[17:56:56] notification garbage_collector: Object Checkbox is being garbage collected 
-[17:56:56] notification garbage_collector: Object Float_slider is being garbage collected 
-[17:56:56] notification garbage_collector: Object Mesh_component is being garbage collected 
-[17:56:56] notification garbage_collector: Object Camera_component is being garbage collected 
-[17:56:56] notification garbage_collector: Object Table is being garbage collected 
-[17:56:56] notification garbage_collector: Object Collapsing_header is being garbage collected 
-[17:56:56] notification garbage_collector: Object Mesh_component is being garbage collected 
-[17:56:56] notification garbage_collector: Object Mesh_component is being garbage collected 
-[17:56:56] notification garbage_collector: Object Light is being garbage collected 
-[17:56:56] notification garbage_collector: Object Light_component is being garbage collected 
-[17:56:56] notification garbage_collector: Object Player is being garbage collected 
-[17:56:56] notification garbage_collector: Object UI_window is being garbage collected 
-[17:56:56] notification garbage_collector: Object Collapsing_header is being garbage collected 
-[17:56:56] notification garbage_collector: Object Float_slider is being garbage collected 
-[17:56:56] notification garbage_collector: Object Float_slider is being garbage collected 
-[17:56:56] notification garbage_collector: Object Collapsing_header is being garbage collected 
-[17:56:56] notification garbage_collector: Object Float_slider is being garbage collected 
-[17:56:56] notification garbage_collector: Object Color_picker is being garbage collected 
-[17:56:56] notification garbage_collector: Object Checkbox is being garbage collected 
-[17:56:56] notification garbage_collector: Object Checkbox is being garbage collected 
-[17:56:56] notification garbage_collector: Object Checkbox is being garbage collected 
-[17:56:56] notification engine: Exiting mika engine 
-[17:56:56] notification engine: Writing to log file 
+[19:47:06] notification engine: Mika engine starting 
+[19:47:06] notification objects: Created object with name Test_world 
+[19:47:06] notification objects: Created object with name Ground 
+[19:47:07] notification objects: Created object with name Mesh_component 
+[19:47:10] notification objects: Created object with name Sofa 
+[19:47:10] notification objects: Created object with name Mesh_component 
+[19:47:18] notification objects: Created object with name Table 
+[19:47:18] notification objects: Created object with name Mesh_component 
+[19:47:37] notification objects: Created object with name Wooden_table 
+[19:47:38] notification objects: Created object with name Mesh_component 
+[19:47:39] notification objects: Created object with name Mesh_component 
+[19:48:16] notification objects: Created object with name Light 
+[19:48:16] notification objects: Created object with name Light_component 
+[19:48:16] notification objects: Created object with name Player 
+[19:48:16] notification objects: Created object with name Camera_component 
+[19:48:16] notification objects: Created object with name Input_component 
+[19:48:17] notification objects: Created object with name Settings_ui 
+[19:48:17] notification objects: Created object with name UI_window 
+[19:48:17] notification objects: Created object with name Collapsing_header 
+[19:48:17] notification objects: Created object with name Float_slider 
+[19:48:17] notification objects: Created object with name Float_slider 
+[19:48:17] notification objects: Created object with name Float_slider 
+[19:48:17] notification objects: Created object with name Collapsing_header 
+[19:48:17] notification objects: Created object with name Float_slider 
+[19:48:17] notification objects: Created object with name Color_picker 
+[19:48:17] notification objects: Created object with name Collapsing_header 
+[19:48:17] notification objects: Created object with name Checkbox 
+[19:48:17] notification objects: Created object with name Checkbox 
+[19:48:17] notification objects: Created object with name Checkbox 
+[19:48:17] notification objects: Created object with name Checkbox 
+[19:48:17] notification objects: Created object with name Checkbox 
+[19:50:53] notification engine: Staring cleanup 
+[19:50:53] notification objects: Table is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Wooden_table is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Sofa is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Settings_ui is going to be destroyed 
+[19:50:53] notification objects: Test_world is going to be destroyed 
+[19:50:53] notification objects: Ground is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Checkbox is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Mesh_component is going to be destroyed 
+[19:50:53] notification objects: Light is going to be destroyed 
+[19:50:53] notification objects: Light_component is going to be destroyed 
+[19:50:53] notification objects: Light_component is going to be destroyed 
+[19:50:53] notification objects: Checkbox is going to be destroyed 
+[19:50:53] notification objects: Player is going to be destroyed 
+[19:50:53] notification objects: Camera_component is going to be destroyed 
+[19:50:53] notification objects: Input_component is going to be destroyed 
+[19:50:53] notification objects: Camera_component is going to be destroyed 
+[19:50:53] notification objects: Input_component is going to be destroyed 
+[19:50:53] notification objects: UI_window is going to be destroyed 
+[19:50:53] notification objects: Collapsing_header is going to be destroyed 
+[19:50:53] notification objects: Float_slider is going to be destroyed 
+[19:50:53] notification objects: Float_slider is going to be destroyed 
+[19:50:53] notification objects: Float_slider is going to be destroyed 
+[19:50:53] notification objects: Checkbox is going to be destroyed 
+[19:50:53] notification objects: Collapsing_header is going to be destroyed 
+[19:50:54] notification objects: Float_slider is going to be destroyed 
+[19:50:54] notification objects: Color_picker is going to be destroyed 
+[19:50:54] notification objects: Collapsing_header is going to be destroyed 
+[19:50:54] notification objects: Checkbox is going to be destroyed 
+[19:50:54] notification objects: Checkbox is going to be destroyed 
+[19:50:54] notification garbage_collector: Object Table is being garbage collected 
+[19:50:54] notification garbage_collector: Object Wooden_table is being garbage collected 
+[19:50:54] notification garbage_collector: Object Mesh_component is being garbage collected 
+[19:50:54] notification garbage_collector: Object Sofa is being garbage collected 
+[19:50:54] notification garbage_collector: Object Settings_ui is being garbage collected 
+[19:50:54] notification garbage_collector: Object Test_world is being garbage collected 
+[19:50:54] notification garbage_collector: Object Ground is being garbage collected 
+[19:50:54] notification garbage_collector: Object Checkbox is being garbage collected 
+[19:50:54] notification garbage_collector: Object Mesh_component is being garbage collected 
+[19:50:54] notification garbage_collector: Object Mesh_component is being garbage collected 
+[19:50:54] notification garbage_collector: Object Mesh_component is being garbage collected 
+[19:50:54] notification garbage_collector: Object Mesh_component is being garbage collected 
+[19:50:54] notification garbage_collector: Object Light is being garbage collected 
+[19:50:54] notification garbage_collector: Object Light_component is being garbage collected 
+[19:50:54] notification garbage_collector: Object Checkbox is being garbage collected 
+[19:50:54] notification garbage_collector: Object Player is being garbage collected 
+[19:50:54] notification garbage_collector: Object Camera_component is being garbage collected 
+[19:50:54] notification garbage_collector: Object Input_component is being garbage collected 
+[19:50:54] notification garbage_collector: Object UI_window is being garbage collected 
+[19:50:54] notification garbage_collector: Object Collapsing_header is being garbage collected 
+[19:50:54] notification garbage_collector: Object Float_slider is being garbage collected 
+[19:50:54] notification garbage_collector: Object Float_slider is being garbage collected 
+[19:50:54] notification garbage_collector: Object Float_slider is being garbage collected 
+[19:50:54] notification garbage_collector: Object Checkbox is being garbage collected 
+[19:50:54] notification garbage_collector: Object Collapsing_header is being garbage collected 
+[19:50:54] notification garbage_collector: Object Float_slider is being garbage collected 
+[19:50:54] notification garbage_collector: Object Color_picker is being garbage collected 
+[19:50:54] notification garbage_collector: Object Collapsing_header is being garbage collected 
+[19:50:54] notification garbage_collector: Object Checkbox is being garbage collected 
+[19:50:54] notification garbage_collector: Object Checkbox is being garbage collected 
+[19:50:54] notification engine: Exiting mika engine 
+[19:50:54] notification engine: Writing to log file 

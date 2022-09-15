@@ -8,7 +8,7 @@ namespace Mika_engine
     {
         Actor_component::initialize();
 
-        get_engine()->m_on_key_event.add_object(this, &Input_component::on_key_event);
+        get_engine()->m_on_input.add_object(this, &Input_component::on_key_event);
     }
 
     void Input_component::update(float deltatime)

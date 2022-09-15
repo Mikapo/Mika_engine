@@ -27,6 +27,7 @@ namespace Mika_engine
 
     void Engine::setup_callbacks()
     {
+        m_render_engine.m_on_input.add_object(this, &Engine::on_input);
     }
 
     void Engine::register_object(std::unique_ptr<Object> obj)
@@ -83,26 +84,14 @@ namespace Mika_engine
 
         const auto time = high_resolution_clock::now();
         const auto time_passed = time - m_time_since_last_frame;
-        const float deltatime = static_cast<float>(time_passed.count()) * 0.000000001f;
         m_time_since_last_frame = time;
-        m_deltatime = deltatime;
+        const float delta_microseconds = static_cast<float>(duration_cast<microseconds>(time_passed).count());
+        m_deltatime = delta_microseconds * 0.000001F;
     }
 
-    static std::mutex input_mutex;
-    void Engine::on_key_event(Input_key key, Input_action action)
+    void Engine::on_input(Input input)
     {
-        std::lock_guard<std::mutex> lock(input_mutex);
-        m_inputs.emplace_back(key, action);
-    }
-
-    void Engine::handle_inputs()
-    {
-        std::lock_guard<std::mutex> lock(input_mutex);
-
-        for (Input& input : m_inputs)
-            m_on_key_event.broadcast(input);
-
-        m_inputs.clear();
+        m_on_input.broadcast(input);
     }
 
     void Engine::set_world(Class_obj* world_class)

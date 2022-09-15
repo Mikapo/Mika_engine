@@ -123,6 +123,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)Libraries\boost_1_79_0;$(ProjectDir)Libraries\assimp\include;$(ProjectDir)Engine;$(ProjectDir)Shaders;$(ProjectDir)Vendor;$(ProjectDir)Libraries\GLEW\include;$(ProjectDir)Libraries\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,6 +140,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)Libraries\boost_1_79_0;$(ProjectDir)Libraries\assimp\include;$(ProjectDir)Engine;$(ProjectDir)Shaders;$(ProjectDir)Vendor;$(ProjectDir)Libraries\GLEW\include;$(ProjectDir)Libraries\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
