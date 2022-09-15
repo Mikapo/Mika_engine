@@ -24,9 +24,7 @@ namespace Mika_engine
         Object::get_owned_objects(out_array);
 
         for (Actor_component* component : m_components)
-        {
             out_array.emplace_back(component);
-        }
     }
 
     void Actor::destruct() noexcept
@@ -147,7 +145,7 @@ namespace Mika_engine
             const Collision_result collision = found_collision->get_previous_collision();
             add_world_offset(collision.m_to_leave_collision);
             m_on_collision_detected.broadcast(collision);
-            LOG(notification, objects, "Collision detected");
+            DEBUG_LOG(notification, objects, "Collision detected");
             return true;
         }
 

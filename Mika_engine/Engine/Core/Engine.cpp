@@ -12,15 +12,12 @@ namespace Mika_engine
 {
     void Engine::start()
     {
-        LOG(notification, engine, "Mika engine starting");
+        DEBUG_LOG(notification, engine, "Mika engine starting");
 
         m_has_started = true;
         setup_callbacks();
         m_render_engine.start_render_thread();
-
-        if (m_default_world)
-            set_world(m_default_world);
-
+        set_world(m_default_world);
         update_loop();
         cleanup();
     }
@@ -94,13 +91,16 @@ namespace Mika_engine
         m_on_input.broadcast(input);
     }
 
-    void Engine::set_world(Class_obj* world_class)
+    void Engine::set_world(const Class_obj* world_class)
     {
         if (!m_has_started)
             throw std::runtime_error("Should not be called when engine has not started");
 
+        if (world_class == nullptr)
+            return;
+
         m_world = m_default_world->construct_cast<World>(this);
-        if (!m_world)
+        if (m_world == nullptr)
             return;
 
         m_garbage_collector.set_root_object(m_world);
@@ -114,8 +114,8 @@ namespace Mika_engine
             if (m_render_engine.frames_in_queue() > 2)
                 continue;
 
-            m_garbage_collector.update();
             update_deltatime();
+            m_garbage_collector.update();
             m_render_engine.poll_events();
 
             if (is_object_valid(m_world))
@@ -131,15 +131,15 @@ namespace Mika_engine
 
     void Engine::cleanup()
     {
-        LOG(notification, engine, "Staring cleanup");
+        DEBUG_LOG(notification, engine, "Staring cleanup");
 
         m_has_started = false;
 
-        m_render_engine.join_with_render_thread();
+        m_render_engine.join_render_thread();
         m_garbage_collector.cleanup();
         m_asset_manager.cleanup();
 
-        LOG(notification, engine, "Exiting mika engine");
+        DEBUG_LOG(notification, engine, "Exiting mika engine");
 
 #ifdef _DEBUG
         Debug_logger::get().write_to_log_file();

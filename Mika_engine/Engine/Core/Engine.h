@@ -29,7 +29,7 @@ namespace Mika_engine
         void set_render_settings(Render_settings settings) noexcept;
         Render_settings get_render_settings() const noexcept;
         void set_default_world(Class_obj* world_class);
-        void set_world(Class_obj* world_class);
+        void set_world(const Class_obj* world_class);
         void set_window_title(std::string_view name);
 
         Delegate<Input> m_on_input;

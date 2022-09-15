@@ -34,7 +34,7 @@ namespace Mika_engine
             std::unique_ptr<T> unique_ptr_obj = std::make_unique<T>();
             unique_ptr_obj->set_engine(engine);
 
-            LOG(notification, objects, "Created object with name {}", unique_ptr_obj->get_class_name());
+            DEBUG_LOG(notification, objects, "Created object with name {}", unique_ptr_obj->get_class_name());
 
             T* obj = unique_ptr_obj.get();
             register_object(engine, std::move(unique_ptr_obj));

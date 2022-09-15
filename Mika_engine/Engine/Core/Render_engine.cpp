@@ -14,7 +14,7 @@ namespace Mika_engine
             throw std::logic_error("Thread was already running");
     }
 
-    void Render_engine::join_with_render_thread()
+    void Render_engine::join_render_thread()
     {
         if (m_thread_handle.joinable())
             m_thread_handle.join();

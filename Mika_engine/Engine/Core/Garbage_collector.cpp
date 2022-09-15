@@ -77,9 +77,7 @@ namespace Mika_engine
         {
             Object* obj = obj_pair.first;
 
-            if (!obj)
-                m_registered_objects.erase(obj);
-            else if (!obj->is_marked_by_garbage_collector())
+            if (!obj->is_marked_by_garbage_collector())
                 obj->destruct();
             else
                 obj->set_garbage_collect_mark(false);
@@ -88,17 +86,14 @@ namespace Mika_engine
 
     void Garbage_collector::finalize_destruction_on_objects()
     {
-        static std::vector<Object*> objects_to_destroy;
 
-        for (auto& obj : m_registered_objects)
-            if (is_object_valid(obj.first) && obj.first->is_marked_for_destruction())
-            {
-                LOG(notification, garbage_collector, "Object {} is being garbage collected",
-                    obj.first->get_class_name());
-                objects_to_destroy.emplace_back(obj.first);
-            }
-
-        for (Object* obj : objects_to_destroy)
-            m_registered_objects.erase(obj);
+        auto it = m_registered_objects.begin();
+        while (it != m_registered_objects.end())
+        {
+            if (is_object_valid(it->first) && it->first->is_marked_for_destruction())
+                it == m_registered_objects.erase(it);
+            else
+                ++it;
+        }
     }
 } // namespace Mika_engine

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Utility/Flags.h"
 #include "Utility/Macros/Helper_macros.h"
 #include <array>
 #include <format>
@@ -21,6 +22,9 @@ namespace Mika_engine
         void log(Log_severity severity, Log_type type, std::string_view msg);
         void write_to_log_file() const;
 
+        Flags<Log_severity> m_disabled_severities;
+        Flags<Log_type> m_disabled_types;
+
     private:
         Debug_logger() = default;
 
@@ -29,15 +33,13 @@ namespace Mika_engine
 
         bool m_writes_to_log_file = true;
         std::string logs;
-        std::unordered_map<Log_severity, bool> m_enabled_severities;
-        std::unordered_map<Log_type, bool> m_enabled_types;
     };
 
 #ifdef _DEBUG
-#define LOG(severity, type, msg, ...)                                                                                  \
+#define DEBUG_LOG(severity, type, msg, ...)                                                                            \
     Debug_logger::get().log(Log_severity::severity, Log_type::type, std::format(msg, __VA_ARGS__))
 
 #else
-#define LOG(...)
+#define DEBUG_LOG(...)
 #endif
-}
+} // namespace Mika_engine

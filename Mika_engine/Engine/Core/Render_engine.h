@@ -15,7 +15,7 @@ namespace Mika_engine
     {
     public:
         void start_render_thread();
-        void join_with_render_thread();
+        void join_render_thread();
         bool is_running() const noexcept;
         void set_window_title(std::string_view title);
         void set_render_settings(Render_settings settings) noexcept;

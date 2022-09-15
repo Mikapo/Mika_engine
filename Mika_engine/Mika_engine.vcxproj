@@ -275,6 +275,7 @@
     <ClInclude Include="Engine\Utility\Delegate.h" />
     <ClInclude Include="Engine\Datatypes\Frame_data.h" />
     <ClInclude Include="Engine\Datatypes\Transform.h" />
+    <ClInclude Include="Engine\Utility\Flags.h" />
     <ClInclude Include="Engine\Utility\Macros\Generated_body.h" />
     <ClInclude Include="Engine\Utility\Macros\Helper_macros.h" />
     <ClInclude Include="Engine\Utility\Thread_safe_deque.h" />

@@ -45,7 +45,7 @@ namespace Mika_engine
 
     void Debug_logger::write_to_log_file() const
     {
-        LOG(notification, engine, "Writing to log file");
+        DEBUG_LOG(notification, engine, "Writing to log file");
 
         std::ofstream log_file("Log.txt");
 
@@ -55,24 +55,15 @@ namespace Mika_engine
             log_file.close();
         }
         else
-            LOG(error, engine, "Failed to open log file");
+            DEBUG_LOG(error, engine, "Failed to open log file");
     }
 
     bool Debug_logger::is_log_alloved(Log_severity severity, Log_type type)
     {
-        const auto is_severity_enabled = m_enabled_severities.find(severity);
-        const auto is_type_enabled = m_enabled_types.find(type);
-
-        if (is_severity_enabled == m_enabled_severities.end())
-            m_enabled_severities.emplace(severity, true);
-        else if (!is_severity_enabled->second)
+        if (m_disabled_severities.has_flag(severity))
             return false;
 
-        if (is_type_enabled == m_enabled_types.end())
-            m_enabled_types.emplace(type, true);
-        else if (!is_type_enabled->second)
+        if (m_disabled_types.has_flag(type))
             return false;
-
-        return true;
     }
 } // namespace Mika_engine
