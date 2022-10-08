@@ -2,7 +2,7 @@
 #include "OpenGL/Model_loader.h"
 #include "OpenGL/Texture/Textures.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     OpenGL::Buffers* OpenGL_buffers::get_object_buffers(const std::string& path)
     {
@@ -56,4 +56,4 @@ namespace Mika_engine
         Buffer_future new_buffers = std::async(std::launch::async, OpenGL::Model_loader::load, path, 0);
         m_future_object_buffers.emplace(path, std::move(new_buffers));
     }
-} // namespace Mika_engine
+} // namespace MEngine

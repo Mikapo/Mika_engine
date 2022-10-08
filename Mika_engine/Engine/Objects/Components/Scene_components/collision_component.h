@@ -7,7 +7,7 @@
 #include <memory>
 #include <optional>
 
-namespace Mika_engine
+namespace MEngine
 {
     enum class Collider_type : uint8_t
     {
@@ -35,4 +35,4 @@ namespace Mika_engine
         std::shared_ptr<Collider> m_collider = nullptr;
         Collision_result m_previous_collision;
     };
-} // namespace Mika_engine
+} // namespace MEngine

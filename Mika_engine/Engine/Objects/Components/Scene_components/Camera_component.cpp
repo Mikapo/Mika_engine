@@ -4,7 +4,7 @@
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
 
-namespace Mika_engine
+namespace MEngine
 {
     float Camera_component::get_min_clip() const noexcept
     {
@@ -41,4 +41,4 @@ namespace Mika_engine
         return {get_world_transform(), m_min_clip, m_max_clip, m_fov};
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

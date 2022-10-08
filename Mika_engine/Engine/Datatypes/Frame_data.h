@@ -7,7 +7,7 @@
 #include "glm/vec4.hpp"
 #include <memory>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Light_data
     {
@@ -41,4 +41,4 @@ namespace Mika_engine
         Camera_data m_camera;
         std::vector<Transform> m_box_collisions;
     };
-} // namespace Mika_engine
+} // namespace MEngine

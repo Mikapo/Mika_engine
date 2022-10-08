@@ -10,7 +10,7 @@ namespace OpenGL
     class Shader;
 }
 
-namespace Mika_engine
+namespace MEngine
 {
     using Texture_slot = OpenGL::Texture_slot;
 
@@ -35,4 +35,4 @@ namespace Mika_engine
     private:
         std::unordered_map<Texture_slot, Texture_data> m_textures;
     };
-} // namespace Mika_engine
+} // namespace MEngine

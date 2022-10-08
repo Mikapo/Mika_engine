@@ -7,7 +7,7 @@
 #include "Objects/UI/UI.h"
 #include "Utility/Collisions/Line.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void World::update(float deltatime)
     {
@@ -184,4 +184,4 @@ namespace Mika_engine
         return m_viewport;
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

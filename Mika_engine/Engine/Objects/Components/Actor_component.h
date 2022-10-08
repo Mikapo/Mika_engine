@@ -3,7 +3,7 @@
 #include "../Object.h"
 #include "Datatypes/Transform.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     class Actor;
     class World;
@@ -21,4 +21,4 @@ namespace Mika_engine
         World* m_owning_world = nullptr;
         Actor* m_owning_actor = nullptr;
     };
-} // namespace Mika_engine
+} // namespace MEngine

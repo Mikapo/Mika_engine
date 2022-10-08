@@ -4,7 +4,7 @@
 #include "Datatypes/Transform.h"
 #include <array>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Oriented_bounding_box : public Collider
     {
@@ -26,4 +26,4 @@ namespace Mika_engine
         const static std::array<glm::vec3, 8> m_box_vertices;
         Transform m_transform;
     };
-} // namespace Mika_engine
+} // namespace MEngine

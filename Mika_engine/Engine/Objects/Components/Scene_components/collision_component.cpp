@@ -3,7 +3,7 @@
 #include "Utility/Collisions/Colliders/Oriented_bounding_box.h"
 #include "Utility/Collisions/Colliders/Sphere.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     Collision_component::Collision_component() noexcept
     {
@@ -66,4 +66,4 @@ namespace Mika_engine
         get_world()->update_collisions(m_collider, this);
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

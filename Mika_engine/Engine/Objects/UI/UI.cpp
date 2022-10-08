@@ -2,7 +2,7 @@
 
 #include "Objects/World.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void UI::update(float deltatime)
     {
@@ -57,4 +57,4 @@ namespace Mika_engine
             world->add_UI_to_viewport(this);
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

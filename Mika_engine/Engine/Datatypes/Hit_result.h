@@ -2,7 +2,7 @@
 
 #include "glm/vec3.hpp"
 
-namespace Mika_engine
+namespace MEngine
 {
     class Collision_component;
     struct Hit_result
@@ -12,4 +12,4 @@ namespace Mika_engine
         float m_lenght = 0.0f;
         Collision_component* m_component;
     };
-} // namespace Mika_engine
+} // namespace MEngine

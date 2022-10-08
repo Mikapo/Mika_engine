@@ -2,7 +2,7 @@
 
 #include "UI_parent.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     class Collapsing_header : public UI_parent
     {
@@ -11,4 +11,4 @@ namespace Mika_engine
     public:
         void draw() override;
     };
-} // namespace Mika_engine
+} // namespace MEngine

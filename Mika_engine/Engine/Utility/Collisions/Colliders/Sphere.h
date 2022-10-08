@@ -2,7 +2,7 @@
 
 #include "Collider.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     class Sphere : public Collider
     {
@@ -17,4 +17,4 @@ namespace Mika_engine
     private:
         float m_radius = 0.0f;
     };
-} // namespace Mika_engine
+} // namespace MEngine

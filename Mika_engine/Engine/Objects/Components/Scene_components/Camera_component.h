@@ -4,7 +4,7 @@
 
 #include "Datatypes/Frame_data.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     class Camera_component : public Scene_component
     {
@@ -24,4 +24,4 @@ namespace Mika_engine
         float m_max_clip = 100.0f;
         float m_fov = 50.0f;
     };
-} // namespace Mika_engine
+} // namespace MEngine

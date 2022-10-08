@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <vector>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Object;
     class Garbage_collector
@@ -27,4 +27,4 @@ namespace Mika_engine
         Object* m_root = nullptr;
     };
 
-} // namespace Mika_engine
+} // namespace MEngine

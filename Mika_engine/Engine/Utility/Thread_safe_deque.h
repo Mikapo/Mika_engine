@@ -3,7 +3,7 @@
 #include <deque>
 #include <mutex>
 
-namespace Mika_engine
+namespace MEngine
 {
     template <typename T>
     class Thread_safe_deque
@@ -88,4 +88,4 @@ namespace Mika_engine
         std::mutex m_mutex;
         std::deque<T> m_queue;
     };
-} // namespace Mika_engine
+} // namespace MEngine

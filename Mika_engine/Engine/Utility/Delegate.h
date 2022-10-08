@@ -6,7 +6,7 @@
 #include <type_traits>
 #include <unordered_map>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Object;
     class Engine;
@@ -86,4 +86,4 @@ namespace Mika_engine
     private:
         std::unordered_map<void*, Callback_interface_ptr> m_callbacks;
     };
-} // namespace Mika_engine
+} // namespace MEngine

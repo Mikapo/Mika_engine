@@ -3,7 +3,7 @@
 #include "Utility/Collisions/Collision_algorithms.h"
 #include <stdexcept>
 
-namespace Mika_engine
+namespace MEngine
 {
     float Sphere::get_radius() const noexcept
     {
@@ -42,4 +42,4 @@ namespace Mika_engine
         return Collision_algorithms::sphere_and_sphere(collider, *this);
     }
 
-}
+} // namespace MEngine

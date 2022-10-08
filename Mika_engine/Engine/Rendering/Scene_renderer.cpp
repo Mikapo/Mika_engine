@@ -6,7 +6,7 @@
 #include "gsl/gsl"
 #include <glm/ext/matrix_transform.hpp>
 
-namespace Mika_engine
+namespace MEngine
 {
     void Scene_renderer::initialize()
     {
@@ -195,4 +195,4 @@ namespace Mika_engine
         m_window_width = width;
         m_window_height = height;
     }
-} // namespace Mika_engine
+} // namespace MEngine

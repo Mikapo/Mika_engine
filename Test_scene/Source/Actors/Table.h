@@ -2,11 +2,10 @@
 
 #include "Objects/Actor.h"
 
-class Table : public Mika_engine::Actor
+class Table : public MEngine::Actor
 {
     GENERATED_BODY(Table)
 
 public:
-	void initialize() override;
+    void initialize() override;
 };
-

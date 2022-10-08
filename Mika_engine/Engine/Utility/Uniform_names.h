@@ -2,7 +2,7 @@
 
 #define UNIFORM_TYPE constexpr const char*
 
-namespace Mika_engine::Uniform_names
+namespace MEngine::Uniform_names
 {
     UNIFORM_TYPE model = "u_model";
     UNIFORM_TYPE view = "u_view";
@@ -26,6 +26,6 @@ namespace Mika_engine::Uniform_names
     UNIFORM_TYPE texture_enabled = "u_texture_enabled";
     UNIFORM_TYPE shadow_map = "u_shadow_map";
     UNIFORM_TYPE shadow_enabled = "u_shadow_enabled";
-}
+} // namespace MEngine::Uniform_names
 
 #undef UNIFORM_TYPE

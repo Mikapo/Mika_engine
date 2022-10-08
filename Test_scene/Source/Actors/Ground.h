@@ -2,11 +2,10 @@
 
 #include "Objects/Actor.h"
 
-class Ground : public Mika_engine::Actor
+class Ground : public MEngine::Actor
 {
     GENERATED_BODY(Ground)
 
 public:
-	void initialize() override;
+    void initialize() override;
 };
-

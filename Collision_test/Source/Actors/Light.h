@@ -2,7 +2,7 @@
 
 #include "Objects/Actor.h"
 
-class Light : public Mika_engine::Actor
+class Light : public MEngine::Actor
 {
     GENERATED_BODY(Light)
 

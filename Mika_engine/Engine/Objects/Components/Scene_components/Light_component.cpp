@@ -2,7 +2,7 @@
 
 #include "Objects/World.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void Light_component::initialize()
     {
@@ -23,4 +23,4 @@ namespace Mika_engine
         data.m_light_transform = get_world_transform();
         return data;
     }
-} // namespace Mika_engine
+} // namespace MEngine

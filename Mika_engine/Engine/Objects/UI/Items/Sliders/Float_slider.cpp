@@ -1,6 +1,6 @@
 #include "Float_slider.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     Float_slider::Float_slider() noexcept
     {
@@ -11,4 +11,4 @@ namespace Mika_engine
     {
         ImGui::SliderFloat(get_name().data(), &m_current_value, m_min, m_max, m_format.c_str());
     }
-} // namespace Mika_engine
+} // namespace MEngine

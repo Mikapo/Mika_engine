@@ -4,7 +4,7 @@
 
 struct GLFWwindow;
 
-namespace Mika_engine
+namespace MEngine
 {
     class Engine;
     class UI;
@@ -19,6 +19,4 @@ namespace Mika_engine
         Engine* m_engine = nullptr;
         bool m_has_been_initialized = false;
     };
-}
-
-
+} // namespace MEngine

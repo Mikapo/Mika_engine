@@ -8,7 +8,7 @@
 #include <chrono>
 #include <thread>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Mesh_data;
     class Light_data;
@@ -51,4 +51,4 @@ namespace Mika_engine
         std::vector<Input> m_inputs;
     };
 
-} // namespace Mika_engine
+} // namespace MEngine

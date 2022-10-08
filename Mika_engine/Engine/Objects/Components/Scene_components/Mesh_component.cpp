@@ -2,7 +2,7 @@
 #include "Objects/Actor.h"
 #include "Objects/World.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     Mesh_component::Mesh_component() noexcept : m_mesh("")
     {
@@ -35,4 +35,4 @@ namespace Mika_engine
         Mesh_data mesh_data = {get_world_transform(), m_mesh, m_material};
         return mesh_data;
     }
-} // namespace Mika_engine
+} // namespace MEngine

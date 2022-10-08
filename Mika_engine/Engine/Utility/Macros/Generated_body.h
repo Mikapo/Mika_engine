@@ -21,12 +21,12 @@ public:                                                                         
         return #CLASS_NAME;                                                                                            \
     }                                                                                                                  \
                                                                                                                        \
-    static Mika_engine::Class_obj* static_class()                                                                      \
+    static MEngine::Class_obj* static_class()                                                                          \
     {                                                                                                                  \
-        return Mika_engine::Class::get<CLASS_NAME>();                                                                  \
+        return MEngine::Class::get<CLASS_NAME>();                                                                      \
     }                                                                                                                  \
                                                                                                                        \
-    VIRTUAL_IF_NOT(FIRST_ONE) Mika_engine::Class_obj* get_class() OVERRIDE_IF(FIRST_ONE)                               \
+    VIRTUAL_IF_NOT(FIRST_ONE) MEngine::Class_obj* get_class() OVERRIDE_IF(FIRST_ONE)                                   \
     {                                                                                                                  \
         return CLASS_NAME::static_class();                                                                             \
     }                                                                                                                  \

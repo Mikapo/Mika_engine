@@ -3,7 +3,7 @@
 #include "UI_item.h"
 #include "Utility/Delegate.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     class Checkbox : public UI_item
     {
@@ -20,4 +20,4 @@ namespace Mika_engine
         bool m_is_checked = false;
         bool m_was_checked_in_last_check = false;
     };
-} // namespace Mika_engine
+} // namespace MEngine

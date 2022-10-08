@@ -11,7 +11,7 @@
 #include <utility>
 #include <vector>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Asset_manager;
     class Engine;
@@ -99,4 +99,4 @@ namespace Mika_engine
         std::chrono::steady_clock::time_point m_time_since_lifetime_has_been_set;
         float m_lifetime = 0.0f;
     };
-} // namespace Mika_engine
+} // namespace MEngine

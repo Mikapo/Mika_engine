@@ -6,7 +6,7 @@
 #include <string_view>
 #include <unordered_map>
 
-namespace Mika_engine
+namespace MEngine
 {
     class OpenGL_buffers
     {
@@ -24,4 +24,4 @@ namespace Mika_engine
         std::unordered_map<std::string, Buffer_future> m_future_object_buffers;
         std::unordered_map<std::string, std::unique_ptr<OpenGL::Texture>> m_textures;
     };
-} // namespace Mika_engine
+} // namespace MEngine

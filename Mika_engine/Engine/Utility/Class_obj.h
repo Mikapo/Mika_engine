@@ -5,7 +5,7 @@
 #include <string_view>
 #include <unordered_map>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Engine;
     class Object;
@@ -75,4 +75,4 @@ namespace Mika_engine
         static std::unordered_map<std::string_view, std::unique_ptr<Class_obj>> m_classes;
     };
 
-}
+} // namespace MEngine

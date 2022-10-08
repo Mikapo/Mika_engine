@@ -8,38 +8,35 @@
 #include "Objects/World.h"
 #include "Utility/Delegate.h"
 
-using namespace Mika_engine;
-
 void Player::initialize()
 {
     Actor::initialize();
 
-    auto* camera = create_component_cast<Camera_component>(Camera_component::static_class());
+    auto* camera = create_component_cast<MEngine::Camera_component>(MEngine::Camera_component::static_class());
     set_active_camera(camera);
     setup_input();
 
-    auto* collision =
-        create_component_cast<Mika_engine::Collision_component>(Mika_engine::Collision_component::static_class());
+    auto* collision = create_component_cast<MEngine::Collision_component>(MEngine::Collision_component::static_class());
     collision->set_relative_scale({0.1f, 0.1f, 0.1f});
 }
 
 void Player::setup_input()
 {
-    auto* input = create_component_cast<Input_component>(Input_component::static_class());
+    auto* input = create_component_cast<MEngine::Input_component>(MEngine::Input_component::static_class());
 
     auto* forward_mapping = input->add_axis_mapping<Player>("move_forward", this, &Player::move_forward);
-    forward_mapping->add_key(Input_key::W, 1.0f);
-    forward_mapping->add_key(Input_key::S, -1.0f);
+    forward_mapping->add_key(MEngine::Input_key::W, 1.0f);
+    forward_mapping->add_key(MEngine::Input_key::S, -1.0f);
 
     auto* right_mapping = input->add_axis_mapping<Player>("move_right", this, &Player::move_right);
-    right_mapping->add_key(Input_key::A, -1.0f);
-    right_mapping->add_key(Input_key::D, 1.0f);
+    right_mapping->add_key(MEngine::Input_key::A, -1.0f);
+    right_mapping->add_key(MEngine::Input_key::D, 1.0f);
 
     auto* rotate_mapping = input->add_axis_mapping<Player>("rotate", this, &Player::rotate);
-    rotate_mapping->add_key(Input_key::Q, -1.0f);
-    rotate_mapping->add_key(Input_key::E, 1.0f);
+    rotate_mapping->add_key(MEngine::Input_key::Q, -1.0f);
+    rotate_mapping->add_key(MEngine::Input_key::E, 1.0f);
 
-    input->add_action_mapping("shoot", Input_key::F, Input_action::press, this, &Player::shoot);
+    input->add_action_mapping("shoot", MEngine::Input_key::F, MEngine::Input_action::press, this, &Player::shoot);
 }
 
 void Player::move_forward(float input)
@@ -65,7 +62,7 @@ void Player::rotate(float input)
     if (input == 0)
         return;
 
-    Rotator offset = {0.0f, 25.0f, 0.0f};
+    MEngine::Rotator offset = {0.0f, 25.0f, 0.0f};
     offset = offset * input * get_engine()->get_deltatime();
     add_rotation_offset(offset, true);
 }

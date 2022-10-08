@@ -1,6 +1,6 @@
 #include "Color_picker.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void Color_picker::draw()
     {
@@ -21,4 +21,4 @@ namespace Mika_engine
     {
         m_flags |= flag;
     }
-} // namespace Mika_engine
+} // namespace MEngine

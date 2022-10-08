@@ -1,6 +1,6 @@
 #include "Transform.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     Rotator Rotator::operator-(const Rotator& other) const noexcept
     {
@@ -67,4 +67,4 @@ namespace Mika_engine
         return m_rotation.calculate_rotation_matrix();
     }
 
-}
+} // namespace MEngine

@@ -1,6 +1,6 @@
 #include "Material.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void Material::add_texture(const std::string& texture_location, Texture_slot slot)
     {
@@ -17,4 +17,4 @@ namespace Mika_engine
         return m_textures;
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

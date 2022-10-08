@@ -2,7 +2,7 @@
 #include "Utility/Collisions/Collision_algorithms.h"
 #include <stdexcept>
 
-namespace Mika_engine
+namespace MEngine
 {
     const std::array<glm::vec3, 8> Oriented_bounding_box::m_box_vertices = {
         glm::vec3(1.0f, 1.0f, 1.0f),    glm::vec3(1.0f, -1.0f, 1.0f), glm::vec3(-1.0f, -1.0f, 1.0f),
@@ -72,4 +72,4 @@ namespace Mika_engine
         return m_transform;
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

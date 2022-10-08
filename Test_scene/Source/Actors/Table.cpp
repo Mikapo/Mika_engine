@@ -2,16 +2,14 @@
 #include "Assets/Material.h"
 #include "Objects/Components/Scene_components/Mesh_component.h"
 
-using namespace Mika_engine;
-
 void Table::initialize()
 {
     Actor::initialize();
 
-    auto* mesh_component = create_component_cast<Mesh_component>(Mesh_component::static_class());
+    auto* mesh_component = create_component_cast<MEngine::Mesh_component>(MEngine::Mesh_component::static_class());
     mesh_component->set_mesh("Models/round_wooden_table.obj");
 
-    Material material;
+    MEngine::Material material;
     material.add_texture("Textures/round_wooden_table.jpg");
     mesh_component->set_material(material);
 

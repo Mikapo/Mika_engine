@@ -1,6 +1,6 @@
 #include "Checkbox.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void Checkbox::draw()
     {
@@ -20,4 +20,4 @@ namespace Mika_engine
     {
         m_is_checked = checked;
     }
-} // namespace Mika_engine
+} // namespace MEngine

@@ -6,7 +6,7 @@
 #include "Utility/Collisions/Collision_handler.h"
 #include <unordered_set>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Mesh_component;
     class Light_component;
@@ -64,4 +64,4 @@ namespace Mika_engine
         Actor* m_player = nullptr;
         Collision_handler m_collision_handler;
     };
-} // namespace Mika_engine
+} // namespace MEngine

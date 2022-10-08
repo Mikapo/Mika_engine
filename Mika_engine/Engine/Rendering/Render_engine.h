@@ -9,7 +9,7 @@
 #include <string_view>
 #include <thread>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Render_engine
     {
@@ -49,4 +49,4 @@ namespace Mika_engine
 
         Thread_safe_deque<Input> m_inputs;
     };
-} // namespace Mika_engine
+} // namespace MEngine

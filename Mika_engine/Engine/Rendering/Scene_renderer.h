@@ -8,7 +8,7 @@
 #include <memory>
 #include <queue>
 
-namespace Mika_engine
+namespace MEngine
 {
     struct Render_settings
     {
@@ -51,4 +51,4 @@ namespace Mika_engine
         Render_settings m_render_settings;
     };
 
-} // namespace Mika_engine
+} // namespace MEngine

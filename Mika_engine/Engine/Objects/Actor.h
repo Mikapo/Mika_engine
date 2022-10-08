@@ -8,7 +8,7 @@
 #include "Utility/Delegate.h"
 #include <unordered_set>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Collision_component;
     class Camera_component;
@@ -78,4 +78,4 @@ namespace Mika_engine
         Transform m_transform;
         Directional_vectors m_directional_vectors;
     };
-} // namespace Mika_engine
+} // namespace MEngine

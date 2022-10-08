@@ -5,7 +5,7 @@
 #include "Debug/Debug_logger.h"
 #include "Line.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     std::optional<Collision_result> Collision_algorithms::obb_and_obb(
         const Oriented_bounding_box& a, const Oriented_bounding_box& b)
@@ -167,4 +167,4 @@ namespace Mika_engine
         return glm::dot(point, axis);
     }
 
-}
+} // namespace MEngine

@@ -4,7 +4,7 @@
 #include "Utility/Delegate.h"
 #include <string>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Slider : public UI_item
     {
@@ -27,4 +27,4 @@ namespace Mika_engine
     private:
         float m_last_checked_value = 0.0f;
     };
-} // namespace Mika_engine
+} // namespace MEngine

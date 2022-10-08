@@ -1,10 +1,10 @@
 #pragma once
 
-#include "glm/vec3.hpp"
-#include "Datatypes/Axis_comparison_result.h"
 #include "Datatypes/Axis.h"
+#include "Datatypes/Axis_comparison_result.h"
+#include "glm/vec3.hpp"
 
-namespace Mika_engine
+namespace MEngine
 {
     struct Line
     {
@@ -15,5 +15,4 @@ namespace Mika_engine
         float get_lenght() const;
         Axis_comparison_result compare_to_axis(glm::vec3 axis_origin, Axis axis) const;
     };
-}
-
+} // namespace MEngine

@@ -7,7 +7,7 @@
 #include <optional>
 #include <string_view>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Mesh_component : public Scene_component
     {
@@ -27,4 +27,4 @@ namespace Mika_engine
         Mesh m_mesh;
         Material m_material;
     };
-} // namespace Mika_engine
+} // namespace MEngine

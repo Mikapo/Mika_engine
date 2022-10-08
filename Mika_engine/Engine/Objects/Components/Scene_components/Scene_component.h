@@ -3,7 +3,7 @@
 #include "../Actor_component.h"
 #include "Datatypes/Transform.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     class Scene_component : public Actor_component
     {
@@ -32,4 +32,4 @@ namespace Mika_engine
         Transform m_world_transform;
         Directional_vectors m_local_directional_vectors;
     };
-} // namespace Mika_engine
+} // namespace MEngine

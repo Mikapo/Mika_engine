@@ -2,7 +2,7 @@
 #include "glm/geometric.hpp"
 #include <stdexcept>
 
-namespace Mika_engine
+namespace MEngine
 {
     glm::vec3 Line::get_direction() const
     {
@@ -43,5 +43,4 @@ namespace Mika_engine
             throw std::invalid_argument("invalid enum");
         }
     }
-}
-
+} // namespace MEngine

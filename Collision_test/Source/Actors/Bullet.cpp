@@ -1,21 +1,17 @@
 #include "Bullet.h"
-
 #include "Objects/Components/Scene_components/Collision_component.h"
 #include "Objects/Components/Scene_components/Mesh_component.h"
 #include "Objects/World.h"
-
-using namespace Mika_engine;
 
 void Bullet::initialize()
 {
     Actor::initialize();
 
-    auto* mesh_component = create_component_cast<Mesh_component>(Mesh_component::static_class());
+    auto* mesh_component = create_component_cast<MEngine::Mesh_component>(MEngine::Mesh_component::static_class());
     mesh_component->set_mesh("Engine/Engine_models/Sphere.obj");
 
-    m_collision =
-        create_component_cast<Mika_engine::Collision_component>(Mika_engine::Collision_component::static_class());
-    m_collision->set_collider_type(Collider_type::sphere);
+    m_collision = create_component_cast<MEngine::Collision_component>(MEngine::Collision_component::static_class());
+    m_collision->set_collider_type(MEngine::Collider_type::sphere);
     set_scale({0.05f, 0.05f, 0.05f});
 
     m_on_collision_detected.add_object(this, &Bullet::on_collision);
@@ -32,7 +28,7 @@ void Bullet::update(float deltatime)
     add_world_offset(m_velocity * deltatime, true);
 }
 
-void Bullet::on_collision(Collision_result collision)
+void Bullet::on_collision(MEngine::Collision_result collision)
 {
     glm::vec3 start = get_location();
     glm::vec3 end = collision.m_other_component->get_world_transform().m_location;

@@ -1,6 +1,6 @@
 #include "Actor_component.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void Actor_component::set_owner(Actor* owner) noexcept
     {
@@ -21,4 +21,4 @@ namespace Mika_engine
     {
         return m_owning_world;
     }
-} // namespace Mika_engine
+} // namespace MEngine

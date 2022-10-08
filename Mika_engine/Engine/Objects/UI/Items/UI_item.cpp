@@ -1,6 +1,6 @@
 #include "UI_item.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void UI_item::set_name(const std::string& name)
     {
@@ -11,5 +11,4 @@ namespace Mika_engine
     {
         return m_name;
     }
-}
-
+} // namespace MEngine

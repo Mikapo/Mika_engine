@@ -1,6 +1,6 @@
 #include "UI_parent.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     UI_item* UI_parent::create_children(Class_obj* class_obj, std::string_view name, int32_t position)
     {
@@ -48,4 +48,4 @@ namespace Mika_engine
                 wrapper.m_item->draw();
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

@@ -2,7 +2,7 @@
 #include "Core/Engine.h"
 #include <string>
 
-namespace Mika_engine
+namespace MEngine
 {
     void Object::destruct() noexcept
     {
@@ -94,4 +94,4 @@ namespace Mika_engine
         return get_engine()->get_amount_of_registered_objects();
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

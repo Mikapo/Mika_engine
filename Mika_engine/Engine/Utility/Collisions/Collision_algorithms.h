@@ -9,7 +9,7 @@
 #include <limits>
 #include <optional>
 
-namespace Mika_engine
+namespace MEngine
 {
     struct Line;
     class Oriented_bounding_box;
@@ -78,4 +78,4 @@ namespace Mika_engine
         static float project_point_to_axis(glm::vec3 point, glm::vec3 axis);
     };
 
-} // namespace Mika_engine
+} // namespace MEngine

@@ -6,7 +6,7 @@
 #include "glm/ext/matrix_transform.hpp"
 #include <glm/vec3.hpp>
 
-namespace Mika_engine
+namespace MEngine
 {
     struct Directional_vectors
     {
@@ -58,4 +58,4 @@ namespace Mika_engine
         glm::mat4 calculate_scale_matrix() const;
         glm::mat4 calculate_rotation_matrix() const;
     };
-} // namespace Mika_engine
+} // namespace MEngine

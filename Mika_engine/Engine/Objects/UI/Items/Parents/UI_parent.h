@@ -3,7 +3,7 @@
 #include "../UI_item.h"
 #include <set>
 
-namespace Mika_engine
+namespace MEngine
 {
     struct UI_wrapper
     {
@@ -38,4 +38,4 @@ namespace Mika_engine
         std::set<UI_wrapper> m_children;
     };
 
-} // namespace Mika_engine
+} // namespace MEngine

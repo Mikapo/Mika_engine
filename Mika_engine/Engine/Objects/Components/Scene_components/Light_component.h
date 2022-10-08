@@ -3,7 +3,7 @@
 #include "Datatypes/Frame_data.h"
 #include "Scene_component.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     class Light_component : public Scene_component
     {
@@ -18,4 +18,4 @@ namespace Mika_engine
         glm::vec4 m_color = {1.0f, 1.0f, 1.0f, 1.0f};
     };
 
-} // namespace Mika_engine
+} // namespace MEngine

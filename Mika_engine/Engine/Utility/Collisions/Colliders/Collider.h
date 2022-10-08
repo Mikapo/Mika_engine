@@ -8,7 +8,7 @@
 #include "glm/vec3.hpp"
 #include <optional>
 
-namespace Mika_engine
+namespace MEngine
 {
     struct Line;
     class Sphere;
@@ -36,4 +36,4 @@ namespace Mika_engine
         glm::mat4 m_model = glm::mat4(1.0f);
     };
 
-} // namespace Mika_engine
+} // namespace MEngine

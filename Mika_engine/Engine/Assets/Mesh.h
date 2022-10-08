@@ -2,7 +2,7 @@
 
 #include <string_view>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Mesh
     {
@@ -20,4 +20,4 @@ namespace Mika_engine
     private:
         std::string m_mesh_location;
     };
-} // namespace Mika_engine
+} // namespace MEngine

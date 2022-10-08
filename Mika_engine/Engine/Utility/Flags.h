@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <type_traits>
 
-namespace Mika_engine
+namespace MEngine
 {
     template <typename T>
     concept Flag_concept = std::is_enum_v<T> && std::is_unsigned_v<std::underlying_type_t<T>>;
@@ -47,4 +47,4 @@ namespace Mika_engine
 
         Underlying m_flags = 0;
     };
-} // namespace Mika_engine
+} // namespace MEngine

@@ -5,7 +5,7 @@
 #include "ImGui/imgui_impl_opengl3.h"
 #include "Objects/UI/UI.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void UI_renderer::initialize(GLFWwindow* window, Engine* engine)
     {
@@ -45,4 +45,4 @@ namespace Mika_engine
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

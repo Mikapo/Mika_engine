@@ -1,6 +1,6 @@
 #include "Slider.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void Slider::update(float deltatime)
     {
@@ -30,4 +30,4 @@ namespace Mika_engine
     {
         m_current_value = value;
     }
-} // namespace Mika_engine
+} // namespace MEngine

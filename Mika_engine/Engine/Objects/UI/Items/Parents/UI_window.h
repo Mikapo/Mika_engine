@@ -2,7 +2,7 @@
 
 #include "UI_parent.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     class UI_window : public UI_parent
     {
@@ -16,6 +16,4 @@ namespace Mika_engine
         bool m_open = true;
         ImGuiWindowFlags m_flags = ImGuiWindowFlags_::ImGuiWindowFlags_None;
     };
-}
-
-
+} // namespace MEngine

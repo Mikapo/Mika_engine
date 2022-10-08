@@ -2,19 +2,18 @@
 
 #include "Objects/Actor.h"
 
-class Player : public Mika_engine::Actor
+class Player : public MEngine::Actor
 {
     GENERATED_BODY(Player)
 
 public:
-	void initialize() override;
+    void initialize() override;
 
 private:
-	void setup_input();
-	void move_forward(float input);
-	void move_right(float input);
-	void rotate(float input);
+    void setup_input();
+    void move_forward(float input);
+    void move_right(float input);
+    void rotate(float input);
 
-	float movement_speed = 2.0f;
+    float movement_speed = 2.0f;
 };
-

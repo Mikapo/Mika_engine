@@ -1,7 +1,7 @@
 #include "Render_engine.h"
 #include <stdexcept>
 
-namespace Mika_engine
+namespace MEngine
 {
     void Render_engine::start_render_thread()
     {
@@ -108,4 +108,4 @@ namespace Mika_engine
         while (!m_inputs.empty())
             m_on_input.broadcast(m_inputs.pop_front());
     }
-} // namespace Mika_engine
+} // namespace MEngine

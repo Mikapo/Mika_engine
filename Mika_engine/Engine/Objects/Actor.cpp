@@ -3,7 +3,7 @@
 #include "Components/Scene_components/Collision_component.h"
 #include "Core/Engine.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void Actor::initialize()
     {
@@ -206,4 +206,4 @@ namespace Mika_engine
     {
         m_directional_vectors = get_transform().m_rotation.calculate_directional_vectors_from_rotation();
     }
-} // namespace Mika_engine
+} // namespace MEngine

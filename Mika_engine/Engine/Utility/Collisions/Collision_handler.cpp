@@ -1,7 +1,7 @@
 #include "Collision_handler.h"
 #include <stdexcept>
 
-namespace Mika_engine
+namespace MEngine
 {
     void Collision_handler::unregister_component(const Collision_component* component) noexcept
     {
@@ -58,4 +58,4 @@ namespace Mika_engine
 
         return std::optional<Hit_result>();
     }
-} // namespace Mika_engine
+} // namespace MEngine

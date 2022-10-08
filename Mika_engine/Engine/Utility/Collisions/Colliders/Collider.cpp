@@ -3,7 +3,7 @@
 #include "Datatypes/Min_max.h"
 #include <stdexcept>
 
-namespace Mika_engine
+namespace MEngine
 {
     glm::vec3 Collider::get_origin() const noexcept
     {
@@ -51,4 +51,4 @@ namespace Mika_engine
         m_model = transform.calculate_model();
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

@@ -4,7 +4,7 @@
 #include "Objects/Object.h"
 #include <unordered_set>
 
-namespace Mika_engine
+namespace MEngine
 {
     class World;
     class UI_window;
@@ -25,4 +25,4 @@ namespace Mika_engine
     private:
         std::unordered_set<UI_window*> m_windows;
     };
-} // namespace Mika_engine
+} // namespace MEngine

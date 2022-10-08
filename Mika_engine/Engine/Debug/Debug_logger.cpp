@@ -5,7 +5,7 @@
 #include <ctime>
 #include <fstream>
 
-namespace Mika_engine
+namespace MEngine
 {
     std::string Debug_logger::get_time_string() const
     {
@@ -68,4 +68,4 @@ namespace Mika_engine
 
         return true;
     }
-} // namespace Mika_engine
+} // namespace MEngine

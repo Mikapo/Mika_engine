@@ -2,7 +2,7 @@
 
 #include "Objects/Actor.h"
 
-class Wooden_table : public Mika_engine::Actor
+class Wooden_table : public MEngine::Actor
 {
     GENERATED_BODY(Wooden_table)
 

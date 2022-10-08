@@ -2,7 +2,7 @@
 
 #include "Slider.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     class Angle_slider : public Slider
     {
@@ -13,4 +13,4 @@ namespace Mika_engine
 
         void draw() override;
     };
-} // namespace Mika_engine
+} // namespace MEngine

@@ -4,7 +4,7 @@
 #include "Objects/Object.h"
 #include <string>
 
-namespace Mika_engine
+namespace MEngine
 {
     class UI_item : public Object
     {
@@ -20,4 +20,4 @@ namespace Mika_engine
     private:
         std::string m_name = "default name";
     };
-} // namespace Mika_engine
+} // namespace MEngine

@@ -1,7 +1,7 @@
 #include "Garbage_collector.h"
 #include "Objects/Object.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     bool Garbage_collector::is_object_valid(const Object* obj) const
     {
@@ -95,4 +95,4 @@ namespace Mika_engine
                 ++it;
         }
     }
-} // namespace Mika_engine
+} // namespace MEngine

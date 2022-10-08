@@ -8,7 +8,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Collision_component;
     class Actor;
@@ -26,4 +26,4 @@ namespace Mika_engine
         std::unordered_map<Collision_component*, std::shared_ptr<Collider>> m_colliders;
     };
 
-}
+} // namespace MEngine

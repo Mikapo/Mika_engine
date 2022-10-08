@@ -4,7 +4,7 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/gtx/matrix_decompose.hpp>
 
-namespace Mika_engine
+namespace MEngine
 {
     void Scene_component::initialize()
     {
@@ -101,4 +101,4 @@ namespace Mika_engine
     {
         update_world_transform();
     }
-} // namespace Mika_engine
+} // namespace MEngine

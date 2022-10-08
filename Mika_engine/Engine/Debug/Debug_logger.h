@@ -10,7 +10,7 @@
 #include <string_view>
 #include <unordered_map>
 
-namespace Mika_engine
+namespace MEngine
 {
     DECLARE_ENUM(Log_severity, uint8_t, error, warning, notification)
     DECLARE_ENUM(Log_type, uint8_t, objects, render, opengl, application, engine, garbage_collector, other)
@@ -42,4 +42,4 @@ namespace Mika_engine
 #else
 #define DEBUG_LOG(...)
 #endif
-} // namespace Mika_engine
+} // namespace MEngine

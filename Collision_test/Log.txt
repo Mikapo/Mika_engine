@@ -1,30 +1,227 @@
-[16:06:10] notification engine: Mika engine starting 
-[16:06:10] notification objects: Created object with name Collision_test_world 
-[16:06:10] notification objects: Created object with name Player 
-[16:06:10] notification objects: Created object with name Camera_component 
-[16:06:10] notification objects: Created object with name Input_component 
-[16:06:10] notification objects: Created object with name Collision_component 
-[16:06:10] notification objects: Created object with name Light 
-[16:06:10] notification objects: Created object with name Light_component 
-[16:06:10] notification objects: Created object with name Cube 
-[16:06:10] notification objects: Created object with name Mesh_component 
-[16:06:10] notification objects: Created object with name Collision_component 
-[16:06:21] notification engine: Staring cleanup 
-[16:06:21] notification objects: Light is going to be destroyed 
-[16:06:21] notification objects: Light_component is going to be destroyed 
-[16:06:21] notification objects: Collision_test_world is going to be destroyed 
-[16:06:21] notification objects: Player is going to be destroyed 
-[16:06:21] notification objects: Input_component is going to be destroyed 
-[16:06:21] notification objects: Camera_component is going to be destroyed 
-[16:06:21] notification objects: Collision_component is going to be destroyed 
-[16:06:21] notification objects: Input_component is going to be destroyed 
-[16:06:21] notification objects: Camera_component is going to be destroyed 
-[16:06:21] notification objects: Collision_component is going to be destroyed 
-[16:06:21] notification objects: Light_component is going to be destroyed 
-[16:06:21] notification objects: Cube is going to be destroyed 
-[16:06:21] notification objects: Mesh_component is going to be destroyed 
-[16:06:21] notification objects: Collision_component is going to be destroyed 
-[16:06:21] notification objects: Mesh_component is going to be destroyed 
-[16:06:21] notification objects: Collision_component is going to be destroyed 
-[16:06:21] notification engine: Exiting mika engine 
-[16:06:21] notification engine: Writing to log file 
+[16:43:53] notification engine: Mika engine starting 
+[16:43:53] notification objects: Created object with name Collision_test_world 
+[16:43:53] notification objects: Created object with name Player 
+[16:43:53] notification objects: Created object with name Camera_component 
+[16:43:53] notification objects: Created object with name Input_component 
+[16:43:53] notification objects: Created object with name Collision_component 
+[16:43:53] notification objects: Created object with name Light 
+[16:43:53] notification objects: Created object with name Light_component 
+[16:43:53] notification objects: Created object with name Cube 
+[16:43:53] notification objects: Created object with name Mesh_component 
+[16:43:53] notification objects: Created object with name Collision_component 
+[16:44:01] notification objects: Created object with name Bullet 
+[16:44:01] notification objects: Created object with name Mesh_component 
+[16:44:01] notification objects: Created object with name Collision_component 
+[16:44:02] notification objects: Created object with name Bullet 
+[16:44:02] notification objects: Created object with name Mesh_component 
+[16:44:02] notification objects: Created object with name Collision_component 
+[16:44:02] notification objects: Created object with name Bullet 
+[16:44:02] notification objects: Created object with name Mesh_component 
+[16:44:02] notification objects: Created object with name Collision_component 
+[16:44:02] notification objects: Created object with name Bullet 
+[16:44:02] notification objects: Created object with name Mesh_component 
+[16:44:02] notification objects: Created object with name Collision_component 
+[16:44:03] notification objects: Created object with name Bullet 
+[16:44:03] notification objects: Created object with name Mesh_component 
+[16:44:03] notification objects: Created object with name Collision_component 
+[16:44:03] notification objects: Created object with name Bullet 
+[16:44:03] notification objects: Created object with name Mesh_component 
+[16:44:03] notification objects: Created object with name Collision_component 
+[16:44:03] notification objects: Created object with name Bullet 
+[16:44:03] notification objects: Created object with name Mesh_component 
+[16:44:03] notification objects: Created object with name Collision_component 
+[16:44:03] notification objects: Created object with name Bullet 
+[16:44:03] notification objects: Created object with name Mesh_component 
+[16:44:03] notification objects: Created object with name Collision_component 
+[16:44:04] notification objects: Created object with name Bullet 
+[16:44:04] notification objects: Created object with name Mesh_component 
+[16:44:04] notification objects: Created object with name Collision_component 
+[16:44:04] notification objects: Created object with name Bullet 
+[16:44:04] notification objects: Created object with name Mesh_component 
+[16:44:04] notification objects: Created object with name Collision_component 
+[16:44:04] notification objects: Created object with name Bullet 
+[16:44:04] notification objects: Created object with name Mesh_component 
+[16:44:04] notification objects: Created object with name Collision_component 
+[16:44:04] notification objects: Created object with name Bullet 
+[16:44:04] notification objects: Created object with name Mesh_component 
+[16:44:04] notification objects: Created object with name Collision_component 
+[16:44:05] notification objects: Created object with name Bullet 
+[16:44:05] notification objects: Created object with name Mesh_component 
+[16:44:05] notification objects: Created object with name Collision_component 
+[16:44:05] notification objects: Created object with name Bullet 
+[16:44:05] notification objects: Created object with name Mesh_component 
+[16:44:05] notification objects: Created object with name Collision_component 
+[16:44:06] notification objects: Created object with name Bullet 
+[16:44:06] notification objects: Created object with name Mesh_component 
+[16:44:06] notification objects: Created object with name Collision_component 
+[16:44:06] notification objects: Created object with name Bullet 
+[16:44:06] notification objects: Created object with name Mesh_component 
+[16:44:06] notification objects: Created object with name Collision_component 
+[16:44:06] notification objects: Created object with name Bullet 
+[16:44:06] notification objects: Created object with name Mesh_component 
+[16:44:06] notification objects: Created object with name Collision_component 
+[16:44:07] notification objects: Created object with name Bullet 
+[16:44:07] notification objects: Created object with name Mesh_component 
+[16:44:07] notification objects: Created object with name Collision_component 
+[16:44:07] notification objects: Created object with name Bullet 
+[16:44:07] notification objects: Created object with name Mesh_component 
+[16:44:07] notification objects: Created object with name Collision_component 
+[16:44:07] notification objects: Created object with name Bullet 
+[16:44:07] notification objects: Created object with name Mesh_component 
+[16:44:07] notification objects: Created object with name Collision_component 
+[16:44:07] notification objects: Created object with name Bullet 
+[16:44:07] notification objects: Created object with name Mesh_component 
+[16:44:07] notification objects: Created object with name Collision_component 
+[16:44:07] notification objects: Created object with name Bullet 
+[16:44:07] notification objects: Created object with name Mesh_component 
+[16:44:07] notification objects: Created object with name Collision_component 
+[16:44:07] notification objects: Created object with name Bullet 
+[16:44:07] notification objects: Created object with name Mesh_component 
+[16:44:08] notification objects: Created object with name Collision_component 
+[16:44:08] notification objects: Created object with name Bullet 
+[16:44:08] notification objects: Created object with name Mesh_component 
+[16:44:08] notification objects: Created object with name Collision_component 
+[16:44:08] notification objects: Created object with name Bullet 
+[16:44:08] notification objects: Created object with name Mesh_component 
+[16:44:08] notification objects: Created object with name Collision_component 
+[16:44:10] notification objects: Collision detected 
+[16:44:10] notification objects: Collision detected 
+[16:44:11] notification objects: Collision detected 
+[16:44:11] notification objects: Collision detected 
+[16:44:11] notification objects: Bullet is going to be destroyed 
+[16:44:11] notification objects: Collision_component is going to be destroyed 
+[16:44:11] notification objects: Mesh_component is going to be destroyed 
+[16:44:11] notification objects: Collision detected 
+[16:44:12] notification objects: Collision detected 
+[16:44:12] notification objects: Collision detected 
+[16:44:12] notification objects: Bullet is going to be destroyed 
+[16:44:12] notification objects: Mesh_component is going to be destroyed 
+[16:44:12] notification objects: Collision_component is going to be destroyed 
+[16:44:12] notification objects: Collision detected 
+[16:44:12] notification objects: Collision detected 
+[16:44:12] notification objects: Collision detected 
+[16:44:12] notification objects: Collision detected 
+[16:44:12] notification objects: Bullet is going to be destroyed 
+[16:44:12] notification objects: Mesh_component is going to be destroyed 
+[16:44:12] notification objects: Collision_component is going to be destroyed 
+[16:44:12] notification objects: Collision detected 
+[16:44:12] notification objects: Bullet is going to be destroyed 
+[16:44:12] notification objects: Mesh_component is going to be destroyed 
+[16:44:12] notification objects: Collision_component is going to be destroyed 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Bullet is going to be destroyed 
+[16:44:13] notification objects: Mesh_component is going to be destroyed 
+[16:44:13] notification objects: Collision_component is going to be destroyed 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Bullet is going to be destroyed 
+[16:44:13] notification objects: Collision_component is going to be destroyed 
+[16:44:13] notification objects: Mesh_component is going to be destroyed 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Bullet is going to be destroyed 
+[16:44:13] notification objects: Collision_component is going to be destroyed 
+[16:44:13] notification objects: Mesh_component is going to be destroyed 
+[16:44:13] notification objects: Collision detected 
+[16:44:13] notification objects: Collision detected 
+[16:44:14] notification objects: Bullet is going to be destroyed 
+[16:44:14] notification objects: Mesh_component is going to be destroyed 
+[16:44:14] notification objects: Collision_component is going to be destroyed 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Bullet is going to be destroyed 
+[16:44:14] notification objects: Collision_component is going to be destroyed 
+[16:44:14] notification objects: Mesh_component is going to be destroyed 
+[16:44:14] notification objects: Bullet is going to be destroyed 
+[16:44:14] notification objects: Mesh_component is going to be destroyed 
+[16:44:14] notification objects: Collision_component is going to be destroyed 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Bullet is going to be destroyed 
+[16:44:14] notification objects: Mesh_component is going to be destroyed 
+[16:44:14] notification objects: Collision_component is going to be destroyed 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Collision detected 
+[16:44:14] notification objects: Bullet is going to be destroyed 
+[16:44:14] notification objects: Mesh_component is going to be destroyed 
+[16:44:14] notification objects: Collision_component is going to be destroyed 
+[16:44:15] notification objects: Bullet is going to be destroyed 
+[16:44:15] notification objects: Mesh_component is going to be destroyed 
+[16:44:15] notification objects: Collision_component is going to be destroyed 
+[16:44:15] notification objects: Collision detected 
+[16:44:15] notification objects: Collision detected 
+[16:44:15] notification objects: Collision detected 
+[16:44:15] notification objects: Bullet is going to be destroyed 
+[16:44:15] notification objects: Collision_component is going to be destroyed 
+[16:44:15] notification objects: Mesh_component is going to be destroyed 
+[16:44:15] notification objects: Collision detected 
+[16:44:16] notification objects: Collision detected 
+[16:44:16] notification objects: Bullet is going to be destroyed 
+[16:44:16] notification objects: Mesh_component is going to be destroyed 
+[16:44:16] notification objects: Collision_component is going to be destroyed 
+[16:44:16] notification objects: Collision detected 
+[16:44:16] notification objects: Bullet is going to be destroyed 
+[16:44:16] notification objects: Mesh_component is going to be destroyed 
+[16:44:16] notification objects: Collision_component is going to be destroyed 
+[16:44:16] notification objects: Bullet is going to be destroyed 
+[16:44:16] notification objects: Mesh_component is going to be destroyed 
+[16:44:16] notification objects: Collision_component is going to be destroyed 
+[16:44:16] notification objects: Collision detected 
+[16:44:17] notification objects: Bullet is going to be destroyed 
+[16:44:17] notification objects: Mesh_component is going to be destroyed 
+[16:44:17] notification objects: Collision_component is going to be destroyed 
+[16:44:17] notification objects: Collision detected 
+[16:44:17] notification objects: Bullet is going to be destroyed 
+[16:44:17] notification objects: Collision_component is going to be destroyed 
+[16:44:17] notification objects: Mesh_component is going to be destroyed 
+[16:44:17] notification objects: Collision detected 
+[16:44:17] notification objects: Bullet is going to be destroyed 
+[16:44:17] notification objects: Mesh_component is going to be destroyed 
+[16:44:17] notification objects: Collision_component is going to be destroyed 
+[16:44:17] notification objects: Bullet is going to be destroyed 
+[16:44:17] notification objects: Mesh_component is going to be destroyed 
+[16:44:17] notification objects: Collision_component is going to be destroyed 
+[16:44:17] notification objects: Bullet is going to be destroyed 
+[16:44:17] notification objects: Mesh_component is going to be destroyed 
+[16:44:17] notification objects: Collision_component is going to be destroyed 
+[16:44:18] notification objects: Bullet is going to be destroyed 
+[16:44:18] notification objects: Mesh_component is going to be destroyed 
+[16:44:18] notification objects: Collision_component is going to be destroyed 
+[16:44:18] notification objects: Bullet is going to be destroyed 
+[16:44:18] notification objects: Mesh_component is going to be destroyed 
+[16:44:18] notification objects: Collision_component is going to be destroyed 
+[16:44:18] notification objects: Bullet is going to be destroyed 
+[16:44:18] notification objects: Mesh_component is going to be destroyed 
+[16:44:18] notification objects: Collision_component is going to be destroyed 
+[16:44:23] notification engine: Staring cleanup 
+[16:44:29] notification objects: Collision_test_world is going to be destroyed 
+[16:44:29] notification objects: Light is going to be destroyed 
+[16:44:29] notification objects: Light_component is going to be destroyed 
+[16:44:29] notification objects: Camera_component is going to be destroyed 
+[16:44:29] notification objects: Collision_component is going to be destroyed 
+[16:44:29] notification objects: Player is going to be destroyed 
+[16:44:29] notification objects: Camera_component is going to be destroyed 
+[16:44:29] notification objects: Input_component is going to be destroyed 
+[16:44:29] notification objects: Collision_component is going to be destroyed 
+[16:44:29] notification objects: Input_component is going to be destroyed 
+[16:44:29] notification objects: Light_component is going to be destroyed 
+[16:44:29] notification objects: Cube is going to be destroyed 
+[16:44:29] notification objects: Mesh_component is going to be destroyed 
+[16:44:29] notification objects: Collision_component is going to be destroyed 
+[16:44:29] notification objects: Mesh_component is going to be destroyed 
+[16:44:29] notification objects: Collision_component is going to be destroyed 
+[16:44:29] notification engine: Exiting mika engine 
+[16:44:29] notification engine: Writing to log file 

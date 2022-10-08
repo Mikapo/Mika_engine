@@ -5,7 +5,7 @@
 #include "glm/vec4.hpp"
 #include <array>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Color_picker : public UI_item
     {
@@ -24,4 +24,4 @@ namespace Mika_engine
         std::array<float, 4> m_current_color = {0.0f, 0.0f, 0.0f, 0.0f};
         std::array<float, 4> m_previously_checked_color = {0.0f, 0.0f, 0.0f, 0.0f};
     };
-} // namespace Mika_engine
+} // namespace MEngine

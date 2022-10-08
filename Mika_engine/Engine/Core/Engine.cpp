@@ -6,7 +6,7 @@
 #include <mutex>
 #include <stdexcept>
 
-namespace Mika_engine
+namespace MEngine
 {
     void Engine::start()
     {
@@ -137,4 +137,4 @@ namespace Mika_engine
         Debug_logger::get().write_to_log_file();
 #endif
     }
-} // namespace Mika_engine
+} // namespace MEngine

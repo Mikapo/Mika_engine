@@ -1,6 +1,6 @@
 #include "UI_window.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void UI_window::draw()
     {
@@ -13,4 +13,4 @@ namespace Mika_engine
     {
         m_flags |= flag;
     }
-} // namespace Mika_engine
+} // namespace MEngine

@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace Mika_engine
+namespace MEngine
 {
     enum class Axis_comparison_result : uint8_t
     {
@@ -10,4 +10,4 @@ namespace Mika_engine
         right,
         overlap
     };
-} // namespace Mika_engine
+} // namespace MEngine

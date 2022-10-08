@@ -6,7 +6,7 @@
 #include "Datatypes/Input.h"
 #include <stdexcept>
 
-namespace Mika_engine
+namespace MEngine
 {
     class Axis_mapping
     {
@@ -116,4 +116,4 @@ namespace Mika_engine
         std::unordered_map<Input_key, std::vector<std::unique_ptr<Action_mapping>>> m_action_mappings;
     };
 
-} // namespace Mika_engine
+} // namespace MEngine

@@ -2,7 +2,7 @@
 
 #include "Input_component.h"
 
-namespace Mika_engine
+namespace MEngine
 {
     void Input_component::initialize()
     {
@@ -71,4 +71,4 @@ namespace Mika_engine
         }
     }
 
-} // namespace Mika_engine
+} // namespace MEngine

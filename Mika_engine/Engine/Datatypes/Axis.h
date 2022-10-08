@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace Mika_engine
+namespace MEngine
 {
     enum class Axis : uint8_t
     {
@@ -10,4 +10,4 @@ namespace Mika_engine
         y,
         z
     };
-} // namespace Mika_engine
+} // namespace MEngine
