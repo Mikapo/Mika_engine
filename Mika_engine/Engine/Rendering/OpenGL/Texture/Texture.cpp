@@ -4,8 +4,7 @@
 #include <stdexcept>
 #include <string>
 
-OpenGL::Texture::Texture(Texture_buffer buffer, Texture_slot slot)
-    : Texture_base(slot), m_buffer(std::move(buffer))
+OpenGL::Texture::Texture(Texture_buffer buffer) : m_buffer(std::move(buffer))
 {
 }
 

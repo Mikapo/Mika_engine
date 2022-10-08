@@ -44,7 +44,7 @@ namespace Mika_engine
 
     void Render_engine::on_input(Input_key key, Input_action action)
     {
-          m_inputs.push_back(Input(key, action));
+        m_inputs.push_back(Input(key, action));
     }
 
     void Render_engine::start_application()
@@ -53,6 +53,7 @@ namespace Mika_engine
         m_application.m_on_window_open.set_callback(this, &Render_engine::on_window_open);
         m_application.m_on_window_rezise.set_callback(this, &Render_engine::on_window_resize);
         m_application.m_on_input.set_callback(this, &Render_engine::on_input);
+        m_application.m_on_cleanup.set_callback(this, &Render_engine::cleanup);
 
         m_application.start();
         m_is_running = false;
@@ -65,6 +66,11 @@ namespace Mika_engine
         int32_t window_width = 0, window_height = 0;
         m_application.get_window_dimensions(window_width, window_height);
         update_window_size(window_width, window_height);
+    }
+
+    void Render_engine::cleanup()
+    {
+        m_scene_renderer.cleanup();
     }
 
     bool Render_engine::is_running() const noexcept

@@ -1,27 +1,26 @@
 #include "Cube.h"
-
-#include "Objects/Components/Scene_components/Mesh_component.h"
 #include "Objects/Components/Scene_components/Collision_component.h"
-#include "Assets/Asset_manager.h"
+#include "Objects/Components/Scene_components/Mesh_component.h"
 
-void Cube::initialize() 
-{ 
-	Actor::initialize();
+using namespace Mika_engine;
 
-	m_mesh_component = create_component_cast<Mesh_component>(Mesh_component::static_class()); 
-	auto cube_mesh = get_asset_manager().get_mesh("Engine/Engine_models/cube.obj");
-    m_mesh_component->set_mesh(cube_mesh);
+void Cube::initialize()
+{
+    Actor::initialize();
 
-	Material material;
+    m_mesh_component = create_component_cast<Mika_engine::Mesh_component>(Mika_engine::Mesh_component::static_class());
+    m_mesh_component->set_mesh("Engine/Engine_models/cube.obj");
+
+    Material material;
     material.m_specular = {0.0f, 0.0f, 0.0f, 1.0f};
     m_mesh_component->set_material(material);
 
-	create_component(Collision_component::static_class());
+    create_component(Collision_component::static_class());
 }
 
-void Cube::set_color(glm::vec4 color) 
+void Cube::set_color(glm::vec4 color)
 {
     Material material = m_mesh_component->get_material();
-	material.m_default_color = color;
+    material.m_default_color = color;
     m_mesh_component->set_material(material);
 }

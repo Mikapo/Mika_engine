@@ -2,12 +2,10 @@
 
 #include "Objects/Actor.h"
 
-class Light_component;
-class Light : public Actor
+class Light : public Mika_engine::Actor
 {
     GENERATED_BODY(Light)
 
 public:
-	void initialize() override;
+    void initialize() override;
 };
-

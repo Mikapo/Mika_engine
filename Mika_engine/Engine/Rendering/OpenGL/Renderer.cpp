@@ -5,11 +5,8 @@
 #include "Shading/Shader.h"
 #include "Shading/Shadow_map.h"
 
-void OpenGL::Renderer::draw(Buffers& buffers, const Shader& shader) noexcept
+void OpenGL::Renderer::draw(const Buffers& buffers, const Shader& shader) noexcept
 {
-    if (!buffers.has_been_initialized())
-        buffers.initialize();
-
     buffers.bind();
     shader.bind();
 
@@ -27,7 +24,8 @@ void OpenGL::Renderer::start_drawing_to_shadow_map(const Shadow_map& shadow_map)
     glClear(GL_DEPTH_BUFFER_BIT);
 }
 
-void OpenGL::Renderer::stop_drawing_to_shadow_map(const Shadow_map& shadow_map, int32_t window_width, int32_t window_height)
+void OpenGL::Renderer::stop_drawing_to_shadow_map(
+    const Shadow_map& shadow_map, int32_t window_width, int32_t window_height)
 {
     glCullFace(GL_BACK);
     shadow_map.unbind_frame_buffer();

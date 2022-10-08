@@ -1,23 +1,23 @@
 #pragma once
 
-#include "Rendering/Buffers/Buffers.h"
-#include <memory>
-
-class Shader;
+#include <string_view>
 
 namespace Mika_engine
 {
     class Mesh
     {
     public:
-        Mesh(std::unique_ptr<OpenGL::Buffers> buffers) noexcept;
+        Mesh(std::string_view mesh_location) noexcept;
 
-        void bind_buffers() const;
-        void unbind_buffers() const;
-        size_t get_indices_count() const noexcept;
-        [[nodiscard]] OpenGL::Buffers* get_buffers() noexcept;
+        Mesh(const Mesh&) = default;
+        Mesh(Mesh&&) = default;
+
+        Mesh& operator=(const Mesh&) = default;
+        Mesh& operator=(Mesh&&) = default;
+
+        [[nodiscard]] std::string_view get_mesh_location() const noexcept;
 
     private:
-        std::unique_ptr<OpenGL::Buffers> m_buffers;
+        std::string m_mesh_location;
     };
 } // namespace Mika_engine

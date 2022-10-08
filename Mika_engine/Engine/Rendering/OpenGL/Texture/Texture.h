@@ -11,7 +11,7 @@ namespace OpenGL
     class Texture : public Texture_base
     {
     public:
-        Texture(Texture_buffer buffer, Texture_slot slot);
+        Texture(Texture_buffer buffer);
         ~Texture() override = default;
 
         Texture(const Texture&) = delete;
@@ -23,6 +23,6 @@ namespace OpenGL
     private:
         [[nodiscard]] uint32_t construct_item() override;
 
-        Texture_buffer m_buffer;  
+        Texture_buffer m_buffer;
     };
 } // namespace OpenGL

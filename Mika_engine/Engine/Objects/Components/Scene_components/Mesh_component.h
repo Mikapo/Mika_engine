@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Assets/Mesh.h"
 #include "Datatypes/Frame_data.h"
 #include "Scene_component.h"
 #include "glm/mat4x4.hpp"
@@ -8,22 +9,22 @@
 
 namespace Mika_engine
 {
-    class Mesh;
-    class Material;
     class Mesh_component : public Scene_component
     {
         GENERATED_BODY(Mesh_component)
 
     public:
+        Mesh_component() noexcept;
+
         void initialize() override;
-        void set_mesh(std::shared_ptr<Mesh> mesh) noexcept;
+        void set_mesh(std::string_view mesh_path) noexcept;
         void set_material(const Material& material) noexcept;
         Material get_material() const noexcept;
 
         std::optional<Mesh_data> get_mesh_data() const noexcept;
 
     private:
-        std::shared_ptr<Mesh> m_mesh = nullptr;
+        Mesh m_mesh;
         Material m_material;
     };
 } // namespace Mika_engine

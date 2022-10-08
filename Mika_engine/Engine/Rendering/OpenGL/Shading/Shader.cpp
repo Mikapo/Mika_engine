@@ -38,6 +38,11 @@ uint32_t OpenGL::Shader::construct_item()
     return shader_id;
 }
 
+void OpenGL::Shader::call_gl_uniform(int32_t pos, glm::vec4 value) noexcept
+{
+    call_gl_uniform(pos, value.x, value.y, value.z, value.w);
+}
+
 void OpenGL::Shader::call_gl_uniform(int32_t pos, float value1, float value2, float value3, float value4) noexcept
 {
     glUniform4f(pos, value1, value2, value3, value4);

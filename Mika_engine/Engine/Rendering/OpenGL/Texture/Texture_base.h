@@ -11,7 +11,7 @@ namespace OpenGL
     public:
         using Underlying_slot_type = std::underlying_type_t<Texture_slot>;
 
-        Texture_base(Texture_slot slot);
+        Texture_base() = default;
         ~Texture_base() override;
 
         Texture_base(const Texture_base&) = delete;
@@ -22,14 +22,15 @@ namespace OpenGL
 
         void bind() const noexcept override;
         void unbind() const noexcept override;
+
+        void set_slot(Texture_slot slot) noexcept;
         [[nodiscard]] Texture_slot get_slot() const noexcept;
 
     protected:
         uint32_t construct_item() override;
 
     private:
-        const Texture_slot m_slot = Texture_slot::color;
-
+        Texture_slot m_slot = Texture_slot::color;
         constexpr static Underlying_slot_type MAX_SUPPORTED_TEXTURE_SLOT = 31;
     };
 } // namespace OpenGL

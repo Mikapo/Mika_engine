@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Assets/Asset_manager.h"
 #include "Datatypes/Input.h"
 #include "Garbage_collector.h"
+#include "Rendering/Render_engine.h"
 #include "Utility/Class_obj.h"
 #include "Utility/Delegate.h"
-#include "Render_engine.h"
 #include <chrono>
 #include <thread>
 
@@ -25,7 +24,6 @@ namespace Mika_engine
         size_t get_amount_of_registered_objects() noexcept;
         bool is_object_valid(const Object* obj) const;
         float get_deltatime() const noexcept;
-        Asset_manager& get_asset_manager() noexcept;
         void set_render_settings(Render_settings settings) noexcept;
         Render_settings get_render_settings() const noexcept;
         void set_default_world(Class_obj* world_class);
@@ -44,7 +42,6 @@ namespace Mika_engine
 
         Render_engine m_render_engine;
         Garbage_collector m_garbage_collector;
-        Asset_manager m_asset_manager;
         World* m_world = nullptr;
         Class_obj* m_default_world = nullptr;
 
@@ -54,4 +51,4 @@ namespace Mika_engine
         std::vector<Input> m_inputs;
     };
 
-}
+} // namespace Mika_engine

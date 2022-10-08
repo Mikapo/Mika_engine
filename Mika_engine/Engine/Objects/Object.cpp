@@ -30,11 +30,6 @@ namespace Mika_engine
         return m_engine;
     }
 
-    Asset_manager& Object::get_asset_manager() noexcept
-    {
-        return get_engine()->get_asset_manager();
-    }
-
     const Engine* Object::get_engine() const noexcept
     {
         return m_engine;
@@ -99,4 +94,4 @@ namespace Mika_engine
         return get_engine()->get_amount_of_registered_objects();
     }
 
-}
+} // namespace Mika_engine

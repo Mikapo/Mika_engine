@@ -1,9 +1,9 @@
 #include "Collision_test_world.h"
-#include "Core/Mika_engine.h"
+#include "Core/Engine.h"
 
 int main()
 {
-    Mika_engine engine;
+    Mika_engine::Engine engine;
     engine.set_window_title("Collision test");
     engine.set_default_world(Collision_test_world::static_class());
     engine.start();

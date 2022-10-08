@@ -2,7 +2,7 @@
 
 #include "Objects/World.h"
 
-class Collision_test_world : public World
+class Collision_test_world : public Mika_engine::World
 {
     GENERATED_BODY(Collision_test_world)
 

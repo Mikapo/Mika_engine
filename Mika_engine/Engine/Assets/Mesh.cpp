@@ -2,28 +2,12 @@
 
 namespace Mika_engine
 {
-    Mesh::Mesh(std::unique_ptr<OpenGL::Buffers> buffers) noexcept
+    Mesh::Mesh(std::string_view mesh_location) noexcept : m_mesh_location(mesh_location)
     {
-        m_buffers = std::move(buffers);
     }
 
-    void Mesh::bind_buffers() const
+    std::string_view Mesh::get_mesh_location() const noexcept
     {
-        m_buffers->bind();
-    }
-
-    void Mesh::unbind_buffers() const
-    {
-        m_buffers->unbind();
-    }
-
-    size_t Mesh::get_indices_count() const noexcept
-    {
-        return m_buffers->get_indices_count();
-    }
-
-    OpenGL::Buffers* Mesh::get_buffers() noexcept
-    {
-        return m_buffers.get();
+        return m_mesh_location;
     }
 } // namespace Mika_engine

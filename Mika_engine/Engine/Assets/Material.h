@@ -1,19 +1,24 @@
 #pragma once
 
-#include <glm/mat4x4.hpp>
+#include "Rendering/OpenGL/Texture/Texture_slots.h"
 #include <glm/vec4.hpp>
 #include <memory>
 #include <unordered_map>
 
-#include "Rendering/Shading/Shader.h"
-#include "Rendering/Texture/Texture.h"
-#include "Rendering/Texture/Texture_slots.h"
-
-class Texture;
-class Shader;
+namespace OpenGL
+{
+    class Shader;
+}
 
 namespace Mika_engine
 {
+    using Texture_slot = OpenGL::Texture_slot;
+
+    struct Texture_data
+    {
+        std::string texture_location;
+    };
+
     class Material
     {
     public:
@@ -23,15 +28,11 @@ namespace Mika_engine
         glm::vec4 m_default_color = {0.6f, 0.6f, 0.6f, 1.0f};
         float m_shininess = 200.0f;
 
-        void add_texture(std::shared_ptr<OpenGL::Texture> texture);
-        void remove_texture(OpenGL::Texture_slot slot) noexcept;
-        void update_shader(OpenGL::Shader* shader) const;
-        void bind_textures() noexcept;
-        void unbind_texture() noexcept;
+        void add_texture(const std::string& texture_location, Texture_slot slot = Texture_slot::color);
+        void remove_texture(Texture_slot slot = Texture_slot::color) noexcept;
+        [[nodiscard]] const std::unordered_map<Texture_slot, Texture_data>& get_textures() const noexcept;
 
     private:
-        std::unordered_map<OpenGL::Texture_slot, std::shared_ptr<OpenGL::Texture>> m_textures;
+        std::unordered_map<Texture_slot, Texture_data> m_textures;
     };
-}
-
-
+} // namespace Mika_engine

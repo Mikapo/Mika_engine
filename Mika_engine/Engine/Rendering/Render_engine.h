@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Datatypes/Frame_data.h"
-#include "Rendering/Application/Application.h"
-#include "Scene_renderer.h"
-#include "Utility/Thread_safe_deque.h"
 #include "Datatypes/Input.h"
+#include "OpenGL/Application/Application.h"
+#include "Scene_renderer.h"
+#include "Utility/Delegate.h"
+#include "Utility/Thread_safe_deque.h"
 #include <string_view>
 #include <thread>
-#include "Utility/Delegate.h"
 
 namespace Mika_engine
 {
@@ -33,6 +33,7 @@ namespace Mika_engine
         void update_window_size(int32_t width, int32_t height);
         void on_input(Input_key key, Input_action action);
         void on_window_open();
+        void cleanup();
 
         bool m_is_running = false;
         int32_t m_window_width = 0, m_window_height = 0;

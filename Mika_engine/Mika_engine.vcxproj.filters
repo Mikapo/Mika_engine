@@ -39,7 +39,7 @@
     <ClCompile Include="Engine\Assets\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\Scene_renderer.cpp">
+    <ClCompile Include="Engine\Rendering\Scene_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Objects\Components\Scene_components\Camera_component.cpp">
@@ -57,7 +57,7 @@
     <ClCompile Include="Engine\Utility\Delegate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\UI_renderer.cpp">
+    <ClCompile Include="Engine\Rendering\UI_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Objects\UI\UI.cpp">
@@ -97,9 +97,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Datatypes\Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Assets\Asset_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Objects\Components\Scene_components\Collision_component.cpp">
@@ -153,70 +150,73 @@
     <ClCompile Include="Vendor\stb_image\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Application\Application.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Application\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Buffers\Buffers.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Buffers\Buffers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Buffers\Frame_buffer.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Buffers\Frame_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Buffers\Index_buffer.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Buffers\Index_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Buffers\Vertex_array.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Buffers\Vertex_array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Buffers\Vertex_buffer.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Buffers\Vertex_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Layout\Vertex_buffer_elements.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Layout\Vertex_buffer_elements.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Layout\Vertex_buffer_layout.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Layout\Vertex_buffer_layout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Shading\Shader.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Shading\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Shading\Shaders.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Shading\Shaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Shading\Shadow_map.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Shading\Shadow_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Texture\Depth_map.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Texture\Depth_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Texture\Texture.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Texture\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Texture\Texture_base.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Texture\Texture_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Texture\Texture_buffer.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Texture\Texture_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Texture\Textures.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Texture\Textures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Basic_geometry.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Basic_geometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Model_loader.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Model_loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Renderer.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Rendering\Renderer_item.cpp">
+    <ClCompile Include="Engine\Rendering\OpenGL\Renderer_item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Assets\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\Render_engine.cpp">
+    <ClCompile Include="Engine\Rendering\Render_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Rendering\OpenGL_buffers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -251,7 +251,7 @@
     <ClInclude Include="Engine\Assets\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Scene_renderer.h">
+    <ClInclude Include="Engine\Rendering\Scene_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Objects\Components\Scene_components\Camera_component.h">
@@ -272,7 +272,7 @@
     <ClInclude Include="Engine\Objects\Components\Scene_components\Scene_component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\UI_renderer.h">
+    <ClInclude Include="Engine\Rendering\UI_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Objects\UI\UI.h">
@@ -309,9 +309,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Debug_logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Assets\Asset_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Objects\Components\Scene_components\Collision_component.h">
@@ -1238,97 +1235,100 @@
     <ClInclude Include="Engine\Utility\Macros\Helper_macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Application\Application.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Application\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Application\Key.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Application\Key.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Buffers\Buffers.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Buffers\Buffers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Buffers\Frame_buffer.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Buffers\Frame_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Buffers\Index_buffer.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Buffers\Index_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Buffers\Vertex_array.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Buffers\Vertex_array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Buffers\Vertex_buffer.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Buffers\Vertex_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Events\Callback.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Events\Callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Events\Callback_interface.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Events\Callback_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Events\Delegate.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Events\Delegate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Events\Object_Callback.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Events\Object_Callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Layout\Vertex_buffer_elements.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Layout\Vertex_buffer_elements.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Layout\Vertex_buffer_layout.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Layout\Vertex_buffer_layout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Shading\Default_shaders\2d_shader.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Shading\Default_shaders\2d_shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Shading\Shader.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Shading\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Shading\Shaders.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Shading\Shaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Shading\Shadow_map.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Shading\Shadow_map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Texture\Depth_map.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Texture\Depth_map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Texture\Texture.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Texture\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Texture\Texture_base.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Texture\Texture_base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Texture\Texture_buffer.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Texture\Texture_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Texture\Texture_slots.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Texture\Texture_slots.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Texture\Textures.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Texture\Textures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Renderer_item.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Renderer_item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Basic_geometry.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Basic_geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Model_loader.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Model_loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\Renderer.h">
+    <ClInclude Include="Engine\Rendering\OpenGL\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Assets\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Render_engine.h">
+    <ClInclude Include="Engine\Rendering\Render_engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Utility\Thread_safe_deque.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Utility\Flags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Rendering\OpenGL_buffers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -50,6 +50,7 @@ namespace OpenGL
             std::string fragment_source;
         };
 
+        static void call_gl_uniform(int32_t pos, glm::vec4 value) noexcept;
         static void call_gl_uniform(int32_t pos, float value1, float value2, float value3, float value4) noexcept;
         static void call_gl_uniform(
             int32_t pos, int32_t count, const std::vector<std::array<float, 4>>& arrau) noexcept;

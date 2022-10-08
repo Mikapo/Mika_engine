@@ -29,7 +29,7 @@ namespace Mika_engine
     {
     public:
         Transform m_transform;
-        std::shared_ptr<Mesh> m_mesh;
+        Mesh m_mesh;
         Material m_material;
     };
 

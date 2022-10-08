@@ -1,12 +1,14 @@
 #include "Player.h"
 
 #include "Bullet.h"
-#include "Core/Mika_engine.h"
+#include "Core/Engine.h"
 #include "Objects/Components/Input_component.h"
 #include "Objects/Components/Scene_components/Camera_component.h"
 #include "Objects/Components/Scene_components/collision_component.h"
 #include "Objects/World.h"
 #include "Utility/Delegate.h"
+
+using namespace Mika_engine;
 
 void Player::initialize()
 {
@@ -16,7 +18,8 @@ void Player::initialize()
     set_active_camera(camera);
     setup_input();
 
-    auto* collision = create_component_cast<Collision_component>(Collision_component::static_class());
+    auto* collision =
+        create_component_cast<Mika_engine::Collision_component>(Mika_engine::Collision_component::static_class());
     collision->set_relative_scale({0.1f, 0.1f, 0.1f});
 }
 

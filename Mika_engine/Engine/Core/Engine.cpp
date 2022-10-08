@@ -3,8 +3,6 @@
 #include "Debug/Debug_logger.h"
 #include "Objects/Object.h"
 #include "Objects/World.h"
-#include "Scene_renderer.h"
-#include <iostream>
 #include <mutex>
 #include <stdexcept>
 
@@ -45,11 +43,6 @@ namespace Mika_engine
     float Engine::get_deltatime() const noexcept
     {
         return m_deltatime;
-    }
-
-    Asset_manager& Engine::get_asset_manager() noexcept
-    {
-        return m_asset_manager;
     }
 
     void Engine::set_render_settings(Render_settings settings) noexcept
@@ -137,7 +130,6 @@ namespace Mika_engine
 
         m_render_engine.join_render_thread();
         m_garbage_collector.cleanup();
-        m_asset_manager.cleanup();
 
         DEBUG_LOG(notification, engine, "Exiting mika engine");
 

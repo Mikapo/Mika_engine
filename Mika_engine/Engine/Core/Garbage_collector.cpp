@@ -86,12 +86,11 @@ namespace Mika_engine
 
     void Garbage_collector::finalize_destruction_on_objects()
     {
-
         auto it = m_registered_objects.begin();
         while (it != m_registered_objects.end())
         {
             if (is_object_valid(it->first) && it->first->is_marked_for_destruction())
-                it == m_registered_objects.erase(it);
+                it = m_registered_objects.erase(it);
             else
                 ++it;
         }

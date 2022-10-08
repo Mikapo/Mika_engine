@@ -1,40 +1,30 @@
-[10:37:09] notification engine: Mika engine starting 
-[10:37:09] notification objects: Created object with name Collision_test_world 
-[10:37:11] notification objects: Created object with name Player 
-[10:37:11] notification objects: Created object with name Camera_component 
-[10:37:11] notification objects: Created object with name Input_component 
-[10:37:11] notification objects: Created object with name Collision_component 
-[10:37:11] notification objects: Created object with name Light 
-[10:37:11] notification objects: Created object with name Light_component 
-[10:37:11] notification objects: Created object with name Cube 
-[10:37:11] notification objects: Created object with name Mesh_component 
-[10:37:12] notification objects: Created object with name Collision_component 
-[10:37:25] notification engine: Staring cleanup 
-[10:37:25] notification objects: Light is going to be destroyed 
-[10:37:25] notification objects: Light_component is going to be destroyed 
-[10:37:25] notification objects: Collision_component is going to be destroyed 
-[10:37:25] notification objects: Collision_test_world is going to be destroyed 
-[10:37:25] notification objects: Player is going to be destroyed 
-[10:37:25] notification objects: Camera_component is going to be destroyed 
-[10:37:25] notification objects: Input_component is going to be destroyed 
-[10:37:25] notification objects: Collision_component is going to be destroyed 
-[10:37:25] notification objects: Camera_component is going to be destroyed 
-[10:37:25] notification objects: Input_component is going to be destroyed 
-[10:37:25] notification objects: Light_component is going to be destroyed 
-[10:37:25] notification objects: Cube is going to be destroyed 
-[10:37:25] notification objects: Mesh_component is going to be destroyed 
-[10:37:25] notification objects: Collision_component is going to be destroyed 
-[10:37:25] notification objects: Mesh_component is going to be destroyed 
-[10:37:25] notification objects: Collision_component is going to be destroyed 
-[10:37:25] notification garbage_collector: Object Light is being garbage collected 
-[10:37:25] notification garbage_collector: Object Collision_component is being garbage collected 
-[10:37:25] notification garbage_collector: Object Collision_test_world is being garbage collected 
-[10:37:25] notification garbage_collector: Object Player is being garbage collected 
-[10:37:25] notification garbage_collector: Object Camera_component is being garbage collected 
-[10:37:25] notification garbage_collector: Object Input_component is being garbage collected 
-[10:37:25] notification garbage_collector: Object Light_component is being garbage collected 
-[10:37:25] notification garbage_collector: Object Cube is being garbage collected 
-[10:37:25] notification garbage_collector: Object Mesh_component is being garbage collected 
-[10:37:25] notification garbage_collector: Object Collision_component is being garbage collected 
-[10:37:25] notification engine: Exiting mika engine 
-[10:37:25] notification engine: Writing to log file 
+[16:06:10] notification engine: Mika engine starting 
+[16:06:10] notification objects: Created object with name Collision_test_world 
+[16:06:10] notification objects: Created object with name Player 
+[16:06:10] notification objects: Created object with name Camera_component 
+[16:06:10] notification objects: Created object with name Input_component 
+[16:06:10] notification objects: Created object with name Collision_component 
+[16:06:10] notification objects: Created object with name Light 
+[16:06:10] notification objects: Created object with name Light_component 
+[16:06:10] notification objects: Created object with name Cube 
+[16:06:10] notification objects: Created object with name Mesh_component 
+[16:06:10] notification objects: Created object with name Collision_component 
+[16:06:21] notification engine: Staring cleanup 
+[16:06:21] notification objects: Light is going to be destroyed 
+[16:06:21] notification objects: Light_component is going to be destroyed 
+[16:06:21] notification objects: Collision_test_world is going to be destroyed 
+[16:06:21] notification objects: Player is going to be destroyed 
+[16:06:21] notification objects: Input_component is going to be destroyed 
+[16:06:21] notification objects: Camera_component is going to be destroyed 
+[16:06:21] notification objects: Collision_component is going to be destroyed 
+[16:06:21] notification objects: Input_component is going to be destroyed 
+[16:06:21] notification objects: Camera_component is going to be destroyed 
+[16:06:21] notification objects: Collision_component is going to be destroyed 
+[16:06:21] notification objects: Light_component is going to be destroyed 
+[16:06:21] notification objects: Cube is going to be destroyed 
+[16:06:21] notification objects: Mesh_component is going to be destroyed 
+[16:06:21] notification objects: Collision_component is going to be destroyed 
+[16:06:21] notification objects: Mesh_component is going to be destroyed 
+[16:06:21] notification objects: Collision_component is going to be destroyed 
+[16:06:21] notification engine: Exiting mika engine 
+[16:06:21] notification engine: Writing to log file 

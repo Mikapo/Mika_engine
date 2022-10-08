@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Rendering/Application/Key.h"
+#include "Rendering/OpenGL/Application/Key.h"
 
 namespace Mika_engine
 {

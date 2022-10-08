@@ -53,7 +53,6 @@ namespace Mika_engine
         }
         Engine* get_engine() noexcept;
         void set_engine(Engine* engine) noexcept;
-        Asset_manager& get_asset_manager() noexcept;
         const Engine* get_engine() const noexcept;
         virtual void update(float deltatime);
         std::string_view get_class_name();
@@ -100,5 +99,4 @@ namespace Mika_engine
         std::chrono::steady_clock::time_point m_time_since_lifetime_has_been_set;
         float m_lifetime = 0.0f;
     };
-}
-
+} // namespace Mika_engine

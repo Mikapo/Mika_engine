@@ -65,5 +65,7 @@ namespace Mika_engine
 
         if (m_disabled_types.has_flag(type))
             return false;
+
+        return true;
     }
 } // namespace Mika_engine

@@ -1,19 +1,20 @@
 #include "Bullet.h"
 
-#include "Assets/Asset_manager.h"
 #include "Objects/Components/Scene_components/Collision_component.h"
 #include "Objects/Components/Scene_components/Mesh_component.h"
 #include "Objects/World.h"
+
+using namespace Mika_engine;
 
 void Bullet::initialize()
 {
     Actor::initialize();
 
     auto* mesh_component = create_component_cast<Mesh_component>(Mesh_component::static_class());
-    auto mesh = get_asset_manager().get_mesh("Engine/Engine_models/Sphere.obj");
-    mesh_component->set_mesh(mesh);
+    mesh_component->set_mesh("Engine/Engine_models/Sphere.obj");
 
-    m_collision = create_component_cast<Collision_component>(Collision_component::static_class());
+    m_collision =
+        create_component_cast<Mika_engine::Collision_component>(Mika_engine::Collision_component::static_class());
     m_collision->set_collider_type(Collider_type::sphere);
     set_scale({0.05f, 0.05f, 0.05f});
 

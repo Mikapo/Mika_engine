@@ -25,7 +25,7 @@ void Collision_test_world::setup_walls()
     floor->set_scale({4.0f, 4.0f, 0.1f});
     floor->set_color({0.2f, 0.2f, 0.2f, 1.0f});*/
 
-    Actor* wall = spawn_actor(cube_class);
+    Mika_engine::Actor* wall = spawn_actor(cube_class);
     wall->set_location({4.1f, 0.0f, 0.9f});
     wall->set_scale({0.1f, 4.0f, 1.5f});
 

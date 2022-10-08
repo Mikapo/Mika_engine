@@ -3,12 +3,6 @@
 #include "Texture_base.h"
 #include <stdexcept>
 
-OpenGL::Texture_base::Texture_base(Texture_slot slot) : m_slot(slot)
-{
-    if (static_cast<Underlying_slot_type>(slot) > MAX_SUPPORTED_TEXTURE_SLOT)
-        throw std::invalid_argument("Texture slot is not supported");
-}
-
 OpenGL::Texture_base::~Texture_base()
 {
     if (!has_been_initialized())
@@ -30,9 +24,9 @@ void OpenGL::Texture_base::unbind() const noexcept
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-OpenGL::Texture_slot OpenGL::Texture_base::get_slot() const noexcept 
+void OpenGL::Texture_base::set_slot(Texture_slot slot) noexcept
 {
-    return m_slot;
+    m_slot = slot;
 }
 
 uint32_t OpenGL::Texture_base::construct_item()

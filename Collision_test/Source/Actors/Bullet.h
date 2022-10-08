@@ -3,7 +3,7 @@
 #include "Objects/Actor.h"
 
 class Collision_component;
-class Bullet : public Actor
+class Bullet : public Mika_engine::Actor
 {
     GENERATED_BODY(Bullet)
 
@@ -13,7 +13,7 @@ public:
     glm::vec3 m_velocity;
 
 private:
-    void on_collision(Collision_result collision);
+    void on_collision(Mika_engine::Collision_result collision);
 
-    Collision_component* m_collision = nullptr;
+    Mika_engine::Collision_component* m_collision = nullptr;
 };

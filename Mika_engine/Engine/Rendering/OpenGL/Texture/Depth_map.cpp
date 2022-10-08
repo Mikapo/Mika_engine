@@ -2,9 +2,9 @@
 
 #include "Depth_map.h"
 
-OpenGL::Depth_map::Depth_map(int32_t width, int32_t height) noexcept
-    : Texture_base(Texture_slot::depth_map), m_width(width), m_height(height)
+OpenGL::Depth_map::Depth_map(int32_t width, int32_t height) noexcept : m_width(width), m_height(height)
 {
+    set_slot(Texture_slot::depth_map);
 }
 
 void OpenGL::Depth_map::add_depth_map_to_framebuffer()
