@@ -93,9 +93,6 @@
     <ClCompile Include="Engine\Debug\Debug_logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Debug_logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Datatypes\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -303,9 +300,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Objects\UI\Items\Color_picker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Debug_logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Debug_logger.h">
@@ -1329,6 +1323,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Rendering\OpenGL_buffers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Datatypes\Log_severity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

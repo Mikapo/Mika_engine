@@ -178,7 +178,6 @@
     <ClCompile Include="Engine\Utility\Collisions\Collision_handler.cpp" />
     <ClCompile Include="Engine\Objects\Components\Scene_components\Collision_component.cpp" />
     <ClCompile Include="Engine\Datatypes\Transform.cpp" />
-    <ClCompile Include="Engine\Debug\Debug_logger.cpp" />
     <ClCompile Include="Engine\Objects\UI\Items\Color_picker.cpp" />
     <ClCompile Include="Engine\Objects\UI\Items\Sliders\Float_slider.cpp" />
     <ClCompile Include="Engine\Objects\UI\Items\Sliders\Angle_slider.cpp" />
@@ -219,6 +218,7 @@
     <ClCompile Include="Vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Datatypes\Log_severity.h" />
     <ClInclude Include="Engine\Rendering\OpenGL_buffers.h" />
     <ClInclude Include="Engine\Assets\Material.h" />
     <ClInclude Include="Engine\Datatypes\Axis_comparison_result.h" />
@@ -259,7 +259,6 @@
     <ClInclude Include="Engine\Utility\Collisions\Colliders\Collider.h" />
     <ClInclude Include="Engine\Utility\Collisions\Collision_handler.h" />
     <ClInclude Include="Engine\Objects\Components\Scene_components\Collision_component.h" />
-    <ClInclude Include="Engine\Debug\Debug_logger.h" />
     <ClInclude Include="Engine\Objects\UI\Items\Color_picker.h" />
     <ClInclude Include="Engine\Objects\UI\Items\Sliders\Float_slider.h" />
     <ClInclude Include="Engine\Objects\UI\Items\Sliders\Angle_slider.h" />

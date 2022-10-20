@@ -24,3 +24,8 @@ void Test_world::initialize()
     auto* ui = create_ui(Settings_ui::static_class());
     ui->add_to_viewport(this);
 }
+
+void Test_world::update(float deltatime)
+{
+    MEngine::World::update(deltatime);
+}

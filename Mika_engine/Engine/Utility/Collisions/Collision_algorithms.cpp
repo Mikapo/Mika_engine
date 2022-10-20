@@ -2,7 +2,6 @@
 
 #include "Colliders/Oriented_bounding_box.h"
 #include "Colliders/Sphere.h"
-#include "Debug/Debug_logger.h"
 #include "Line.h"
 
 namespace MEngine

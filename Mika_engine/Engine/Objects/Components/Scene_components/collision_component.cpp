@@ -32,8 +32,10 @@ namespace MEngine
 
     void Collision_component::initialize()
     {
-        get_world()->register_collision_component(m_collider, this);
         Scene_component::initialize();
+
+        get_world()->register_collision_component(m_collider, this);
+        get_owner()->register_collision(this);
     }
 
     bool Collision_component::is_overlapping(const Collision_component* other) const

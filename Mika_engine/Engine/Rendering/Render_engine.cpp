@@ -26,6 +26,11 @@ namespace MEngine
         m_frame_conditional.wait(lock, [this] { return frames_in_queue() > 1; });
 
         m_scene_renderer.render_frame(m_frame_queue.pop_front());
+
+        if (!m_new_logs.empty())
+            m_ui_renderer.log(m_new_logs.pop_front());
+
+        m_ui_renderer.render_ui();
     }
 
     void Render_engine::on_window_resize(int32_t width, int32_t height)
@@ -44,6 +49,9 @@ namespace MEngine
 
     void Render_engine::on_input(Input_key key, Input_action action)
     {
+        if (key == Input_key::L && action == Input_action::press)
+            m_ui_renderer.set_log_visible(!m_ui_renderer.is_log_visible());
+
         m_inputs.push_back(Input(key, action));
     }
 
@@ -62,6 +70,7 @@ namespace MEngine
     void Render_engine::on_window_open()
     {
         m_scene_renderer.initialize();
+        m_ui_renderer.initialize(m_application.get_window());
 
         int32_t window_width = 0, window_height = 0;
         m_application.get_window_dimensions(window_width, window_height);
@@ -71,6 +80,7 @@ namespace MEngine
     void Render_engine::cleanup()
     {
         m_scene_renderer.cleanup();
+        m_ui_renderer.cleanup();
     }
 
     bool Render_engine::is_running() const noexcept
@@ -103,6 +113,12 @@ namespace MEngine
         m_frame_conditional.notify_one();
         m_frame_queue.push_back(std::move(frame));
     }
+
+    void Render_engine::add_log_message(Log_message log_message)
+    {
+        m_new_logs.push_back(std::move(log_message));
+    }
+
     void Render_engine::poll_events()
     {
         while (!m_inputs.empty())

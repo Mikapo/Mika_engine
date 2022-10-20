@@ -29,6 +29,7 @@ namespace MEngine
         void set_default_world(Class_obj* world_class);
         void set_world(const Class_obj* world_class);
         void set_window_title(std::string_view name);
+        void log(std::string_view log, std::string_view group, Log_severity severity);
 
         Delegate<Input> m_on_input;
 

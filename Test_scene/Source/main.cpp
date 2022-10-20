@@ -1,7 +1,7 @@
 #include "Core/Engine.h"
 #include "Test_world.h"
 
-int main()
+int WinMain()
 {
     MEngine::Engine engine;
     engine.set_window_title("Scene");

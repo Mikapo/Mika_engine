@@ -8,4 +8,5 @@ class Test_world : public MEngine::World
 
 public:
     void initialize() override;
+    void update(float deltatime) override;
 };

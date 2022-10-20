@@ -43,6 +43,7 @@ namespace MEngine
         void add_rotation_offset(Rotator rotation, bool check_for_collision = false);
         bool check_collisions();
         Actor_component* create_component(Class_obj* class_obj);
+        void register_collision(Collision_component* collision) noexcept;
 
         template <typename T>
         T* create_component_cast(Class_obj* class_obj)

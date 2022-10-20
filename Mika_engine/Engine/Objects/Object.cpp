@@ -7,7 +7,6 @@ namespace MEngine
     void Object::destruct() noexcept
     {
         m_marked_for_destruction = true;
-        DEBUG_LOG(notification, objects, "{} is going to be destroyed", get_class_name());
     }
 
     void Object::set_garbage_collect_mark(bool mark) noexcept

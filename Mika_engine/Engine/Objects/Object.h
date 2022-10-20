@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Debug/Debug_logger.h"
+#include "Datatypes/Log_severity.h"
 #include "Utility/Class_obj.h"
 #include "Utility/Delegate.h"
 #include "Utility/Macros/Generated_body.h"
@@ -31,10 +31,11 @@ namespace MEngine
         template <typename T>
         static T* construct_object(Engine* engine)
         {
+            if (engine == nullptr)
+                throw std::logic_error("engine is null");
+
             std::unique_ptr<T> unique_ptr_obj = std::make_unique<T>();
             unique_ptr_obj->set_engine(engine);
-
-            DEBUG_LOG(notification, objects, "Created object with name {}", unique_ptr_obj->get_class_name());
 
             T* obj = unique_ptr_obj.get();
             register_object(engine, std::move(unique_ptr_obj));

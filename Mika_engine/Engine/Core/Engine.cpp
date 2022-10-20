@@ -1,6 +1,5 @@
 #include "Engine.h"
 #include "Datatypes/Frame_data.h"
-#include "Debug/Debug_logger.h"
 #include "Objects/Object.h"
 #include "Objects/World.h"
 #include <mutex>
@@ -10,12 +9,11 @@ namespace MEngine
 {
     void Engine::start()
     {
-        DEBUG_LOG(notification, engine, "Mika engine starting");
-
         m_has_started = true;
         setup_callbacks();
         m_render_engine.start_render_thread();
         set_world(m_default_world);
+        log("Mika engine starting", "Engine", Log_severity::notification);
         update_loop();
         cleanup();
     }
@@ -79,6 +77,12 @@ namespace MEngine
         m_deltatime = delta_microseconds * 0.000001F;
     }
 
+    void Engine::log(std::string_view log, std::string_view group, Log_severity severity)
+    {
+        std::string log_string = std::format("[{}] {}", log, group);
+        m_render_engine.add_log_message({std::move(log_string), severity});
+    }
+
     void Engine::on_input(Input input)
     {
         m_on_input.broadcast(input);
@@ -124,17 +128,13 @@ namespace MEngine
 
     void Engine::cleanup()
     {
-        DEBUG_LOG(notification, engine, "Staring cleanup");
+        log("Starting cleanup", "Engine", Log_severity::notification);
 
         m_has_started = false;
 
         m_render_engine.join_render_thread();
         m_garbage_collector.cleanup();
 
-        DEBUG_LOG(notification, engine, "Exiting mika engine");
-
-#ifdef _DEBUG
-        Debug_logger::get().write_to_log_file();
-#endif
+        log("Shutting down engine", "Engine", Log_severity::notification);
     }
 } // namespace MEngine

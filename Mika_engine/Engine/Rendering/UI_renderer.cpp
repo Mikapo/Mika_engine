@@ -3,20 +3,18 @@
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_impl_glfw.h"
 #include "ImGui/imgui_impl_opengl3.h"
-#include "Objects/UI/UI.h"
 
 namespace MEngine
 {
-    void UI_renderer::initialize(GLFWwindow* window, Engine* engine)
+    void UI_renderer::initialize(GLFWwindow* window)
     {
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
-        const ImGuiIO& io = ImGui::GetIO();
-        (void)io;
+        ImGuiIO& io = ImGui::GetIO();
+        io.ConfigFlags |= ImGuiConfigFlags_::ImGuiConfigFlags_DockingEnable;
         ImGui::StyleColorsDark();
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init();
-        m_engine = engine;
         m_has_been_initialized = true;
     }
 
@@ -28,7 +26,7 @@ namespace MEngine
         m_has_been_initialized = false;
     }
 
-    void UI_renderer::render_ui(std::unordered_set<UI*>& viewport)
+    void UI_renderer::render_ui()
     {
         if (!m_has_been_initialized)
             return;
@@ -37,12 +35,36 @@ namespace MEngine
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        for (UI* ui : viewport)
-            if (ui)
-                ui->draw();
+        if (m_log_is_visible)
+            render_log();
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    }
+
+    void UI_renderer::render_log()
+    {
+        ImGui::Begin("Log", &m_log_is_visible);
+
+        for (Log_message& log : m_log)
+            ImGui::Text(log.message.c_str());
+
+        ImGui::End();
+    }
+
+    void UI_renderer::log(Log_message log_message)
+    {
+        m_log.push_back(std::move(log_message));
+    }
+
+    bool UI_renderer::is_log_visible() const noexcept
+    {
+        return m_log_is_visible;
+    }
+
+    void UI_renderer::set_log_visible(bool new_visibility) noexcept
+    {
+        m_log_is_visible = new_visibility;
     }
 
 } // namespace MEngine

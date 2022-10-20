@@ -4,6 +4,7 @@
 #include "Datatypes/Input.h"
 #include "OpenGL/Application/Application.h"
 #include "Scene_renderer.h"
+#include "UI_renderer.h"
 #include "Utility/Delegate.h"
 #include "Utility/Thread_safe_deque.h"
 #include <string_view>
@@ -22,6 +23,7 @@ namespace MEngine
         Render_settings get_render_settings() const noexcept;
         size_t frames_in_queue() const;
         void add_frame(Frame_data frame);
+        void add_log_message(Log_message log_message);
         void poll_events();
 
         Delegate<Input> m_on_input;
@@ -41,12 +43,14 @@ namespace MEngine
 
         OpenGL::Application m_application;
         Scene_renderer m_scene_renderer;
+        UI_renderer m_ui_renderer;
         std::thread m_thread_handle;
 
         std::condition_variable m_frame_conditional;
         std::mutex m_frame_mutex;
-        Thread_safe_deque<Frame_data> m_frame_queue;
 
+        Thread_safe_deque<Frame_data> m_frame_queue;
         Thread_safe_deque<Input> m_inputs;
+        Thread_safe_deque<Log_message> m_new_logs;
     };
 } // namespace MEngine

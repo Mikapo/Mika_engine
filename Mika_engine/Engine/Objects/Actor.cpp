@@ -145,7 +145,6 @@ namespace MEngine
             const Collision_result collision = found_collision->get_previous_collision();
             add_world_offset(collision.m_to_leave_collision);
             m_on_collision_detected.broadcast(collision);
-            DEBUG_LOG(notification, objects, "Collision detected");
             return true;
         }
 
@@ -163,14 +162,15 @@ namespace MEngine
 
         component->set_owner(this);
         component->set_world(get_world());
-
-        if (auto* collision = dynamic_cast<Collision_component*>(component))
-            m_collisions.insert(collision);
-
         m_components.insert(component);
         component->initialize();
 
         return component;
+    }
+
+    void Actor::register_collision(Collision_component* collision) noexcept
+    {
+        m_collisions.emplace(collision);
     }
 
     void Actor::add_local_offset(glm::vec3 offset, bool check_for_collision)

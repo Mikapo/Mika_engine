@@ -1,72 +1,623 @@
-[14:26:31] notification engine: Mika engine starting 
-[14:26:31] notification objects: Created object with name Test_world 
-[14:26:31] notification objects: Created object with name Ground 
-[14:26:31] notification objects: Created object with name Mesh_component 
-[14:26:32] notification objects: Created object with name Sofa 
-[14:26:32] notification objects: Created object with name Mesh_component 
-[14:26:32] notification objects: Created object with name Table 
-[14:26:32] notification objects: Created object with name Mesh_component 
-[14:26:32] notification objects: Created object with name Wooden_table 
-[14:26:32] notification objects: Created object with name Mesh_component 
-[14:26:32] notification objects: Created object with name Mesh_component 
-[14:26:32] notification objects: Created object with name Light 
-[14:26:32] notification objects: Created object with name Light_component 
-[14:26:32] notification objects: Created object with name Player 
-[14:26:32] notification objects: Created object with name Camera_component 
-[14:26:32] notification objects: Created object with name Input_component 
-[14:26:32] notification objects: Created object with name Settings_ui 
-[14:26:32] notification objects: Created object with name UI_window 
-[14:26:32] notification objects: Created object with name Collapsing_header 
-[14:26:32] notification objects: Created object with name Float_slider 
-[14:26:32] notification objects: Created object with name Float_slider 
-[14:26:32] notification objects: Created object with name Float_slider 
-[14:26:32] notification objects: Created object with name Collapsing_header 
-[14:26:32] notification objects: Created object with name Float_slider 
-[14:26:32] notification objects: Created object with name Color_picker 
-[14:26:32] notification objects: Created object with name Collapsing_header 
-[14:26:32] notification objects: Created object with name Checkbox 
-[14:26:32] notification objects: Created object with name Checkbox 
-[14:26:32] notification objects: Created object with name Checkbox 
-[14:26:32] notification objects: Created object with name Checkbox 
-[14:26:32] notification objects: Created object with name Checkbox 
-[14:27:51] notification engine: Staring cleanup 
-[14:27:51] notification objects: Test_world is going to be destroyed 
-[14:27:52] notification objects: Mesh_component is going to be destroyed 
-[14:27:53] notification objects: Ground is going to be destroyed 
-[14:27:54] notification objects: Mesh_component is going to be destroyed 
-[14:27:54] notification objects: Wooden_table is going to be destroyed 
-[14:27:55] notification objects: Mesh_component is going to be destroyed 
-[14:27:55] notification objects: Mesh_component is going to be destroyed 
-[14:27:56] notification objects: Sofa is going to be destroyed 
-[14:27:56] notification objects: Mesh_component is going to be destroyed 
-[14:27:56] notification objects: Mesh_component is going to be destroyed 
-[14:27:56] notification objects: Collapsing_header is going to be destroyed 
-[14:27:57] notification objects: Mesh_component is going to be destroyed 
-[14:27:57] notification objects: Collapsing_header is going to be destroyed 
-[14:27:57] notification objects: Table is going to be destroyed 
-[14:27:57] notification objects: Mesh_component is going to be destroyed 
-[14:27:57] notification objects: Checkbox is going to be destroyed 
-[14:27:58] notification objects: Mesh_component is going to be destroyed 
-[14:27:58] notification objects: Float_slider is going to be destroyed 
-[14:27:58] notification objects: Mesh_component is going to be destroyed 
-[14:27:58] notification objects: Light is going to be destroyed 
-[14:27:58] notification objects: Light_component is going to be destroyed 
-[14:27:58] notification objects: Float_slider is going to be destroyed 
-[14:27:59] notification objects: Light_component is going to be destroyed 
-[14:27:59] notification objects: Checkbox is going to be destroyed 
-[14:27:59] notification objects: Player is going to be destroyed 
-[14:27:59] notification objects: Camera_component is going to be destroyed 
-[14:27:59] notification objects: Input_component is going to be destroyed 
-[14:27:59] notification objects: Camera_component is going to be destroyed 
-[14:28:00] notification objects: Float_slider is going to be destroyed 
-[14:28:00] notification objects: Input_component is going to be destroyed 
-[14:28:00] notification objects: Color_picker is going to be destroyed 
-[14:28:00] notification objects: Settings_ui is going to be destroyed 
-[14:28:00] notification objects: UI_window is going to be destroyed 
-[14:28:00] notification objects: Float_slider is going to be destroyed 
-[14:28:01] notification objects: Collapsing_header is going to be destroyed 
-[14:28:01] notification objects: Checkbox is going to be destroyed 
-[14:28:01] notification objects: Checkbox is going to be destroyed 
-[14:28:01] notification objects: Checkbox is going to be destroyed 
-[14:28:01] notification engine: Exiting mika engine 
-[14:28:01] notification engine: Writing to log file 
+[12:49:58] notification engine: Mika engine starting 
+[12:49:58] notification objects: Created object with name Test_world 
+[12:49:58] notification objects: Created object with name Ground 
+[12:49:58] notification objects: Created object with name Mesh_component 
+[12:49:58] notification objects: Created object with name Sofa 
+[12:49:58] notification objects: Created object with name Mesh_component 
+[12:49:58] notification objects: Created object with name Table 
+[12:49:58] notification objects: Created object with name Mesh_component 
+[12:49:58] notification objects: Created object with name Wooden_table 
+[12:49:58] notification objects: Created object with name Mesh_component 
+[12:49:58] notification objects: Created object with name Mesh_component 
+[12:49:58] notification objects: Created object with name Light 
+[12:49:58] notification objects: Created object with name Light_component 
+[12:49:58] notification objects: Created object with name Player 
+[12:49:58] notification objects: Created object with name Camera_component 
+[12:49:58] notification objects: Created object with name Input_component 
+[12:49:58] notification objects: Created object with name Settings_ui 
+[12:49:58] notification objects: Created object with name UI_window 
+[12:49:58] notification objects: Created object with name Collapsing_header 
+[12:49:58] notification objects: Created object with name Float_slider 
+[12:49:58] notification objects: Created object with name Float_slider 
+[12:49:58] notification objects: Created object with name Float_slider 
+[12:49:58] notification objects: Created object with name Collapsing_header 
+[12:49:58] notification objects: Created object with name Float_slider 
+[12:49:58] notification objects: Created object with name Color_picker 
+[12:49:58] notification objects: Created object with name Collapsing_header 
+[12:49:58] notification objects: Created object with name Checkbox 
+[12:49:58] notification objects: Created object with name Checkbox 
+[12:49:58] notification objects: Created object with name Checkbox 
+[12:49:58] notification objects: Created object with name Checkbox 
+[12:49:58] notification objects: Created object with name Checkbox 
+[12:49:58] notification other: 1 
+[12:49:58] notification other: 2 
+[12:49:58] notification other: 3 
+[12:49:58] notification other: 4 
+[12:49:59] notification other: 5 
+[12:49:59] notification other: 6 
+[12:49:59] notification other: 7 
+[12:49:59] notification other: 8 
+[12:49:59] notification other: 9 
+[12:49:59] notification other: 10 
+[12:50:00] notification other: 11 
+[12:50:00] notification other: 12 
+[12:50:00] notification other: 13 
+[12:50:00] notification other: 14 
+[12:50:00] notification other: 15 
+[12:50:00] notification other: 16 
+[12:50:00] notification other: 17 
+[12:50:00] notification other: 18 
+[12:50:00] notification other: 19 
+[12:50:00] notification other: 20 
+[12:50:00] notification other: 21 
+[12:50:00] notification other: 22 
+[12:50:00] notification other: 23 
+[12:50:00] notification other: 24 
+[12:50:00] notification other: 25 
+[12:50:00] notification other: 26 
+[12:50:00] notification other: 27 
+[12:50:00] notification other: 28 
+[12:50:00] notification other: 29 
+[12:50:00] notification other: 30 
+[12:50:00] notification other: 31 
+[12:50:00] notification other: 32 
+[12:50:00] notification other: 33 
+[12:50:00] notification other: 34 
+[12:50:00] notification other: 35 
+[12:50:00] notification other: 36 
+[12:50:00] notification other: 37 
+[12:50:00] notification other: 38 
+[12:50:00] notification other: 39 
+[12:50:00] notification other: 40 
+[12:50:01] notification other: 41 
+[12:50:01] notification other: 42 
+[12:50:01] notification other: 43 
+[12:50:01] notification other: 44 
+[12:50:01] notification other: 45 
+[12:50:01] notification other: 46 
+[12:50:01] notification other: 47 
+[12:50:01] notification other: 48 
+[12:50:01] notification other: 49 
+[12:50:01] notification other: 50 
+[12:50:01] notification other: 51 
+[12:50:01] notification other: 52 
+[12:50:01] notification other: 53 
+[12:50:01] notification other: 54 
+[12:50:01] notification other: 55 
+[12:50:01] notification other: 56 
+[12:50:01] notification other: 57 
+[12:50:01] notification other: 58 
+[12:50:01] notification other: 59 
+[12:50:01] notification other: 60 
+[12:50:01] notification other: 61 
+[12:50:01] notification other: 62 
+[12:50:01] notification other: 63 
+[12:50:01] notification other: 64 
+[12:50:01] notification other: 65 
+[12:50:01] notification other: 66 
+[12:50:01] notification other: 67 
+[12:50:08] notification other: 68 
+[12:50:08] notification other: 69 
+[12:50:08] notification other: 70 
+[12:50:08] notification other: 71 
+[12:50:08] notification other: 72 
+[12:50:08] notification other: 73 
+[12:50:08] notification other: 74 
+[12:50:08] notification other: 75 
+[12:50:08] notification other: 76 
+[12:50:08] notification other: 77 
+[12:50:08] notification other: 78 
+[12:50:08] notification other: 79 
+[12:50:08] notification other: 80 
+[12:50:09] notification other: 81 
+[12:50:09] notification other: 82 
+[12:50:09] notification other: 83 
+[12:50:09] notification other: 84 
+[12:50:09] notification other: 85 
+[12:50:09] notification other: 86 
+[12:50:09] notification other: 87 
+[12:50:09] notification other: 88 
+[12:50:09] notification other: 89 
+[12:50:09] notification other: 90 
+[12:50:09] notification other: 91 
+[12:50:09] notification other: 92 
+[12:50:09] notification other: 93 
+[12:50:09] notification other: 94 
+[12:50:09] notification other: 95 
+[12:50:09] notification other: 96 
+[12:50:10] notification other: 97 
+[12:50:10] notification other: 98 
+[12:50:10] notification other: 99 
+[12:50:10] notification other: 100 
+[12:50:10] notification other: 101 
+[12:50:10] notification other: 102 
+[12:50:10] notification other: 103 
+[12:50:10] notification other: 104 
+[12:50:10] notification other: 105 
+[12:50:10] notification other: 106 
+[12:50:10] notification other: 107 
+[12:50:10] notification other: 108 
+[12:50:10] notification other: 109 
+[12:50:10] notification other: 110 
+[12:50:10] notification other: 111 
+[12:50:10] notification other: 112 
+[12:50:10] notification other: 113 
+[12:50:10] notification other: 114 
+[12:50:10] notification other: 115 
+[12:50:10] notification other: 116 
+[12:50:10] notification other: 117 
+[12:50:10] notification other: 118 
+[12:50:10] notification other: 119 
+[12:50:10] notification other: 120 
+[12:50:10] notification other: 121 
+[12:50:10] notification other: 122 
+[12:50:10] notification other: 123 
+[12:50:10] notification other: 124 
+[12:50:11] notification other: 125 
+[12:50:11] notification other: 126 
+[12:50:11] notification other: 127 
+[12:50:11] notification other: 128 
+[12:50:11] notification other: 129 
+[12:50:11] notification other: 130 
+[12:50:11] notification other: 131 
+[12:50:11] notification other: 132 
+[12:50:11] notification other: 133 
+[12:50:11] notification other: 134 
+[12:50:11] notification other: 135 
+[12:50:11] notification other: 136 
+[12:50:11] notification other: 137 
+[12:50:11] notification other: 138 
+[12:50:11] notification other: 139 
+[12:50:11] notification other: 140 
+[12:50:11] notification other: 141 
+[12:50:11] notification other: 142 
+[12:50:11] notification other: 143 
+[12:50:11] notification other: 144 
+[12:50:11] notification other: 145 
+[12:50:11] notification other: 146 
+[12:50:11] notification other: 147 
+[12:50:11] notification other: 148 
+[12:50:11] notification other: 149 
+[12:50:11] notification other: 150 
+[12:50:11] notification other: 151 
+[12:50:12] notification other: 152 
+[12:50:12] notification other: 153 
+[12:50:12] notification other: 154 
+[12:50:12] notification other: 155 
+[12:50:12] notification other: 156 
+[12:50:12] notification other: 157 
+[12:50:12] notification other: 158 
+[12:50:12] notification other: 159 
+[12:50:12] notification other: 160 
+[12:50:12] notification other: 161 
+[12:50:13] notification other: 162 
+[12:50:13] notification other: 163 
+[12:50:13] notification other: 164 
+[12:50:13] notification other: 165 
+[12:50:13] notification other: 166 
+[12:50:13] notification other: 167 
+[12:50:13] notification other: 168 
+[12:50:14] notification other: 169 
+[12:50:14] notification other: 170 
+[12:50:14] notification other: 171 
+[12:50:14] notification other: 172 
+[12:50:14] notification other: 173 
+[12:50:14] notification other: 174 
+[12:50:14] notification other: 175 
+[12:50:14] notification other: 176 
+[12:50:14] notification other: 177 
+[12:50:14] notification other: 178 
+[12:50:14] notification other: 179 
+[12:50:14] notification other: 180 
+[12:50:14] notification other: 181 
+[12:50:14] notification other: 182 
+[12:50:14] notification other: 183 
+[12:50:14] notification other: 184 
+[12:50:14] notification other: 185 
+[12:50:14] notification other: 186 
+[12:50:14] notification other: 187 
+[12:50:14] notification other: 188 
+[12:50:14] notification other: 189 
+[12:50:14] notification other: 190 
+[12:50:14] notification other: 191 
+[12:50:15] notification other: 192 
+[12:50:15] notification other: 193 
+[12:50:15] notification other: 194 
+[12:50:15] notification other: 195 
+[12:50:15] notification other: 196 
+[12:50:15] notification other: 197 
+[12:50:15] notification other: 198 
+[12:50:15] notification other: 199 
+[12:50:15] notification other: 200 
+[12:50:15] notification other: 201 
+[12:50:15] notification other: 202 
+[12:50:15] notification other: 203 
+[12:50:15] notification other: 204 
+[12:50:15] notification other: 205 
+[12:50:15] notification other: 206 
+[12:50:15] notification other: 207 
+[12:50:15] notification other: 208 
+[12:50:15] notification other: 209 
+[12:50:15] notification other: 210 
+[12:50:15] notification other: 211 
+[12:50:15] notification other: 212 
+[12:50:15] notification other: 213 
+[12:50:15] notification other: 214 
+[12:50:15] notification other: 215 
+[12:50:15] notification other: 216 
+[12:50:15] notification other: 217 
+[12:50:15] notification other: 218 
+[12:50:15] notification other: 219 
+[12:50:15] notification other: 220 
+[12:50:15] notification other: 221 
+[12:50:15] notification other: 222 
+[12:50:15] notification other: 223 
+[12:50:15] notification other: 224 
+[12:50:15] notification other: 225 
+[12:50:15] notification other: 226 
+[12:50:15] notification other: 227 
+[12:50:15] notification other: 228 
+[12:50:15] notification other: 229 
+[12:50:15] notification other: 230 
+[12:50:16] notification other: 231 
+[12:50:16] notification other: 232 
+[12:50:16] notification other: 233 
+[12:50:16] notification other: 234 
+[12:50:16] notification other: 235 
+[12:50:16] notification other: 236 
+[12:50:16] notification other: 237 
+[12:50:16] notification other: 238 
+[12:50:16] notification other: 239 
+[12:50:16] notification other: 240 
+[12:50:16] notification other: 241 
+[12:50:16] notification other: 242 
+[12:50:16] notification other: 243 
+[12:50:16] notification other: 244 
+[12:50:16] notification other: 245 
+[12:50:16] notification other: 246 
+[12:50:16] notification other: 247 
+[12:50:16] notification other: 248 
+[12:50:16] notification other: 249 
+[12:50:16] notification other: 250 
+[12:50:16] notification other: 251 
+[12:50:16] notification other: 252 
+[12:50:16] notification other: 253 
+[12:50:16] notification other: 254 
+[12:50:16] notification other: 255 
+[12:50:16] notification other: 256 
+[12:50:16] notification other: 257 
+[12:50:16] notification other: 258 
+[12:50:16] notification other: 259 
+[12:50:16] notification other: 260 
+[12:50:16] notification other: 261 
+[12:50:16] notification other: 262 
+[12:50:16] notification other: 263 
+[12:50:16] notification other: 264 
+[12:50:16] notification other: 265 
+[12:50:16] notification other: 266 
+[12:50:16] notification other: 267 
+[12:50:16] notification other: 268 
+[12:50:16] notification other: 269 
+[12:50:17] notification other: 270 
+[12:50:17] notification other: 271 
+[12:50:17] notification other: 272 
+[12:50:17] notification other: 273 
+[12:50:17] notification other: 274 
+[12:50:17] notification other: 275 
+[12:50:17] notification other: 276 
+[12:50:17] notification other: 277 
+[12:50:17] notification other: 278 
+[12:50:17] notification other: 279 
+[12:50:17] notification other: 280 
+[12:50:17] notification other: 281 
+[12:50:17] notification other: 282 
+[12:50:17] notification other: 283 
+[12:50:17] notification other: 284 
+[12:50:17] notification other: 285 
+[12:50:17] notification other: 286 
+[12:50:17] notification other: 287 
+[12:50:17] notification other: 288 
+[12:50:17] notification other: 289 
+[12:50:17] notification other: 290 
+[12:50:17] notification other: 291 
+[12:50:17] notification other: 292 
+[12:50:17] notification other: 293 
+[12:50:17] notification other: 294 
+[12:50:17] notification other: 295 
+[12:50:17] notification other: 296 
+[12:50:17] notification other: 297 
+[12:50:17] notification other: 298 
+[12:50:17] notification other: 299 
+[12:50:17] notification other: 300 
+[12:50:17] notification other: 301 
+[12:50:17] notification other: 302 
+[12:50:17] notification other: 303 
+[12:50:17] notification other: 304 
+[12:50:17] notification other: 305 
+[12:50:17] notification other: 306 
+[12:50:18] notification other: 307 
+[12:50:18] notification other: 308 
+[12:50:18] notification other: 309 
+[12:50:18] notification other: 310 
+[12:50:18] notification other: 311 
+[12:50:18] notification other: 312 
+[12:50:18] notification other: 313 
+[12:50:18] notification other: 314 
+[12:50:18] notification other: 315 
+[12:50:18] notification other: 316 
+[12:50:18] notification other: 317 
+[12:50:18] notification other: 318 
+[12:50:18] notification other: 319 
+[12:50:18] notification other: 320 
+[12:50:18] notification other: 321 
+[12:50:18] notification other: 322 
+[12:50:18] notification other: 323 
+[12:50:18] notification other: 324 
+[12:50:18] notification other: 325 
+[12:50:18] notification other: 326 
+[12:50:18] notification other: 327 
+[12:50:18] notification other: 328 
+[12:50:18] notification other: 329 
+[12:50:18] notification other: 330 
+[12:50:18] notification other: 331 
+[12:50:18] notification other: 332 
+[12:50:18] notification other: 333 
+[12:50:18] notification other: 334 
+[12:50:18] notification other: 335 
+[12:50:19] notification other: 336 
+[12:50:19] notification other: 337 
+[12:50:19] notification other: 338 
+[12:50:19] notification other: 339 
+[12:50:19] notification other: 340 
+[12:50:19] notification other: 341 
+[12:50:19] notification other: 342 
+[12:50:19] notification other: 343 
+[12:50:19] notification other: 344 
+[12:50:19] notification other: 345 
+[12:50:19] notification other: 346 
+[12:50:19] notification other: 347 
+[12:50:19] notification other: 348 
+[12:50:19] notification other: 349 
+[12:50:19] notification other: 350 
+[12:50:19] notification other: 351 
+[12:50:19] notification other: 352 
+[12:50:19] notification other: 353 
+[12:50:19] notification other: 354 
+[12:50:19] notification other: 355 
+[12:50:19] notification other: 356 
+[12:50:19] notification other: 357 
+[12:50:19] notification other: 358 
+[12:50:19] notification other: 359 
+[12:50:19] notification other: 360 
+[12:50:19] notification other: 361 
+[12:50:19] notification other: 362 
+[12:50:19] notification other: 363 
+[12:50:19] notification other: 364 
+[12:50:19] notification other: 365 
+[12:50:19] notification other: 366 
+[12:50:20] notification other: 367 
+[12:50:20] notification other: 368 
+[12:50:20] notification other: 369 
+[12:50:20] notification other: 370 
+[12:50:20] notification other: 371 
+[12:50:20] notification other: 372 
+[12:50:20] notification other: 373 
+[12:50:20] notification other: 374 
+[12:50:20] notification other: 375 
+[12:50:20] notification other: 376 
+[12:50:20] notification other: 377 
+[12:50:20] notification other: 378 
+[12:50:20] notification other: 379 
+[12:50:20] notification other: 380 
+[12:50:20] notification other: 381 
+[12:50:20] notification other: 382 
+[12:50:20] notification other: 383 
+[12:50:20] notification other: 384 
+[12:50:20] notification other: 385 
+[12:50:20] notification other: 386 
+[12:50:20] notification other: 387 
+[12:50:20] notification other: 388 
+[12:50:20] notification other: 389 
+[12:50:20] notification other: 390 
+[12:50:20] notification other: 391 
+[12:50:20] notification other: 392 
+[12:50:20] notification other: 393 
+[12:50:20] notification other: 394 
+[12:50:20] notification other: 395 
+[12:50:20] notification other: 396 
+[12:50:20] notification other: 397 
+[12:50:20] notification other: 398 
+[12:50:20] notification other: 399 
+[12:50:20] notification other: 400 
+[12:50:20] notification other: 401 
+[12:50:21] notification other: 402 
+[12:50:21] notification other: 403 
+[12:50:21] notification other: 404 
+[12:50:21] notification other: 405 
+[12:50:21] notification other: 406 
+[12:50:21] notification other: 407 
+[12:50:21] notification other: 408 
+[12:50:21] notification other: 409 
+[12:50:21] notification other: 410 
+[12:50:21] notification other: 411 
+[12:50:21] notification other: 412 
+[12:50:21] notification other: 413 
+[12:50:21] notification other: 414 
+[12:50:21] notification other: 415 
+[12:50:21] notification other: 416 
+[12:50:21] notification other: 417 
+[12:50:21] notification other: 418 
+[12:50:21] notification other: 419 
+[12:50:22] notification other: 420 
+[12:50:22] notification other: 421 
+[12:50:22] notification other: 422 
+[12:50:22] notification other: 423 
+[12:50:22] notification other: 424 
+[12:50:22] notification other: 425 
+[12:50:22] notification other: 426 
+[12:50:22] notification other: 427 
+[12:50:22] notification other: 428 
+[12:50:22] notification other: 429 
+[12:50:22] notification other: 430 
+[12:50:22] notification other: 431 
+[12:50:22] notification other: 432 
+[12:50:22] notification other: 433 
+[12:50:22] notification other: 434 
+[12:50:22] notification other: 435 
+[12:50:22] notification other: 436 
+[12:50:22] notification other: 437 
+[12:50:22] notification other: 438 
+[12:50:22] notification other: 439 
+[12:50:22] notification other: 440 
+[12:50:22] notification other: 441 
+[12:50:22] notification other: 442 
+[12:50:22] notification other: 443 
+[12:50:22] notification other: 444 
+[12:50:22] notification other: 445 
+[12:50:22] notification other: 446 
+[12:50:22] notification other: 447 
+[12:50:22] notification other: 448 
+[12:50:22] notification other: 449 
+[12:50:22] notification other: 450 
+[12:50:22] notification other: 451 
+[12:50:23] notification other: 452 
+[12:50:23] notification other: 453 
+[12:50:23] notification other: 454 
+[12:50:23] notification other: 455 
+[12:50:23] notification other: 456 
+[12:50:23] notification other: 457 
+[12:50:23] notification other: 458 
+[12:50:23] notification other: 459 
+[12:50:23] notification other: 460 
+[12:50:23] notification other: 461 
+[12:50:23] notification other: 462 
+[12:50:23] notification other: 463 
+[12:50:23] notification other: 464 
+[12:50:23] notification other: 465 
+[12:50:23] notification other: 466 
+[12:50:23] notification other: 467 
+[12:50:23] notification other: 468 
+[12:50:23] notification other: 469 
+[12:50:23] notification other: 470 
+[12:50:23] notification other: 471 
+[12:50:23] notification other: 472 
+[12:50:23] notification other: 473 
+[12:50:23] notification other: 474 
+[12:50:23] notification other: 475 
+[12:50:23] notification other: 476 
+[12:50:23] notification other: 477 
+[12:50:23] notification other: 478 
+[12:50:23] notification other: 479 
+[12:50:23] notification other: 480 
+[12:50:23] notification other: 481 
+[12:50:23] notification other: 482 
+[12:50:23] notification other: 483 
+[12:50:23] notification other: 484 
+[12:50:23] notification other: 485 
+[12:50:23] notification other: 486 
+[12:50:23] notification other: 487 
+[12:50:23] notification other: 488 
+[12:50:23] notification other: 489 
+[12:50:23] notification other: 490 
+[12:50:23] notification other: 491 
+[12:50:24] notification other: 492 
+[12:50:24] notification other: 493 
+[12:50:24] notification other: 494 
+[12:50:24] notification other: 495 
+[12:50:24] notification other: 496 
+[12:50:24] notification other: 497 
+[12:50:24] notification other: 498 
+[12:50:24] notification other: 499 
+[12:50:24] notification other: 500 
+[12:50:24] notification other: 501 
+[12:50:24] notification other: 502 
+[12:50:24] notification other: 503 
+[12:50:24] notification other: 504 
+[12:50:24] notification other: 505 
+[12:50:24] notification other: 506 
+[12:50:24] notification other: 507 
+[12:50:24] notification other: 508 
+[12:50:24] notification other: 509 
+[12:50:24] notification other: 510 
+[12:50:24] notification other: 511 
+[12:50:24] notification other: 512 
+[12:50:24] notification other: 513 
+[12:50:24] notification other: 514 
+[12:50:24] notification other: 515 
+[12:50:24] notification other: 516 
+[12:50:24] notification other: 517 
+[12:50:24] notification other: 518 
+[12:50:24] notification other: 519 
+[12:50:24] notification other: 520 
+[12:50:24] notification other: 521 
+[12:50:25] notification other: 522 
+[12:50:25] notification other: 523 
+[12:50:25] notification other: 524 
+[12:50:25] notification other: 525 
+[12:50:25] notification other: 526 
+[12:50:25] notification other: 527 
+[12:50:25] notification other: 528 
+[12:50:25] notification other: 529 
+[12:50:25] notification other: 530 
+[12:50:25] notification other: 531 
+[12:50:25] notification other: 532 
+[12:50:25] notification other: 533 
+[12:50:25] notification other: 534 
+[12:50:25] notification other: 535 
+[12:50:25] notification other: 536 
+[12:50:25] notification other: 537 
+[12:50:25] notification other: 538 
+[12:50:25] notification other: 539 
+[12:50:25] notification other: 540 
+[12:50:25] notification other: 541 
+[12:50:26] notification other: 542 
+[12:50:26] notification other: 543 
+[12:50:26] notification other: 544 
+[12:50:26] notification other: 545 
+[12:50:26] notification other: 546 
+[12:50:26] notification other: 547 
+[12:50:26] notification other: 548 
+[12:50:26] notification other: 549 
+[12:50:26] notification other: 550 
+[12:50:26] notification other: 551 
+[12:50:38] notification engine: Staring cleanup 
+[12:50:38] notification objects: Float_slider is going to be destroyed 
+[12:50:38] notification objects: Test_world is going to be destroyed 
+[12:50:38] notification objects: Collapsing_header is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Input_component is going to be destroyed 
+[12:50:38] notification objects: Ground is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Table is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Checkbox is going to be destroyed 
+[12:50:38] notification objects: Sofa is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Settings_ui is going to be destroyed 
+[12:50:38] notification objects: Wooden_table is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Player is going to be destroyed 
+[12:50:38] notification objects: Camera_component is going to be destroyed 
+[12:50:38] notification objects: Input_component is going to be destroyed 
+[12:50:38] notification objects: Mesh_component is going to be destroyed 
+[12:50:38] notification objects: Float_slider is going to be destroyed 
+[12:50:38] notification objects: Light is going to be destroyed 
+[12:50:38] notification objects: Light_component is going to be destroyed 
+[12:50:38] notification objects: Checkbox is going to be destroyed 
+[12:50:38] notification objects: Camera_component is going to be destroyed 
+[12:50:38] notification objects: Light_component is going to be destroyed 
+[12:50:38] notification objects: UI_window is going to be destroyed 
+[12:50:38] notification objects: Collapsing_header is going to be destroyed 
+[12:50:38] notification objects: Collapsing_header is going to be destroyed 
+[12:50:38] notification objects: Float_slider is going to be destroyed 
+[12:50:38] notification objects: Color_picker is going to be destroyed 
+[12:50:38] notification objects: Float_slider is going to be destroyed 
+[12:50:38] notification objects: Checkbox is going to be destroyed 
+[12:50:38] notification objects: Checkbox is going to be destroyed 
+[12:50:38] notification objects: Checkbox is going to be destroyed 
+[12:50:38] notification engine: Exiting mika engine 
+[12:50:38] notification engine: Writing to log file 

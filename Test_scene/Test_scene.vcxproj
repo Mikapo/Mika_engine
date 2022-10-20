@@ -153,7 +153,7 @@
     <ClCompile Include="Source\UI\Settings_ui.cpp" />
     <ClCompile Include="Source\Actors\Light.cpp" />
     <ClCompile Include="Source\Actors\Player.cpp" />
-    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Actors\Sofa.cpp" />
     <ClCompile Include="Source\Actors\Ground.cpp" />
     <ClCompile Include="Source\Actors\Table.cpp" />
