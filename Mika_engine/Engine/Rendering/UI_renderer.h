@@ -19,9 +19,10 @@ namespace MEngine
         void initialize(GLFWwindow* window);
         void cleanup();
         void render_ui();
+
+        void log(Log_message log_message);
         [[nodiscard]] bool is_log_visible() const noexcept;
         void set_log_visible(bool new_visibility) noexcept;
-        void log(Log_message log_message);
 
     private:
         void render_log();

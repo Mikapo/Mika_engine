@@ -20,7 +20,7 @@ namespace MEngine
 
         m_transform = transform;
 
-        const Directional_vectors normals = transform.m_rotation.calculate_directional_vectors_from_rotation();
+        const Directional_vectors normals = transform.m_rotation.calculate_directional_vectors();
         m_normals = {normals.m_forward, normals.m_right, normals.m_up};
 
         m_extend = glm::vec3(-std::numeric_limits<float>::infinity());

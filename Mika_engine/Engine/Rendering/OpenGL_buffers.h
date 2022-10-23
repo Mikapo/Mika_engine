@@ -13,8 +13,19 @@ namespace MEngine
     public:
         using Buffer_future = std::future<std::unique_ptr<OpenGL::Buffers>>;
 
+        /**
+         * @param Path to mesh
+         * @return Returns buffers if they are not ready returns nullptr
+         */
         [[nodiscard]] OpenGL::Buffers* get_object_buffers(const std::string& path);
+
+        /**
+         * @param Path to texture
+         * @return Returns texture buffers if they are not ready returns nullptr
+         */
         [[nodiscard]] OpenGL::Texture* get_texture(const std::string& path);
+
+        // Clears all buffers
         void clear() noexcept;
 
     private:

@@ -9,7 +9,7 @@ namespace MEngine
     {
         Object::initialize();
 
-        update_local_coordinate_system();
+        update_directional_vectors();
     }
 
     void Actor::update(float deltatime)
@@ -48,11 +48,13 @@ namespace MEngine
     void Actor::set_transform(Transform new_transform, bool check_for_collision)
     {
         m_transform = new_transform;
-        update_local_coordinate_system();
+        update_directional_vectors();
         m_on_transform_change.broadcast(this);
 
-        if (check_for_collision)
-            check_collisions();
+        if (check_for_collision && check_collisions())
+        {
+            // todo revert collision
+        }
     }
 
     void Actor::set_location(glm::vec3 new_location, bool check_for_collision)
@@ -93,6 +95,9 @@ namespace MEngine
 
     void Actor::set_active_camera(Camera_component* camera)
     {
+        if (!is_valid(camera) || camera->get_owner() != this)
+            return;
+
         m_active_camera = camera;
     }
 
@@ -103,7 +108,7 @@ namespace MEngine
 
     Camera_data Actor::get_active_camera_data()
     {
-        if (m_active_camera && is_valid(m_active_camera))
+        if (is_valid(m_active_camera))
             return m_active_camera->get_camera_data();
         else
         {
@@ -112,12 +117,12 @@ namespace MEngine
         }
     }
 
-    glm::vec3 Actor::get_forward_vector() noexcept
+    glm::vec3 Actor::get_forward_vector() const noexcept
     {
         return m_directional_vectors.m_forward;
     }
 
-    glm::vec3 Actor::get_up_vector() noexcept
+    glm::vec3 Actor::get_up_vector() const noexcept
     {
         return m_directional_vectors.m_up;
     }
@@ -153,11 +158,11 @@ namespace MEngine
 
     Actor_component* Actor::create_component(Class_obj* class_obj)
     {
-        if (!class_obj)
+        if (class_obj == nullptr)
             throw std::invalid_argument("class_obj was null");
 
         Actor_component* component = class_obj->construct_cast<Actor_component>(get_engine());
-        if (!component)
+        if (component == nullptr)
             return nullptr;
 
         component->set_owner(this);
@@ -202,8 +207,8 @@ namespace MEngine
         set_transform(transform, check_for_collision);
     }
 
-    void Actor::update_local_coordinate_system()
+    void Actor::update_directional_vectors()
     {
-        m_directional_vectors = get_transform().m_rotation.calculate_directional_vectors_from_rotation();
+        m_directional_vectors = get_transform().m_rotation.calculate_directional_vectors();
     }
 } // namespace MEngine

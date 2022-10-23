@@ -4,9 +4,7 @@
 #include "OpenGL/Shading/Shader.h"
 #include "OpenGL/Shading/Shadow_map.h"
 #include "OpenGL_buffers.h"
-#include <condition_variable>
 #include <memory>
-#include <queue>
 
 namespace MEngine
 {
@@ -23,30 +21,38 @@ namespace MEngine
     class Scene_renderer
     {
     public:
+        // Should be called before use
         void initialize();
+
+        // Should be called after not using anymore
         void cleanup() noexcept;
-        void render_frame(Frame_data frame);
-        Render_settings get_render_settings() const noexcept;
+
+        [[nodiscard]] Render_settings get_render_settings() const noexcept;
         void set_render_settings(Render_settings settings) noexcept;
+
+        void render_frame(Frame_data frame);
         void update_window_size(int32_t width, int32_t height) noexcept;
 
     private:
         void update_camera(const Camera_data& camera_data);
         void update_lighting(const std::vector<Light_data>& lighting);
         void update_settings();
-        void render_to_shadow_Map(std::vector<Mesh_data>& meshes);
+
+        void draw_to_shadow_map(const std::vector<Mesh_data>& meshes);
         void draw_collisions(const std::vector<Transform>& collisions, OpenGL::Shader& shader);
-        void draw_meshes(std::vector<Mesh_data>& meshes, OpenGL::Shader& shader);
+        void draw_meshes(const std::vector<Mesh_data>& meshes, OpenGL::Shader& shader);
         void draw_mesh(
             const OpenGL::Buffers& buffers, Transform transform, const Material& material, OpenGL::Shader& shader);
+
         void apply_material(const Material& material, OpenGL::Shader& shader);
 
-        bool m_has_been_initialized = false;
-
         OpenGL_buffers m_buffers;
-        std::unique_ptr<OpenGL::Shader> m_scene_shader;
-        std::unique_ptr<OpenGL::Shadow_map> m_shadow_map;
-        int32_t m_window_width, m_window_height;
+        std::unique_ptr<OpenGL::Shader> m_scene_shader = nullptr;
+        std::unique_ptr<OpenGL::Shadow_map> m_shadow_map = nullptr;
+
+        bool m_has_been_initialized = false;
+        int32_t m_window_width = 0, m_window_height = 0;
+        float m_aspect_ratio = 0.0F;
 
         Render_settings m_render_settings;
     };

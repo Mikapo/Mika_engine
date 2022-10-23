@@ -21,4 +21,4 @@ namespace OpenGL
     private:
         Callable m_callback;
     };
-} // namespace Net
+} // namespace OpenGL

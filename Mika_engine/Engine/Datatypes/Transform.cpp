@@ -35,7 +35,7 @@ namespace MEngine
         return yaw * pitch * roll;
     }
 
-    Directional_vectors Rotator::calculate_directional_vectors_from_rotation() const
+    Directional_vectors Rotator::calculate_directional_vectors() const
     {
         const glm::mat4 rotation_matrix = calculate_rotation_matrix();
         const glm::vec3 forward = {rotation_matrix[0][0], rotation_matrix[0][1], rotation_matrix[0][2]};

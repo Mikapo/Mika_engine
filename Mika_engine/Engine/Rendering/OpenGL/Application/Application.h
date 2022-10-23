@@ -31,7 +31,7 @@ namespace OpenGL
         // Needs to be called before start is called
         void set_window_title(std::string_view name);
 
-         // Callbacks
+        // Callbacks
         Delegate<> m_on_window_open;
         Delegate<> m_on_render;
         Delegate<> m_on_cleanup;

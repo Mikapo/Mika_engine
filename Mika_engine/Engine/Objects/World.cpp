@@ -4,7 +4,6 @@
 #include "Components/Scene_components/Light_component.h"
 #include "Components/Scene_components/Mesh_component.h"
 #include "Core/Engine.h"
-#include "Objects/UI/UI.h"
 #include "Utility/Collisions/Line.h"
 
 namespace MEngine
@@ -14,7 +13,6 @@ namespace MEngine
         Object::update(deltatime);
 
         update_owned_objects(m_actors, deltatime);
-        update_owned_objects(m_viewport, deltatime);
     }
 
     void World::get_owned_objects(std::vector<Object*>& out_array) noexcept
@@ -23,9 +21,6 @@ namespace MEngine
 
         for (Actor* actor : m_actors)
             out_array.push_back(actor);
-
-        for (UI* ui : m_viewport)
-            out_array.push_back(ui);
     }
 
     Actor* World::spawn_actor(Class_obj* class_obj, Transform transform)
@@ -42,19 +37,6 @@ namespace MEngine
         actor->set_transform(transform);
         actor->initialize();
         return actor;
-    }
-
-    UI* World::create_ui(Class_obj* class_obj)
-    {
-        if (!class_obj)
-            throw std::invalid_argument("class_obj is null");
-
-        UI* ui = class_obj->construct_cast<UI>(get_engine());
-        if (!ui)
-            return nullptr;
-
-        ui->initialize();
-        return ui;
     }
 
     void World::register_mesh_component(Mesh_component* component)
@@ -84,8 +66,7 @@ namespace MEngine
         m_collision_handler.update_component(component, collision);
     }
 
-    std::optional<Collision_result> World::find_collisions(
-        const Collider* collision, Collision_component* component) const
+    World::Optional_collision World::find_collisions(const Collider* collision, Collision_component* component) const
     {
         if (!collision)
             throw std::invalid_argument("collision is null");
@@ -96,10 +77,8 @@ namespace MEngine
         return m_collision_handler.find_collisions(collision, component);
     }
 
-    std::optional<Hit_result> World::line_trace(
-        glm::vec3 start, glm::vec3 end, const std::unordered_set<Actor*>& ignored_actors)
+    World::Optional_hit_result World::line_trace(Line line, const Actor_ptr_set& ignored_actors)
     {
-        Line line = {.m_start = start, .m_end = end};
         return m_collision_handler.find_overlaps_with_line(&line, ignored_actors);
     }
 
@@ -157,31 +136,4 @@ namespace MEngine
             return Camera_data();
         }
     }
-
-    void World::add_UI_to_viewport(UI* ui)
-    {
-        if (!ui)
-            throw std::invalid_argument("ui is null");
-
-        if (is_valid(ui))
-        {
-            m_viewport.insert(ui);
-            ui->m_on_added_to_viewport.broadcast(this);
-        }
-    }
-
-    void World::remove_UI_from_viewport(UI* ui)
-    {
-        if (!ui)
-            throw std::invalid_argument("ui is null");
-
-        if (is_valid(ui))
-            m_viewport.erase(ui);
-    }
-
-    std::unordered_set<UI*>& World::get_viewport() noexcept
-    {
-        return m_viewport;
-    }
-
 } // namespace MEngine

@@ -848,7 +848,10 @@ static void stbi__start_callbacks(stbi__context* s, stbi_io_callbacks* c, void* 
 
 #ifndef STBI_NO_STDIO
 
-static int stbi__stdio_read(void* user, char* data, int size) { return (int)fread(data, 1, size, (FILE*)user); }
+static int stbi__stdio_read(void* user, char* data, int size)
+{
+    return (int)fread(data, 1, size, (FILE*)user);
+}
 
 static void stbi__stdio_skip(void* user, int n)
 {
@@ -861,7 +864,10 @@ static void stbi__stdio_skip(void* user, int n)
     }
 }
 
-static int stbi__stdio_eof(void* user) { return feof((FILE*)user) || ferror((FILE*)user); }
+static int stbi__stdio_eof(void* user)
+{
+    return feof((FILE*)user) || ferror((FILE*)user);
+}
 
 static stbi_io_callbacks stbi__stdio_callbacks = {
     stbi__stdio_read,
@@ -869,7 +875,10 @@ static stbi_io_callbacks stbi__stdio_callbacks = {
     stbi__stdio_eof,
 };
 
-static void stbi__start_file(stbi__context* s, FILE* f) { stbi__start_callbacks(s, &stbi__stdio_callbacks, (void*)f); }
+static void stbi__start_file(stbi__context* s, FILE* f)
+{
+    stbi__start_callbacks(s, &stbi__stdio_callbacks, (void*)f);
+}
 
 // static void stop_file(stbi__context *s) { }
 
@@ -961,7 +970,10 @@ static
 #endif
     const char* stbi__g_failure_reason;
 
-STBIDEF const char* stbi_failure_reason(void) { return stbi__g_failure_reason; }
+STBIDEF const char* stbi_failure_reason(void)
+{
+    return stbi__g_failure_reason;
+}
 
 #ifndef STBI_NO_FAILURE_STRINGS
 static int stbi__err(const char* str)
@@ -971,7 +983,10 @@ static int stbi__err(const char* str)
 }
 #endif
 
-static void* stbi__malloc(size_t size) { return STBI_MALLOC(size); }
+static void* stbi__malloc(size_t size)
+{
+    return STBI_MALLOC(size);
+}
 
 // stb_image uses ints pervasively, including for offset calculations.
 // therefore the largest decoded image size we can support with the
@@ -1072,7 +1087,10 @@ static void* stbi__malloc_mad4(int a, int b, int c, int d, int add)
 #define stbi__errpf(x, y) ((float*)(size_t)(stbi__err(x, y) ? NULL : NULL))
 #define stbi__errpuc(x, y) ((unsigned char*)(size_t)(stbi__err(x, y) ? NULL : NULL))
 
-STBIDEF void stbi_image_free(void* retval_from_stbi_load) { STBI_FREE(retval_from_stbi_load); }
+STBIDEF void stbi_image_free(void* retval_from_stbi_load)
+{
+    STBI_FREE(retval_from_stbi_load);
+}
 
 #ifndef STBI_NO_LINEAR
 static float* stbi__ldr_to_hdr(stbi_uc* data, int x, int y, int comp);
@@ -1576,14 +1594,26 @@ STBIDEF int stbi_is_hdr_from_callbacks(stbi_io_callbacks const* clbk, void* user
 #ifndef STBI_NO_LINEAR
 static float stbi__l2h_gamma = 2.2f, stbi__l2h_scale = 1.0f;
 
-STBIDEF void stbi_ldr_to_hdr_gamma(float gamma) { stbi__l2h_gamma = gamma; }
-STBIDEF void stbi_ldr_to_hdr_scale(float scale) { stbi__l2h_scale = scale; }
+STBIDEF void stbi_ldr_to_hdr_gamma(float gamma)
+{
+    stbi__l2h_gamma = gamma;
+}
+STBIDEF void stbi_ldr_to_hdr_scale(float scale)
+{
+    stbi__l2h_scale = scale;
+}
 #endif
 
 static float stbi__h2l_gamma_i = 1.0f / 2.2f, stbi__h2l_scale_i = 1.0f;
 
-STBIDEF void stbi_hdr_to_ldr_gamma(float gamma) { stbi__h2l_gamma_i = 1 / gamma; }
-STBIDEF void stbi_hdr_to_ldr_scale(float scale) { stbi__h2l_scale_i = 1 / scale; }
+STBIDEF void stbi_hdr_to_ldr_gamma(float gamma)
+{
+    stbi__h2l_gamma_i = 1 / gamma;
+}
+STBIDEF void stbi_hdr_to_ldr_scale(float scale)
+{
+    stbi__h2l_scale_i = 1 / scale;
+}
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -1763,7 +1793,10 @@ static stbi__uint32 stbi__get32le(stbi__context* s)
 //  assume data buffer is malloced, so malloc a new one and free that one
 //  only failure mode is malloc failing
 
-static stbi_uc stbi__compute_y(int r, int g, int b) { return (stbi_uc)(((r * 77) + (g * 150) + (29 * b)) >> 8); }
+static stbi_uc stbi__compute_y(int r, int g, int b)
+{
+    return (stbi_uc)(((r * 77) + (g * 150) + (29 * b)) >> 8);
+}
 #endif
 
 #if defined(STBI_NO_PNG) && defined(STBI_NO_BMP) && defined(STBI_NO_PSD) && defined(STBI_NO_TGA) &&                    \
@@ -1805,7 +1838,10 @@ static unsigned char* stbi__convert_format(unsigned char* data, int img_n, int r
                 dest[1] = 255;
             }
             break;
-            STBI__CASE(1, 3) { dest[0] = dest[1] = dest[2] = src[0]; }
+            STBI__CASE(1, 3)
+            {
+                dest[0] = dest[1] = dest[2] = src[0];
+            }
             break;
             STBI__CASE(1, 4)
             {
@@ -1813,9 +1849,15 @@ static unsigned char* stbi__convert_format(unsigned char* data, int img_n, int r
                 dest[3] = 255;
             }
             break;
-            STBI__CASE(2, 1) { dest[0] = src[0]; }
+            STBI__CASE(2, 1)
+            {
+                dest[0] = src[0];
+            }
             break;
-            STBI__CASE(2, 3) { dest[0] = dest[1] = dest[2] = src[0]; }
+            STBI__CASE(2, 3)
+            {
+                dest[0] = dest[1] = dest[2] = src[0];
+            }
             break;
             STBI__CASE(2, 4)
             {
@@ -1831,7 +1873,10 @@ static unsigned char* stbi__convert_format(unsigned char* data, int img_n, int r
                 dest[3] = 255;
             }
             break;
-            STBI__CASE(3, 1) { dest[0] = stbi__compute_y(src[0], src[1], src[2]); }
+            STBI__CASE(3, 1)
+            {
+                dest[0] = stbi__compute_y(src[0], src[1], src[2]);
+            }
             break;
             STBI__CASE(3, 2)
             {
@@ -1839,7 +1884,10 @@ static unsigned char* stbi__convert_format(unsigned char* data, int img_n, int r
                 dest[1] = 255;
             }
             break;
-            STBI__CASE(4, 1) { dest[0] = stbi__compute_y(src[0], src[1], src[2]); }
+            STBI__CASE(4, 1)
+            {
+                dest[0] = stbi__compute_y(src[0], src[1], src[2]);
+            }
             break;
             STBI__CASE(4, 2)
             {
@@ -1915,7 +1963,10 @@ static stbi__uint16* stbi__convert_format16(stbi__uint16* data, int img_n, int r
                 dest[1] = 0xffff;
             }
             break;
-            STBI__CASE(1, 3) { dest[0] = dest[1] = dest[2] = src[0]; }
+            STBI__CASE(1, 3)
+            {
+                dest[0] = dest[1] = dest[2] = src[0];
+            }
             break;
             STBI__CASE(1, 4)
             {
@@ -1923,9 +1974,15 @@ static stbi__uint16* stbi__convert_format16(stbi__uint16* data, int img_n, int r
                 dest[3] = 0xffff;
             }
             break;
-            STBI__CASE(2, 1) { dest[0] = src[0]; }
+            STBI__CASE(2, 1)
+            {
+                dest[0] = src[0];
+            }
             break;
-            STBI__CASE(2, 3) { dest[0] = dest[1] = dest[2] = src[0]; }
+            STBI__CASE(2, 3)
+            {
+                dest[0] = dest[1] = dest[2] = src[0];
+            }
             break;
             STBI__CASE(2, 4)
             {
@@ -1941,7 +1998,10 @@ static stbi__uint16* stbi__convert_format16(stbi__uint16* data, int img_n, int r
                 dest[3] = 0xffff;
             }
             break;
-            STBI__CASE(3, 1) { dest[0] = stbi__compute_y_16(src[0], src[1], src[2]); }
+            STBI__CASE(3, 1)
+            {
+                dest[0] = stbi__compute_y_16(src[0], src[1], src[2]);
+            }
             break;
             STBI__CASE(3, 2)
             {
@@ -1949,7 +2009,10 @@ static stbi__uint16* stbi__convert_format16(stbi__uint16* data, int img_n, int r
                 dest[1] = 0xffff;
             }
             break;
-            STBI__CASE(4, 1) { dest[0] = stbi__compute_y_16(src[0], src[1], src[2]); }
+            STBI__CASE(4, 1)
+            {
+                dest[0] = stbi__compute_y_16(src[0], src[1], src[2]);
+            }
             break;
             STBI__CASE(4, 2)
             {
@@ -4285,7 +4348,10 @@ static void stbi__setup_jpeg(stbi__jpeg* j)
 }
 
 // clean up the temporary component buffers
-static void stbi__cleanup_jpeg(stbi__jpeg* j) { stbi__free_jpeg_components(j, j->s->img_n, 0); }
+static void stbi__cleanup_jpeg(stbi__jpeg* j)
+{
+    stbi__free_jpeg_components(j, j->s->img_n, 0);
+}
 
 typedef struct
 {
@@ -4701,9 +4767,15 @@ typedef struct
     stbi__zhuffman z_length, z_distance;
 } stbi__zbuf;
 
-stbi_inline static int stbi__zeof(stbi__zbuf* z) { return (z->zbuffer >= z->zbuffer_end); }
+stbi_inline static int stbi__zeof(stbi__zbuf* z)
+{
+    return (z->zbuffer >= z->zbuffer_end);
+}
 
-stbi_inline static stbi_uc stbi__zget8(stbi__zbuf* z) { return stbi__zeof(z) ? 0 : *z->zbuffer++; }
+stbi_inline static stbi_uc stbi__zget8(stbi__zbuf* z)
+{
+    return stbi__zeof(z) ? 0 : *z->zbuffer++;
+}
 
 static void stbi__fill_bits(stbi__zbuf* z)
 {
@@ -5365,11 +5437,20 @@ static int stbi__create_png_image_raw(
             case STBI__F_none:
                 memcpy(cur, raw, nk);
                 break;
-                STBI__CASE(STBI__F_sub) { cur[k] = STBI__BYTECAST(raw[k] + cur[k - filter_bytes]); }
+                STBI__CASE(STBI__F_sub)
+                {
+                    cur[k] = STBI__BYTECAST(raw[k] + cur[k - filter_bytes]);
+                }
                 break;
-                STBI__CASE(STBI__F_up) { cur[k] = STBI__BYTECAST(raw[k] + prior[k]); }
+                STBI__CASE(STBI__F_up)
+                {
+                    cur[k] = STBI__BYTECAST(raw[k] + prior[k]);
+                }
                 break;
-                STBI__CASE(STBI__F_avg) { cur[k] = STBI__BYTECAST(raw[k] + ((prior[k] + cur[k - filter_bytes]) >> 1)); }
+                STBI__CASE(STBI__F_avg)
+                {
+                    cur[k] = STBI__BYTECAST(raw[k] + ((prior[k] + cur[k - filter_bytes]) >> 1));
+                }
                 break;
                 STBI__CASE(STBI__F_paeth)
                 {
@@ -5377,7 +5458,10 @@ static int stbi__create_png_image_raw(
                         STBI__BYTECAST(raw[k] + stbi__paeth(cur[k - filter_bytes], prior[k], prior[k - filter_bytes]));
                 }
                 break;
-                STBI__CASE(STBI__F_avg_first) { cur[k] = STBI__BYTECAST(raw[k] + (cur[k - filter_bytes] >> 1)); }
+                STBI__CASE(STBI__F_avg_first)
+                {
+                    cur[k] = STBI__BYTECAST(raw[k] + (cur[k - filter_bytes] >> 1));
+                }
                 break;
                 STBI__CASE(STBI__F_paeth_first)
                 {
@@ -5398,13 +5482,25 @@ static int stbi__create_png_image_raw(
             for (k = 0; k < filter_bytes; ++k)
             switch (filter)
             {
-                STBI__CASE(STBI__F_none) { cur[k] = raw[k]; }
+                STBI__CASE(STBI__F_none)
+                {
+                    cur[k] = raw[k];
+                }
                 break;
-                STBI__CASE(STBI__F_sub) { cur[k] = STBI__BYTECAST(raw[k] + cur[k - output_bytes]); }
+                STBI__CASE(STBI__F_sub)
+                {
+                    cur[k] = STBI__BYTECAST(raw[k] + cur[k - output_bytes]);
+                }
                 break;
-                STBI__CASE(STBI__F_up) { cur[k] = STBI__BYTECAST(raw[k] + prior[k]); }
+                STBI__CASE(STBI__F_up)
+                {
+                    cur[k] = STBI__BYTECAST(raw[k] + prior[k]);
+                }
                 break;
-                STBI__CASE(STBI__F_avg) { cur[k] = STBI__BYTECAST(raw[k] + ((prior[k] + cur[k - output_bytes]) >> 1)); }
+                STBI__CASE(STBI__F_avg)
+                {
+                    cur[k] = STBI__BYTECAST(raw[k] + ((prior[k] + cur[k - output_bytes]) >> 1));
+                }
                 break;
                 STBI__CASE(STBI__F_paeth)
                 {
@@ -5412,7 +5508,10 @@ static int stbi__create_png_image_raw(
                         STBI__BYTECAST(raw[k] + stbi__paeth(cur[k - output_bytes], prior[k], prior[k - output_bytes]));
                 }
                 break;
-                STBI__CASE(STBI__F_avg_first) { cur[k] = STBI__BYTECAST(raw[k] + (cur[k - output_bytes] >> 1)); }
+                STBI__CASE(STBI__F_avg_first)
+                {
+                    cur[k] = STBI__BYTECAST(raw[k] + (cur[k - output_bytes] >> 1));
+                }
                 break;
                 STBI__CASE(STBI__F_paeth_first)
                 {
@@ -8237,7 +8336,10 @@ static void* stbi__gif_load(stbi__context* s, int* x, int* y, int* comp, int req
     return u;
 }
 
-static int stbi__gif_info(stbi__context* s, int* x, int* y, int* comp) { return stbi__gif_info_raw(s, x, y, comp); }
+static int stbi__gif_info(stbi__context* s, int* x, int* y, int* comp)
+{
+    return stbi__gif_info_raw(s, x, y, comp);
+}
 #endif
 
 // *************************************************************************************************
@@ -8810,7 +8912,10 @@ static void stbi__pnm_skip_whitespace(stbi__context* s, char* c)
     }
 }
 
-static int stbi__pnm_isdigit(char c) { return c >= '0' && c <= '9'; }
+static int stbi__pnm_isdigit(char c)
+{
+    return c >= '0' && c <= '9';
+}
 
 static int stbi__pnm_getinteger(stbi__context* s, char* c)
 {

@@ -30,17 +30,5 @@ void Bullet::update(float deltatime)
 
 void Bullet::on_collision(MEngine::Collision_result collision)
 {
-    glm::vec3 start = get_location();
-    glm::vec3 end = collision.m_other_component->get_world_transform().m_location;
-
-    auto hit_result = get_world()->line_trace(start, end, {this});
-
-    if (hit_result.has_value())
-    {
-        glm::vec3 hit_normal = hit_result.value().m_normal;
-        glm::vec3 new_velocity = glm::reflect(m_velocity, hit_normal);
-        m_velocity = new_velocity;
-    }
-    else
-        m_velocity *= -1;
+   
 }

@@ -21,18 +21,25 @@ namespace MEngine
 
     public:
         Collision_component() noexcept;
-        void set_collider_type(Collider_type type);
+
+        // Called when created
         void initialize() override;
-        bool is_overlapping(const Collision_component* other) const;
-        std::optional<Hit_result> is_overlapping_with_line(const Line& line) const;
-        bool check_for_collisions();
-        Collision_result get_previous_collision() const noexcept;
+
+        void set_collider_type(Collider_type type);
+
+        [[nodiscard]] bool is_overlapping(const Collision_component* other) const;
+        [[nodiscard]] std::optional<Hit_result> is_overlapping_with_line(const Line& line) const;
+
+        [[nodiscard]] bool check_for_collisions();
+        [[nodiscard]] Collision_result get_previous_collision() const noexcept;
 
     private:
+        // Updates transform of collider
         void update_world_transform() override;
 
         Collider_type m_current_collider_type = Collider_type::obb;
         std::shared_ptr<Collider> m_collider = nullptr;
+
         Collision_result m_previous_collision;
     };
 } // namespace MEngine

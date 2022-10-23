@@ -57,4 +57,4 @@ namespace OpenGL
     private:
         Callback_interface m_callback;
     };
-} // namespace Net
+} // namespace OpenGL

@@ -32,13 +32,21 @@ namespace MEngine
         float m_yaw = 0;
         float m_roll = 0;
 
-        Rotator operator-(const Rotator& other) const noexcept;
-        Rotator operator+(const Rotator& other) const noexcept;
-        Rotator operator*(float value) const noexcept;
+        [[nodiscard]] Rotator operator-(const Rotator& other) const noexcept;
+        [[nodiscard]] Rotator operator+(const Rotator& other) const noexcept;
+        [[nodiscard]] Rotator operator*(float value) const noexcept;
 
-        float difference(const Rotator& other) const;
-        glm::mat4 calculate_rotation_matrix() const;
-        Directional_vectors calculate_directional_vectors_from_rotation() const;
+        /**
+         * @return The difference between two rotators
+         */
+        [[nodiscard]] float difference(const Rotator& other) const;
+
+        /**
+         * @return Directional vectors calculated using this rotation
+         */
+        [[nodiscard]] Directional_vectors calculate_directional_vectors() const;
+
+        [[nodiscard]] glm::mat4 calculate_rotation_matrix() const;
     };
 
     struct Transform
@@ -53,9 +61,9 @@ namespace MEngine
         Rotator m_rotation = {0.0f, 0.0f, 0.0f};
         glm::vec3 m_scale = {1.0f, 1.0f, 1.0f};
 
-        glm::mat4 calculate_model() const;
-        glm::mat4 calculate_translate_matrix() const;
-        glm::mat4 calculate_scale_matrix() const;
-        glm::mat4 calculate_rotation_matrix() const;
+        [[nodiscard]] glm::mat4 calculate_model() const;
+        [[nodiscard]] glm::mat4 calculate_translate_matrix() const;
+        [[nodiscard]] glm::mat4 calculate_scale_matrix() const;
+        [[nodiscard]] glm::mat4 calculate_rotation_matrix() const;
     };
 } // namespace MEngine

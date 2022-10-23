@@ -16,12 +16,14 @@ namespace MEngine
     public:
         Mesh_component() noexcept;
 
+        // Called when created
         void initialize() override;
-        void set_mesh(std::string_view mesh_path) noexcept;
-        void set_material(const Material& material) noexcept;
-        Material get_material() const noexcept;
 
-        std::optional<Mesh_data> get_mesh_data() const noexcept;
+        void set_material(const Material& material) noexcept;
+        [[nodiscard]] Material get_material() const noexcept;
+
+        void set_mesh(std::string_view mesh_path) noexcept;
+        [[nodiscard]] std::optional<Mesh_data> get_mesh_data() const noexcept;
 
     private:
         Mesh m_mesh;

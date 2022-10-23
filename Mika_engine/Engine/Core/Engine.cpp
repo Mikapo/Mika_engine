@@ -13,7 +13,7 @@ namespace MEngine
         setup_callbacks();
         m_render_engine.start_render_thread();
         set_world(m_default_world);
-        log("Mika engine starting", "Engine", Log_severity::notification);
+        log("Engine starting", "Engine", Log_severity::notification);
         update_loop();
         cleanup();
     }
@@ -74,6 +74,8 @@ namespace MEngine
         const auto time_passed = time - m_time_since_last_frame;
         m_time_since_last_frame = time;
         const float delta_microseconds = static_cast<float>(duration_cast<microseconds>(time_passed).count());
+
+        // Converts to ms
         m_deltatime = delta_microseconds * 0.000001F;
     }
 
@@ -104,25 +106,29 @@ namespace MEngine
         m_world->initialize();
     }
 
+    void Engine::send_data_to_render_engine()
+    {
+        Frame_data frame;
+
+        if (is_object_valid(m_world))
+            m_world->get_frame_data(frame);
+
+        m_render_engine.add_frame(std::move(frame));
+    }
+
     void Engine::update_loop()
     {
         while (m_render_engine.is_running())
         {
-            if (m_render_engine.frames_in_queue() > 2)
-                continue;
-
+            m_render_engine.wait_until(0, 2);
             update_deltatime();
             m_garbage_collector.update();
             m_render_engine.poll_events();
 
             if (is_object_valid(m_world))
-            {
                 m_world->update(m_deltatime);
 
-                Frame_data frame;
-                m_world->get_frame_data(frame);
-                m_render_engine.add_frame(std::move(frame));
-            }
+            send_data_to_render_engine();
         }
     }
 

@@ -22,15 +22,14 @@ namespace MEngine
 
     void Render_engine::render()
     {
-        std::unique_lock lock(m_frame_mutex);
-        m_frame_conditional.wait(lock, [this] { return frames_in_queue() > 1; });
-
+        wait_until(2);
         m_scene_renderer.render_frame(m_frame_queue.pop_front());
 
         if (!m_new_logs.empty())
             m_ui_renderer.log(m_new_logs.pop_front());
 
         m_ui_renderer.render_ui();
+        m_wait_until_conditional.notify_all();
     }
 
     void Render_engine::on_window_resize(int32_t width, int32_t height)
@@ -64,7 +63,6 @@ namespace MEngine
         m_application.m_on_cleanup.set_callback(this, &Render_engine::cleanup);
 
         m_application.start();
-        m_is_running = false;
     }
 
     void Render_engine::on_window_open()
@@ -79,6 +77,9 @@ namespace MEngine
 
     void Render_engine::cleanup()
     {
+        m_is_running = false;
+        m_wait_until_conditional.notify_all();
+
         m_scene_renderer.cleanup();
         m_ui_renderer.cleanup();
     }
@@ -103,15 +104,10 @@ namespace MEngine
         return m_scene_renderer.get_render_settings();
     }
 
-    size_t Render_engine::frames_in_queue() const
-    {
-        return m_frame_queue.size();
-    }
-
     void Render_engine::add_frame(Frame_data frame)
     {
-        m_frame_conditional.notify_one();
         m_frame_queue.push_back(std::move(frame));
+        m_wait_until_conditional.notify_all();
     }
 
     void Render_engine::add_log_message(Log_message log_message)
@@ -123,5 +119,18 @@ namespace MEngine
     {
         while (!m_inputs.empty())
             m_on_input.broadcast(m_inputs.pop_front());
+    }
+
+    void Render_engine::wait_until(int32_t min_frames_behind, int32_t max_frames_behind) noexcept
+    {
+        auto wait_lambda = [=] {
+            const bool not_too_less_frames = m_frame_queue.size() >= min_frames_behind;
+            const bool not_too_many_frames = m_frame_queue.size() <= max_frames_behind;
+
+            return (not_too_less_frames && not_too_many_frames) || !m_is_running;
+        };
+
+        std::unique_lock lock(m_wait_until_mutex);
+        m_wait_until_conditional.wait(lock, wait_lambda);
     }
 } // namespace MEngine

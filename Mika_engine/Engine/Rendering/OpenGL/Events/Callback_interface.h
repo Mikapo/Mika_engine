@@ -9,4 +9,4 @@ namespace OpenGL
         virtual ~Callback_interface() = default;
         virtual void invoke(Argtypes... args) = 0;
     };
-}
+} // namespace OpenGL

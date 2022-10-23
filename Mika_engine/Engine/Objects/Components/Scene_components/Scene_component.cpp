@@ -65,7 +65,7 @@ namespace MEngine
 
     void Scene_component::update_directional_vectors()
     {
-        m_local_directional_vectors = get_relative_transform().m_rotation.calculate_directional_vectors_from_rotation();
+        m_local_directional_vectors = get_relative_transform().m_rotation.calculate_directional_vectors();
     }
 
     Transform Scene_component::calculate_component_world_transform(Transform owner_transform)

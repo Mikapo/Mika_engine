@@ -9,29 +9,9 @@ namespace MEngine
         m_marked_for_destruction = true;
     }
 
-    void Object::set_garbage_collect_mark(bool mark) noexcept
-    {
-        m_garbage_collector_mark = mark;
-    }
-
-    bool Object::is_marked_by_garbage_collector() const noexcept
-    {
-        return m_garbage_collector_mark;
-    }
-
     bool Object::is_marked_for_destruction() const noexcept
     {
         return m_marked_for_destruction;
-    }
-
-    Engine* Object::get_engine() noexcept
-    {
-        return m_engine;
-    }
-
-    const Engine* Object::get_engine() const noexcept
-    {
-        return m_engine;
     }
 
     void Object::update(float deltatime)
@@ -42,7 +22,8 @@ namespace MEngine
             const auto time_since_lifetime_has_been_set =
                 high_resolution_clock::now() - m_time_since_lifetime_has_been_set;
 
-            if (time_since_lifetime_has_been_set.count() * 0.000000001f > m_lifetime)
+            // Converts to ms
+            if (time_since_lifetime_has_been_set.count() * 0.000000001F > m_lifetime)
                 destruct();
         }
     }
@@ -59,8 +40,11 @@ namespace MEngine
 
     bool Object::static_is_valid(const Engine* engine, const Object* obj)
     {
-        if (!engine)
-            throw std::invalid_argument("engine was null");
+        if (obj == nullptr)
+            return false;
+
+        if (engine == nullptr)
+            throw std::invalid_argument("Engine was null");
 
         return engine->is_object_valid(obj);
     }
@@ -86,6 +70,16 @@ namespace MEngine
     void Object::set_engine(Engine* engine) noexcept
     {
         m_engine = engine;
+    }
+
+    const Engine* Object::get_engine() const noexcept
+    {
+        return m_engine;
+    }
+
+    Engine* Object::get_engine() noexcept
+    {
+        return m_engine;
     }
 
     size_t Object::get_amount_of_registered_objects() noexcept

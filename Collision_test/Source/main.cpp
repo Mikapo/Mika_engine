@@ -1,7 +1,7 @@
 #include "Collision_test_world.h"
 #include "Core/Engine.h"
 
-int main()
+int WinMain()
 {
     MEngine::Engine engine;
     engine.set_window_title("Collision test");

@@ -81,11 +81,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -178,18 +180,12 @@
     <ClCompile Include="Engine\Utility\Collisions\Collision_handler.cpp" />
     <ClCompile Include="Engine\Objects\Components\Scene_components\Collision_component.cpp" />
     <ClCompile Include="Engine\Datatypes\Transform.cpp" />
-    <ClCompile Include="Engine\Objects\UI\Items\Color_picker.cpp" />
-    <ClCompile Include="Engine\Objects\UI\Items\Sliders\Float_slider.cpp" />
-    <ClCompile Include="Engine\Objects\UI\Items\Sliders\Angle_slider.cpp" />
-    <ClCompile Include="Engine\Objects\UI\Items\Parents\Collapsing_header.cpp" />
-    <ClCompile Include="Engine\Objects\UI\Items\Checkbox.cpp" />
     <ClCompile Include="Engine\Objects\Components\Scene_components\Camera_component.cpp" />
     <ClCompile Include="Engine\Objects\Components\Actor_component.cpp" />
     <ClCompile Include="Engine\Objects\Actor.cpp" />
     <ClCompile Include="Engine\Core\Engine.cpp" />
     <ClCompile Include="Engine\Objects\Object.cpp" />
     <ClCompile Include="Engine\Core\Garbage_collector.cpp" />
-    <ClCompile Include="Engine\Objects\UI\Items\UI_item.cpp" />
     <ClCompile Include="Engine\Objects\Components\Scene_components\Mesh_component.cpp" />
     <ClCompile Include="Engine\Assets\Mesh.cpp" />
     <ClCompile Include="Engine\Rendering\Scene_renderer.cpp" />
@@ -198,10 +194,6 @@
     <ClCompile Include="Engine\Objects\Components\Scene_components\Scene_component.cpp" />
     <ClCompile Include="Engine\Utility\Delegate.cpp" />
     <ClCompile Include="Engine\Rendering\UI_renderer.cpp" />
-    <ClCompile Include="Engine\Objects\UI\UI.cpp" />
-    <ClCompile Include="Engine\Objects\UI\Items\Parents\UI_window.cpp" />
-    <ClCompile Include="Engine\Objects\UI\Items\Parents\UI_parent.cpp" />
-    <ClCompile Include="Engine\Objects\UI\Items\Sliders\Slider.cpp" />
     <ClCompile Include="Engine\Utility\Collisions\Colliders\Oriented_bounding_box.cpp" />
     <ClCompile Include="Engine\Utility\Collisions\Line.cpp" />
     <ClCompile Include="Engine\Utility\Collisions\Colliders\Sphere.cpp" />
@@ -259,18 +251,12 @@
     <ClInclude Include="Engine\Utility\Collisions\Colliders\Collider.h" />
     <ClInclude Include="Engine\Utility\Collisions\Collision_handler.h" />
     <ClInclude Include="Engine\Objects\Components\Scene_components\Collision_component.h" />
-    <ClInclude Include="Engine\Objects\UI\Items\Color_picker.h" />
-    <ClInclude Include="Engine\Objects\UI\Items\Sliders\Float_slider.h" />
-    <ClInclude Include="Engine\Objects\UI\Items\Sliders\Angle_slider.h" />
-    <ClInclude Include="Engine\Objects\UI\Items\Parents\Collapsing_header.h" />
-    <ClInclude Include="Engine\Objects\UI\Items\Checkbox.h" />
     <ClInclude Include="Engine\Objects\Components\Scene_components\Camera_component.h" />
     <ClInclude Include="Engine\Objects\Components\Actor_component.h" />
     <ClInclude Include="Engine\Objects\Actor.h" />
     <ClInclude Include="Engine\Core\Engine.h" />
     <ClInclude Include="Engine\Objects\Object.h" />
     <ClInclude Include="Engine\Core\Garbage_collector.h" />
-    <ClInclude Include="Engine\Objects\UI\Items\UI_item.h" />
     <ClInclude Include="Engine\Utility\Delegate.h" />
     <ClInclude Include="Engine\Datatypes\Frame_data.h" />
     <ClInclude Include="Engine\Datatypes\Transform.h" />
@@ -286,10 +272,6 @@
     <ClInclude Include="Engine\Objects\Components\Scene_components\Light_component.h" />
     <ClInclude Include="Engine\Objects\Components\Scene_components\Scene_component.h" />
     <ClInclude Include="Engine\Rendering\UI_renderer.h" />
-    <ClInclude Include="Engine\Objects\UI\UI.h" />
-    <ClInclude Include="Engine\Objects\UI\Items\Parents\UI_window.h" />
-    <ClInclude Include="Engine\Objects\UI\Items\Parents\UI_parent.h" />
-    <ClInclude Include="Engine\Objects\UI\Items\Sliders\Slider.h" />
     <ClInclude Include="Engine\Utility\Collisions\Colliders\Oriented_bounding_box.h" />
     <ClInclude Include="Engine\Utility\Collisions\Line.h" />
     <ClInclude Include="Engine\Utility\Collisions\Colliders\Sphere.h" />

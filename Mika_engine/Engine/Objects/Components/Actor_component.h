@@ -13,9 +13,10 @@ namespace MEngine
 
     public:
         void set_owner(Actor* owner) noexcept;
-        Actor* get_owner() const noexcept;
+        [[nodiscard]] Actor* get_owner() const noexcept;
+
         void set_world(World* world) noexcept;
-        World* get_world() const noexcept;
+        [[nodiscard]] World* get_world() const noexcept;
 
     private:
         World* m_owning_world = nullptr;

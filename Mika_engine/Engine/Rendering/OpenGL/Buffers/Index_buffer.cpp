@@ -27,7 +27,7 @@ void OpenGL::Index_buffer::unbind() const noexcept
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-size_t OpenGL::Index_buffer::get_count() const noexcept                                    
+size_t OpenGL::Index_buffer::get_count() const noexcept
 {
     return m_count;
 }

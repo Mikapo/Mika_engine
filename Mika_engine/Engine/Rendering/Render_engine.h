@@ -15,24 +15,39 @@ namespace MEngine
     class Render_engine
     {
     public:
+        // Starts rendering on new thread
         void start_render_thread();
+
         void join_render_thread();
-        bool is_running() const noexcept;
-        void set_window_title(std::string_view title);
+
+        /**
+         * @return Is render thread running
+         */
+        [[nodiscard]] bool is_running() const noexcept;
+
         void set_render_settings(Render_settings settings) noexcept;
-        Render_settings get_render_settings() const noexcept;
-        size_t frames_in_queue() const;
+        [[nodiscard]] Render_settings get_render_settings() const noexcept;
+
+        // Adds new frame to queue to be rendered
         void add_frame(Frame_data frame);
+
+        // Adds new log to queue to be added to log window
         void add_log_message(Log_message log_message);
+
         void poll_events();
+        void wait_until(
+            int32_t min_frames_behind, int32_t max_frames_behind = std::numeric_limits<int32_t>::max()) noexcept;
+        void set_window_title(std::string_view title);
 
         Delegate<Input> m_on_input;
 
     private:
         void start_application();
+        void update_window_size(int32_t width, int32_t height);
+
+        // Events from application
         void render();
         void on_window_resize(int32_t width, int32_t height);
-        void update_window_size(int32_t width, int32_t height);
         void on_input(Input_key key, Input_action action);
         void on_window_open();
         void cleanup();
@@ -46,8 +61,8 @@ namespace MEngine
         UI_renderer m_ui_renderer;
         std::thread m_thread_handle;
 
-        std::condition_variable m_frame_conditional;
-        std::mutex m_frame_mutex;
+        std::condition_variable m_wait_until_conditional;
+        std::mutex m_wait_until_mutex;
 
         Thread_safe_deque<Frame_data> m_frame_queue;
         Thread_safe_deque<Input> m_inputs;

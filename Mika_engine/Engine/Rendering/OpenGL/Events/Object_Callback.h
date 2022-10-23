@@ -4,12 +4,11 @@
 
 namespace OpenGL
 {
-	template<typename Obj, typename Callable, typename... Argtypes>
-	class Object_callback : public Callback_interface<Argtypes...>
+    template <typename Obj, typename Callable, typename... Argtypes>
+    class Object_callback : public Callback_interface<Argtypes...>
     {
-	public:
-        Object_callback(Obj* obj, Callable callable)
-            : m_obj(obj), m_callback(std::forward<Callable>(callable))
+    public:
+        Object_callback(Obj* obj, Callable callable) : m_obj(obj), m_callback(std::forward<Callable>(callable))
         {
         }
 
@@ -19,7 +18,7 @@ namespace OpenGL
         }
 
     private:
-		Obj* m_obj;
+        Obj* m_obj;
         Callable m_callback;
-	};
-}
+    };
+} // namespace OpenGL

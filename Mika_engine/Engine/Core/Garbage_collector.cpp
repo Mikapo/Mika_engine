@@ -5,7 +5,10 @@ namespace MEngine
 {
     bool Garbage_collector::is_object_valid(const Object* obj) const
     {
-        return m_registered_objects.contains(const_cast<Object*>(obj));
+        if (obj == nullptr)
+            return false;
+
+        return m_registered_objects.contains(obj);
     }
 
     void Garbage_collector::register_object(std::unique_ptr<Object> obj)
@@ -13,8 +16,7 @@ namespace MEngine
         m_registered_objects.emplace(obj.get(), std::move(obj));
     }
 
-    const std::unordered_map<Object*, std::unique_ptr<Object>>& Garbage_collector::get_registered_objects()
-        const noexcept
+    const Garbage_collector::Object_ptr_container& Garbage_collector::get_registered_objects() const noexcept
     {
         return m_registered_objects;
     }
@@ -38,7 +40,7 @@ namespace MEngine
 
         for (auto& obj_pair : m_registered_objects)
         {
-            Object* obj = obj_pair.first;
+            Object* obj = obj_pair.second.m_object.get();
 
             if (!obj)
                 m_registered_objects.erase(obj);
@@ -51,21 +53,26 @@ namespace MEngine
 
     void Garbage_collector::garbage_collect()
     {
-        check_object(m_root);
+        check_object(m_registered_objects.at(m_root));
         destruct_unchecked_objects();
     }
 
-    void Garbage_collector::check_object(Object* obj)
+    void Garbage_collector::check_object(Tracked_obj& obj)
     {
-        if (!obj || !is_object_valid(obj) || obj->is_marked_by_garbage_collector())
+        if (obj.m_is_checked || !is_object_valid(obj.m_object.get()))
             return;
 
-        obj->set_garbage_collect_mark(true);
+        obj.m_is_checked = true;
         std::vector<Object*> owned_objects;
-        obj->get_owned_objects(owned_objects);
+        obj.m_object->get_owned_objects(owned_objects);
 
-        for (Object* obj : owned_objects)
-            check_object(obj);
+        for (const Object* obj : owned_objects)
+        {
+            auto found_obj = m_registered_objects.find(obj);
+
+            if (found_obj != m_registered_objects.end())
+                check_object(found_obj->second);
+        }
     }
 
     void Garbage_collector::destruct_unchecked_objects()
@@ -75,12 +82,15 @@ namespace MEngine
 
         for (auto& obj_pair : m_registered_objects)
         {
-            Object* obj = obj_pair.first;
+            Object* obj = obj_pair.second.m_object.get();
 
-            if (!obj->is_marked_by_garbage_collector())
+            if (obj == nullptr)
+                throw std::logic_error("obj should never be nullptr");
+
+            if (!obj_pair.second.m_is_checked)
                 obj->destruct();
             else
-                obj->set_garbage_collect_mark(false);
+                obj_pair.second.m_is_checked = false;
         }
     }
 

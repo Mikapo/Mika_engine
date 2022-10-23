@@ -8,7 +8,7 @@ namespace MEngine
     {
         Actor_component::initialize();
 
-        get_engine()->m_on_input.add_object(this, &Input_component::on_key_event);
+        get_engine()->m_on_input.add_object(this, &Input_component::on_input);
     }
 
     void Input_component::update(float deltatime)
@@ -21,7 +21,7 @@ namespace MEngine
             if (!mapping)
                 return;
 
-            mapping->broadcast(mapping->get_current_value());
+            mapping->m_delegate.broadcast(mapping->m_current_value);
         }
     }
 
@@ -30,7 +30,7 @@ namespace MEngine
         m_axis_mappings.erase(name);
     }
 
-    void Input_component::on_key_event(Input input)
+    void Input_component::on_input(Input input)
     {
         handle_axis_mapping(input);
         handle_action_mapping(input);
@@ -44,13 +44,13 @@ namespace MEngine
             if (!mapping)
                 return;
 
-            if (input.action == Input_action::release && input.key == mapping->get_current_key())
-                mapping->set_current_value(0.0f);
+            if (input.action == Input_action::release && input.key == mapping->m_current_key)
+                mapping->m_current_value = 0.0F;
 
-            else if (input.action == Input_action::press && mapping->get_keys().contains(input.key))
+            else if (input.action == Input_action::press && mapping->m_keys.contains(input.key))
             {
-                mapping->set_current_value(mapping->get_keys().at(input.key));
-                mapping->set_current_key(input.key);
+                mapping->m_current_value = mapping->m_keys.at(input.key);
+                mapping->m_current_key = input.key;
             }
         }
     }
@@ -66,8 +66,8 @@ namespace MEngine
         {
             auto* action_mapping = value.get();
 
-            if (action_mapping && action_mapping->get_action() == input.action)
-                action_mapping->broadcast();
+            if (action_mapping && action_mapping->m_action == input.action)
+                action_mapping->m_delegate.broadcast();
         }
     }
 
